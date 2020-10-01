@@ -6,7 +6,7 @@ class level {
     this.rightmove = true;
     this.downmove = false;
     this.monster = [];
-    this.movespeed = 0.01;
+    this.movespeed = 0.5;
     this.k = 0;
     this.time = 0;
     this.i = 0
@@ -56,9 +56,10 @@ class level {
   draw() {
 
     for (var i = 0; i < this.monster.length; i++) {
-
+push()
+fill(255,0,0);
       rect(this.monster[i].position_x, this.monster[i].position_y, this.monster[i].x_size, this.monster[i].y_size)
-
+pop()
     }
   }
 
