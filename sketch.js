@@ -12,6 +12,7 @@ let x;
 let y;
 var bulletEffectTimer;
 var UFOEffectTimer;
+var currentlevel = new level(LEVEL_ONE);
 
 function preload() {
   image_player = loadImage('playerSprites/Player.png');
@@ -38,6 +39,11 @@ c = new crash();
 
 function draw() {
   background(0);
+
+currentlevel.draw();
+currentlevel.movecheck();
+currentlevel.move();
+
   p.update();
   p.draw();
   for (let a of attackArray) {
