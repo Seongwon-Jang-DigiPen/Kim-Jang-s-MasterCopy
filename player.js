@@ -7,6 +7,8 @@ class player {
     this.position_x = 50;
     this.position_y = 410;
     this.speed = 5;
+    this.width = 36
+    this.height = 18
   }
 
   update() {
@@ -18,12 +20,6 @@ class player {
   }
 
   draw() {
-    push()
-    fill('cyan')
-    rect(this.position_x, this.position_y, 25, 9);
-    rect(this.position_x, this.position_y - 2, 21, 8);
-    rect(this.position_x, this.position_y - 7, 7, 8);
-    rect(this.position_x, this.position_y - 8.5, 2, 11);
-    pop();
+    image(image_player, this.position_x, this.position_y, this.width, this.height);
   }
 }

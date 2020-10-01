@@ -1,24 +1,35 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 class bullet {
   constructor(a) {
-    this.bullet_x = a
-    this.bullet_y = 400;
-    this.bullet_speed = 20
+    this.position_x = a
+    this.position_y = 380;
+    this.position_speed = 10
+    this.width = 3
+    this.height = 16
   }
 
   draw() {
-
     push();
     fill(255, 200);
-    rect(this.bullet_x, this.bullet_y, 2, 20);
+    rect(this.position_x, this.position_y, this.width, this.height);
     pop();
   }
 
   update() {
-    this.bullet_y -= this.bullet_speed
+    this.position_y -= this.position_speed
   }
-  
+
+  //몹에 맞거나, 벽에 맞거나, 맨 위에 맞거나
+  crashWallBullet() {
+    if (this.position_y < 0) {
+      return true
+    }
+  }
   deleteBullet() {
-    if (this.bullet_y < 0) {
+    if (bullet_UFO_1_crash()) {
       return true
     }
   }
