@@ -9,6 +9,7 @@ class barrier {
     this.left_up_damaged = 0;
     this.left_down_damaged = 0;
     this.image_size = 16;
+    this.status_check_count = 0;
 
     this.left_image_1 = image_barrier_left[0];
     this.left_image_2 = image_barrier_square[0];
@@ -62,19 +63,19 @@ class barrier {
 
     push();
     imageMode(CENTER);
-    image(this.left_image_1, barrier_left_1.x, barrier_left_1.y);
-    image(this.left_image_2, barrier_left_2.x, barrier_left_2.y);
-    image(this.left_image_3, barrier_left_3.x, barrier_left_3.y);
+    image(this.left_image_1, barrier_left_1.x, barrier_left_1.y,this.image_size,this.image_size);
+    image(this.left_image_2, barrier_left_2.x, barrier_left_2.y,this.image_size,this.image_size);
+    image(this.left_image_3, barrier_left_3.x, barrier_left_3.y,this.image_size,this.image_size);
 
-    image(this.right_image_1, barrier_right_1.x, barrier_right_1.y);
-    image(this.right_image_2, barrier_right_2.x, barrier_right_2.y);
-    image(this.right_image_3, barrier_right_3.x, barrier_right_3.y);
+    image(this.right_image_1, barrier_right_1.x, barrier_right_1.y,this.image_size,this.image_size);
+    image(this.right_image_2, barrier_right_2.x, barrier_right_2.y,this.image_size,this.image_size);
+    image(this.right_image_3, barrier_right_3.x, barrier_right_3.y,this.image_size,this.image_size);
 
-    image(this.middle_image_1, barrier_midle_1.x, barrier_midle_1.y);
-    image(this.middle_image_2, barrier_midle_2.x, barrier_midle_2.y);
+    image(this.middle_image_1, barrier_midle_1.x, barrier_midle_1.y,this.image_size,this.image_size);
+    image(this.middle_image_2, barrier_midle_2.x, barrier_midle_2.y,this.image_size,this.image_size);
 
     if (this.down_damaged == 0 || this.up_damaged != 9) {
-      image(image_barrier_bottom_edge, barrier_midle_3.x, barrier_midle_3.y);
+      image(image_barrier_bottom_edge, barrier_midle_3.x, barrier_midle_3.y,this.image_size,this.image_size);
     }
 
     pop();
@@ -914,29 +915,30 @@ class barrier {
 
 
   }
+  bulletCheck(){
+    this.status_check_count = 0;
+  }
   hitRange(object) {
     var left_x = this.x - this.image_size;
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
     var object_status = 0,
-      status_check = 0;
 
 
-
-    if (object.x <= left_x + this.image_size / 2 && object.x >= left_x - this.image_size / 2 && status_check == 0) {
+    if (object.position_x <= left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 && this.status_check_count == 0) {
       object_status = 1;
     }
-    if (object.x <= right_x + this.image_size / 2 && object.x >= right_x - this.image_size / 2 && status_check == 0) {
+    if (object.position_x <= right_x + this.image_size / 2 && object.position_x >= right_x - this.image_size / 2 && this.status_check_count == 0) {
       object_status = 2;
     }
-    if (object.x <= this.x + this.image_size / 2 && object.x >= this.x - this.image_size / 2 && status_check == 0) {
+    if (object.position_x <= this.x + this.image_size / 2 && object.position_x >= this.x - this.image_size / 2 && this.status_check_count == 0) {
       object_status = 3;
     } //Check left, right, and middle
 
-    if (object.y > this.y && status_check == 0) {
+    if (object.position_y > this.y && this.status_check_count == 0) {
       object_status *= -1;
-      status_check = 1;
+      this.status_check_count = 1;
     } //Check upside and downside
 
     switch (object_status) {
@@ -949,9 +951,9 @@ class barrier {
           Y = this.y + object_size / 2;
         }
 
-        if (object.y >= Y && object.y <= Y + this.image_size / 2) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
           //delete object
-          //this.left_up_damaged ++;
+          this.left_up_damaged ++;
         }
 
         break;
@@ -964,9 +966,9 @@ class barrier {
           Y = this.y + object_size / 2;
         }
 
-        if (object.y >= Y && object.y <= Y + this.image_size / 2) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
           //delete object
-          //this.up_damaged ++;
+          this.up_damaged ++;
         }
 
 
@@ -980,9 +982,9 @@ class barrier {
           Y = this.y + object_size / 2;
         }
 
-        if (object.y >= Y && object.y <= Y + this.image_size / 2) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
           //delete object
-          //this.right_up_damaged ++;
+          this.right_up_damaged ++;
         }
 
         break;
@@ -995,9 +997,9 @@ class barrier {
           Y = this.y - object_size / 2;
         }
 
-        if (object.y >= Y - this.image_size / 2 && object.y <= Y) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
           //delete object
-          //this.left_down_damaged ++;
+          this.left_down_damaged ++;
         }
 
         break;
@@ -1008,9 +1010,9 @@ class barrier {
           Y = this.y - object_size / 2;
         }
 
-        if (object.y >= Y - this.image_size / 2 && object.y <= Y) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
           //delete object
-          //this.down_damaged ++;
+          this.down_damaged ++;
         }
 
         break;
@@ -1023,9 +1025,9 @@ class barrier {
           Y = this.y - object_size / 2;
         }
 
-        if (object.y >= Y - this.image_size / 2 && object.y <= Y) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
           //delete object
-          //this.right_down_damaged ++;
+          this.right_down_damaged ++;
         }
 
         break;

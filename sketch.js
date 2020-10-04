@@ -15,9 +15,11 @@ var UFOEffectTimer;
 var playerlevel = 1;
 var currentlevel = new level(LEVEL_16,playerlevel);
 
-var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
+var barrier_gameplay = [];
 
-function preload() {
+// var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
+
+// function preload() {
 //   image_player = loadImage('playerSprites/Player.png');
 //   image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
 //   image_player_dead_2 = loadImage('playerSprites/Player_dead_2.png');
@@ -40,19 +42,19 @@ function preload() {
 //   makebaby_image = loadImage('enemySprites/makebaby.png')
 //   makebaby_data = loadJSON('enemySprites/makebaby.json')
 
-  for(var bar_square = 1;bar_square<=15;bar_square++){
-    image_barrier_square = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_square+'.png');
-  }
-  for(var bar_left = 1;bar_left<=6;bar_left++){
-    image_barrier_left = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_left+'.png');
-  }
-  for(var bar_right = 1;bar_right<=6;bar_right++){
-    image_barrier_right = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_right+'.png');
-  }
-  image_barrier_bottom_edge = loadImage('barrier/barrier_bottom.png');
-  image_blackspace = loadImage('barrier/barrier_blackspace.png');//barrier image load
+//   for(var bar_square = 1;bar_square<=15;bar_square++){
+//     image_barrier_square = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_square+'.png');
+//   }
+//   for(var bar_left = 1;bar_left<=6;bar_left++){
+//     image_barrier_left = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_left+'.png');
+//   }
+//   for(var bar_right = 1;bar_right<=6;bar_right++){
+//     image_barrier_right = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_right+'.png');
+//   }
+//   image_barrier_bottom_edge = loadImage('barrier/barrier_bottom.png');
+//   image_blackspace = loadImage('barrier/barrier_blackspace.png');//barrier image load
 
-}
+// }
 
 function setup() {
   monster_image_setup(octopus_image,octopus_data,octopus_animation)
@@ -70,6 +72,8 @@ function setup() {
     randomSwitch = round(random(1))
   }, 5000);
 
+  barrier_gameplay.push(new barrier(200,350));
+
 }
 
 p = new player();
@@ -81,7 +85,6 @@ currentlevel.color();
 currentlevel.draw();
 currentlevel.movecheck();
 currentlevel.move();
-
   p.update();
   p.draw();
   for (let a of attackArray) {
@@ -92,6 +95,14 @@ currentlevel.move();
     u.draw();
     u.update();
   }
+
+
+  barrier_gameplay[0].generate();
+barrier_gameplay[0].update();
+for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
+  barrier_gameplay[0].hitRange(attackArray[bullet_count]);
+}
+
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
@@ -112,7 +123,6 @@ currentlevel.move();
     image(image_bullet_break, x, y + 20, 20, 20);
   } else if (frameCount < UFOEffectTimer + 5) {
     image(image_UFO_1_dead, x, y, 50, 20);
-
   }
 
   if(attackArray.length > 0) {
@@ -123,6 +133,7 @@ currentlevel.move();
 function keyPressed() {
   if (key == 'z' && attackArray.length == 0) {
     attackArray.push(new bullet(p.position_x));
+    barrier_gameplay[0].bulletCheck();
   }
   if (key == 'u') {
     callUFO_1();
