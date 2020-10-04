@@ -179,12 +179,12 @@ pop()
   {
     if(this.monster.length > 0)
     {
-      
-this.movecheck()
-this.animation()
-this.move()
-this.i_check()
-}
+     this.color()
+     this.movecheck()
+     this.animation()
+     this.move()
+     this.i_check()
+   }
   }
 animation()
 {
