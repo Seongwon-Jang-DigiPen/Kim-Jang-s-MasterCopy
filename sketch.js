@@ -15,9 +15,11 @@ var UFOEffectTimer;
 var playerlevel = 1;
 var currentlevel = new level(LEVEL_16,playerlevel);
 
+
 var barrier_gameplay = [];
 
 // var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
+
 
 // function preload() {
 //   image_player = loadImage('playerSprites/Player.png');
@@ -79,14 +81,17 @@ function setup() {
 p = new player();
 c = new crash();
 
+
 function draw() {
   background(0);
-currentlevel.color();
+
 currentlevel.draw();
-currentlevel.movecheck();
-currentlevel.move();
+currentlevel.update();
+
+
   p.update();
   p.draw();
+  
   for (let a of attackArray) {
     a.draw();
     a.update();

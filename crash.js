@@ -27,13 +27,22 @@ class crash {
       
       var min_y = center.position_y;
       var max_y = center.position_y + center.y_size;
-      if(a.position_x >= min_x && a.position_x <= max_x && a.position_y >= min_y && a.position_y <= max_y && !b.monster.dead) {
+      if(a.position_x >= min_x && a.position_x <= max_x && a.position_y >= min_y && a.position_y <= max_y) {
+       
+if(currentlevel.i>=i&&currentlevel.i!=0)
+{
+currentlevel.i -= 1;
+}
+        console.log(currentlevel.monster[i].frame_count)
+        console.log("move:"+currentlevel.i)
+        console.log("destroy: "+i)
         b.monster.splice(i, 1);
         attackArray.splice(0,1)
+         console.log(currentlevel.monster.length)
       }
     }  
   }
-
+z
   crash_one(a) {
     a.splice(-1, 1);
   }
