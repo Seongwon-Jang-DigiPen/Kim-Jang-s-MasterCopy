@@ -93,7 +93,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
 }
 
 
-
+currentlevel.color();
 currentlevel.draw();
 currentlevel.update();
 
