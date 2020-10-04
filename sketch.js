@@ -100,6 +100,10 @@ currentlevel.move();
     image(image_UFO_1_dead, x, y, 50, 20);
 
   }
+
+  if(attackArray.length > 0) {
+     c.delete(attackArray[0], currentlevel)
+  }
 }
 
 function keyPressed() {

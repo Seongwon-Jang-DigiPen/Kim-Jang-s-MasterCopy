@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 class crash {
   constructor() {
     this.switch_bullet = false;
@@ -12,6 +16,22 @@ class crash {
         return true;
       }
     }
+  }
+
+  delete(a, b) {
+    for(let i = b.monster.length - 1; i >=0; i--) {
+      var center = b.monster[i];
+      
+      var min_x = center.position_x 
+      var max_x = center.position_x + center.x_size;
+      
+      var min_y = center.position_y;
+      var max_y = center.position_y + center.y_size;
+      if(a.position_x >= min_x && a.position_x <= max_x && a.position_y >= min_y && a.position_y <= max_y && !b.monster.dead) {
+        b.monster.splice(i, 1);
+        attackArray.splice(0,1)
+      }
+    }  
   }
 
   crash_one(a) {
