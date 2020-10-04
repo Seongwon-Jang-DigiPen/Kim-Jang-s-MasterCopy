@@ -10,6 +10,7 @@ class barrier {
     this.left_down_damaged = 0;
     this.image_size = 16;
     this.status_check_count = 0;
+    this.object_status = 0;
 
     this.left_image_1 = image_barrier_left[0];
     this.left_image_2 = image_barrier_square[0];
@@ -74,7 +75,7 @@ class barrier {
     image(this.middle_image_1, barrier_midle_1.x, barrier_midle_1.y,this.image_size,this.image_size);
     image(this.middle_image_2, barrier_midle_2.x, barrier_midle_2.y,this.image_size,this.image_size);
 
-    if (this.down_damaged == 0 || this.up_damaged != 9) {
+    if (this.down_damaged == 0 && this.up_damaged != 9) {
       image(image_barrier_bottom_edge, barrier_midle_3.x, barrier_midle_3.y,this.image_size,this.image_size);
     }
 
@@ -917,31 +918,31 @@ class barrier {
   }
   bulletCheck(){
     this.status_check_count = 0;
+    this.object_status = 0;
   }
   hitRange(object) {
     var left_x = this.x - this.image_size;
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-    var object_status = 0,
 
 
-    if (object.position_x <= left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 && this.status_check_count == 0) {
-      object_status = 1;
+    if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 && this.status_check_count == 0) {
+      this.object_status = 1;
     }
-    if (object.position_x <= right_x + this.image_size / 2 && object.position_x >= right_x - this.image_size / 2 && this.status_check_count == 0) {
-      object_status = 2;
+    if (object.position_x <= right_x + this.image_size / 2 && object.position_x > right_x - this.image_size / 2 && this.status_check_count == 0) {
+      this.object_status = 3;
     }
     if (object.position_x <= this.x + this.image_size / 2 && object.position_x >= this.x - this.image_size / 2 && this.status_check_count == 0) {
-      object_status = 3;
+      this.object_status = 2;
     } //Check left, right, and middle
 
     if (object.position_y > this.y && this.status_check_count == 0) {
-      object_status *= -1;
+      this.object_status *= -1;
       this.status_check_count = 1;
     } //Check upside and downside
 
-    switch (object_status) {
+    switch (this.object_status) {
       case 1:
         if (this.left_up_damaged < 3) {
           Y = this.y - object_size;

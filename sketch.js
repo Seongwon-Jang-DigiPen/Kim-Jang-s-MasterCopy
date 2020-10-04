@@ -81,6 +81,13 @@ c = new crash();
 
 function draw() {
   background(0);
+
+barrier_gameplay[0].generate();
+barrier_gameplay[0].update();
+for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
+  barrier_gameplay[0].hitRange(attackArray[bullet_count]);
+}
+
 currentlevel.color();
 currentlevel.draw();
 currentlevel.movecheck();
@@ -97,11 +104,6 @@ currentlevel.move();
   }
 
 
-  barrier_gameplay[0].generate();
-barrier_gameplay[0].update();
-for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-  barrier_gameplay[0].hitRange(attackArray[bullet_count]);
-}
 
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
