@@ -1,0 +1,92 @@
+{"frames": [
+
+{
+	"filename": "Squid_blue_1.png",
+	"frame": {"x":0,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_blue_2.png",
+	"frame": {"x":16,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_green_1.png",
+	"frame": {"x":32,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_green_2.png",
+	"frame": {"x":48,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_pink_1.png",
+	"frame": {"x":64,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_pink_2.png",
+	"frame": {"x":80,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_red_1.png",
+	"frame": {"x":96,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_red_2.png",
+	"frame": {"x":112,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_yellow_1.png",
+	"frame": {"x":128,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Squid_yellow_2.png",
+	"frame": {"x":144,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Squid.png",
+	"format": "RGBA8888",
+	"size": {"w":160,"h":16},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:06a70ae62b48492bb1147dbc8131ed73:1d519ea13a28a30d31708b20177f1ee3:49a0a8ee55ccff17a1813ba0456e1136$"
+}
+}

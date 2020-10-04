@@ -1,0 +1,92 @@
+{"frames": [
+
+{
+	"filename": "Crab_blue_1.png",
+	"frame": {"x":0,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_blue_2.png",
+	"frame": {"x":16,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_green_1.png",
+	"frame": {"x":32,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_green_2.png",
+	"frame": {"x":48,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_pink_1.png",
+	"frame": {"x":64,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_pink_2.png",
+	"frame": {"x":80,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_red_1.png",
+	"frame": {"x":96,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_red_2.png",
+	"frame": {"x":112,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_yellow_1.png",
+	"frame": {"x":128,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+},
+{
+	"filename": "Crab_yellow_2.png",
+	"frame": {"x":144,"y":0,"w":16,"h":16},
+	"rotated": false,
+	"trimmed": false,
+	"spriteSourceSize": {"x":0,"y":0,"w":16,"h":16},
+	"sourceSize": {"w":16,"h":16}
+}],
+"meta": {
+	"app": "https://www.codeandweb.com/texturepacker",
+	"version": "1.0",
+	"image": "Crap.png",
+	"format": "RGBA8888",
+	"size": {"w":160,"h":16},
+	"scale": "1",
+	"smartupdate": "$TexturePacker:SmartUpdate:3382f7133fcf0f189a72f1aa69f6f5dd:1843c3add462428ec471c486319e97de:fcfacad2d74b69c145e63732e078dfc4$"
+}
+}

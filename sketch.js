@@ -12,26 +12,50 @@ let x;
 let y;
 var bulletEffectTimer;
 var UFOEffectTimer;
-var currentlevel = new level(LEVEL_ONE);
+var playerlevel = 1;
+var currentlevel = new level(LEVEL_16,playerlevel);
 
-function preload() {
-  image_player = loadImage('playerSprites/Player.png');
-  image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
-  image_player_dead_2 = loadImage('playerSprites/Player_dead_2.png');
-  image_bullet_break = loadImage('playerSprites/Bullet_break.png');
-  image_UFO_1 = loadImage('enemySprites/UFO1_pink.png')
-  image_UFO_2 = loadImage('enemySprites/UFO2_pink.png')
-  image_UFO_1_dead = loadImage('enemySprites/UFO_dead_pink_1.png')
-  image_UFO_2_dead = loadImage('enemySprites/UFO_dead_pink_2.png')
-}
+// function preload() {
+//   image_player = loadImage('playerSprites/Player.png');
+//   image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
+//   image_player_dead_2 = loadImage('playerSprites/Player_dead_2.png');
+//   image_bullet_break = loadImage('playerSprites/Bullet_break.png');
+//   image_UFO_1 = loadImage('enemySprites/UFO1_pink.png')
+//   image_UFO_2 = loadImage('enemySprites/UFO2_pink.png')
+//   image_UFO_1_dead = loadImage('enemySprites/UFO_dead_pink_1.png')
+//   image_UFO_2_dead = loadImage('enemySprites/UFO_dead_pink_2.png')
+
+//   octopus_image = loadImage('enemySprites/Octopus.png')
+//   octopus_data = loadJSON('enemySprites/Octopus.json');
+//   squid_image  = loadImage('enemySprites/Squid.png')
+//   squid_data = loadJSON('enemySprites/Squid.json')
+//    crab_image = loadImage('enemySprites/Crab.png')
+//    crab_data = loadJSON('enemySprites/Crab.json')
+//   baby_image = loadImage('enemySprites/baby.png')
+//   baby_data = loadJSON('enemySprites/baby.json')
+//   dead_image = loadImage('enemySprites/dead.png')
+//   dead_data = loadJSON('enemySprites/dead.json')
+//   makebaby_image = loadImage('enemySprites/makebaby.png')
+//   makebaby_data = loadJSON('enemySprites/makebaby.json')
+
+// }
 
 function setup() {
+  monster_image_setup(octopus_image,octopus_data,octopus_animation)
+  monster_image_setup(squid_image,squid_data,squid_animation)
+  monster_image_setup(crab_image,crab_data,crab_animation)
+  monster_image_setup(baby_image,baby_data,baby_animation)
+  monster_image_setup(dead_image,dead_data,dead_animation)
+  monster_image_setup(makebaby_image,makebaby_data,makebaby_animation)
+
+
   createCanvas(480, 448);
   imageMode(CENTER)
   randomSwitch = round(random(1))
   setInterval(function() {
     randomSwitch = round(random(1))
   }, 5000);
+
 }
 
 p = new player();
@@ -39,7 +63,7 @@ c = new crash();
 
 function draw() {
   background(0);
-
+currentlevel.color();
 currentlevel.draw();
 currentlevel.movecheck();
 currentlevel.move();
