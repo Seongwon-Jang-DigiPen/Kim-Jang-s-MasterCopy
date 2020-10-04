@@ -15,6 +15,7 @@ var UFOEffectTimer;
 var playerlevel = 1;
 var currentlevel = new level(LEVEL_16,playerlevel);
 
+
 // function preload() {
 //   image_player = loadImage('playerSprites/Player.png');
 //   image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
@@ -61,12 +62,13 @@ function setup() {
 p = new player();
 c = new crash();
 
+
 function draw() {
   background(0);
 currentlevel.color();
 currentlevel.draw();
-currentlevel.movecheck();
-currentlevel.move();
+currentlevel.update();
+
 
   p.update();
   p.draw();

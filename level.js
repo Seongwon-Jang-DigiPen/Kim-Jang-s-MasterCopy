@@ -175,15 +175,31 @@ pop()
     }
   }
   }
-
+  update()
+  {
+    if(this.monster.length > 0)
+    {
+      
+this.movecheck()
+this.animation()
+this.move()
+this.i_check()
+}
+  }
+animation()
+{
+this.monster[this.i].frame_count=(this.monster[this.i].frame_count+1)%2;
+}
+i_check()
+{
+  if (this.i >= this.monster.length) {
+      this.i = 0
+      this.timeElapsed = 0;
+      this.downmove = false;
+    } 
+}
   move() {
     this.timeElapsed += (millis() - this.time) / 1000;
-if(this.i==0)
-  {
-    //SOUND
-    
-  }
- this.monster[this.i].frame_count=(this.monster[this.i].frame_count+1)%2;
    if (this.timeElapsed >= this.i*this.movespeed) {  
      if (this.downmove) {
         this.monster[this.i].position_y += 16;
@@ -194,20 +210,8 @@ if(this.i==0)
       }
       this.i +=1
     }
-    
-
-
-    if (this.i >= this.monster.length) {
-      this.i = 0
-      this.timeElapsed = 0;
-      this.downmove = false;
-    }
-    
     this.time = millis()
-  
   }
-
-
 }
 
 
