@@ -937,7 +937,7 @@ class barrier {
       this.object_status = 2;
     } //Check left, right, and middle
 
-    if (object.position_y > this.y && this.status_check_count == 0) {
+    if (object.position_y - 20> this.y && this.status_check_count == 0) {
       this.object_status *= -1;
       this.status_check_count = 1;
     } //Check upside and downside
@@ -953,7 +953,7 @@ class barrier {
         }
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
-          //delete object
+          bullet_removed()
           this.left_up_damaged ++;
         }
 
@@ -968,7 +968,7 @@ class barrier {
         }
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
-          //delete object
+          bullet_removed()
           this.up_damaged ++;
         }
 
@@ -984,7 +984,7 @@ class barrier {
         }
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
-          //delete object
+          bullet_removed()
           this.right_up_damaged ++;
         }
 
@@ -999,7 +999,7 @@ class barrier {
         }
 
         if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
-          //delete object
+          bullet_removed()
           this.left_down_damaged ++;
         }
 
@@ -1012,7 +1012,7 @@ class barrier {
         }
 
         if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
-          //delete object
+          bullet_removed()
           this.down_damaged ++;
         }
 
@@ -1027,7 +1027,7 @@ class barrier {
         }
 
         if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
-          //delete object
+          bullet_removed()
           this.right_down_damaged ++;
         }
 

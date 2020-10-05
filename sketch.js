@@ -124,12 +124,10 @@ currentlevel.update();
     c.crash_two(attackArray, UFO_1Array)
 
   } else if (attackArray.length > 0 && attackArray[0].crashWallBullet()) {
-    bulletEffectTimer = frameCount
-    crash_effect_get_position(attackArray[0]);
-    c.crash_one(attackArray)
+    bullet_removed()
   }
   if (frameCount < bulletEffectTimer + 5) {
-    image(image_bullet_break, x, y + 20, 20, 20);
+    image(image_bullet_break, x, y, 20, 20);
   } else if (frameCount < UFOEffectTimer + 5) {
     image(image_UFO_1_dead, x, y, 50, 20);
   }
@@ -147,6 +145,12 @@ function keyPressed() {
   if (key == 'u') {
     callUFO_1();
   }
+}
+
+function bullet_removed(){
+    bulletEffectTimer = frameCount
+    crash_effect_get_position(attackArray[0]);
+    c.crash_one(attackArray)
 }
 
 function callUFO_1() {
