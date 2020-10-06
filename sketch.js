@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 //Kim & Jangs
 //Master Copy - Space Invaders II
 //GAM100
@@ -114,4 +115,5 @@ function bullet_UFO_1_crash() {
 function crash_effect_get_position(a) {
   x = a.position_x;
   y = a.position_y;
+
 }

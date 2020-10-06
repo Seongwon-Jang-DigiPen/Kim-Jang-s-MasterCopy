@@ -937,7 +937,7 @@ class barrier {
       this.object_status = 2;
     } //Check left, right, and middle
 
-    if (object.position_y > this.y && this.status_check_count == 0) {
+    if (object.position_y - 20> this.y && this.status_check_count == 0) {
       this.object_status *= -1;
       this.status_check_count = 1;
     } //Check upside and downside
@@ -948,12 +948,12 @@ class barrier {
           Y = this.y - object_size;
         } else if (this.left_up_damaged < 7) {
           Y = this.y - object_size / 2;
-        } else if (this.up_damaged < 11) {
+        } else if (this.left_up_damaged < 11) {
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
-          //delete object
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged != 11)) {
+          bullet_removed()
           this.left_up_damaged ++;
         }
 
@@ -967,8 +967,8 @@ class barrier {
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
-          //delete object
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged !=9)) {
+          bullet_removed()
           this.up_damaged ++;
         }
 
@@ -979,12 +979,12 @@ class barrier {
           Y = this.y - object_size;
         } else if (this.right_up_damaged < 7) {
           Y = this.y - object_size / 2;
-        } else if (this.up_damaged < 11) {
+        } else if (this.right_up_damaged < 11) {
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2) {
-          //delete object
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged != 11)) {
+          bullet_removed()
           this.right_up_damaged ++;
         }
 
@@ -994,12 +994,12 @@ class barrier {
           Y = this.y + object_size + object_size / 2;
         } else if (this.left_down_damaged < 7) {
           Y = this.y + object_size / 2;
-        } else if (this.up_damaged < 11) {
+        } else if (this.left_down_damaged < 11) {
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
-          //delete object
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.left_up_damaged + this.left_down_damaged != 11)) {
+          bullet_removed()
           this.left_down_damaged ++;
         }
 
@@ -1007,12 +1007,12 @@ class barrier {
       case -2:
         if (this.down_damaged < 5) {
           Y = this.y + object_size / 2;
-        } else if (this.up_damaged < 9) {
+        } else if (this.down_damaged < 9) {
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
-          //delete object
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.up_damaged + this.down_damaged < 9)) {
+          bullet_removed()
           this.down_damaged ++;
         }
 
@@ -1022,12 +1022,12 @@ class barrier {
           Y = this.y + object_size + object_size / 2;
         } else if (this.right_down_damaged < 7) {
           Y = this.y + object_size / 2;
-        } else if (this.up_damaged < 11) {
+        } else if (this.right_down_damaged < 11) {
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y) {
-          //delete object
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.right_up_damaged + this.right_down_damaged != 11)) {
+          bullet_removed()
           this.right_down_damaged ++;
         }
 
