@@ -26,6 +26,10 @@ var baby_animation = [];
 var dead_animation = [];
 var makebaby_animation = [];
 
+var bullet_image  = 0;
+var bullet_data = 0;
+var bullet_animation = []
+var bulletName = ["bullet1","bullet2","bullet3"]
 var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
 
 
@@ -53,6 +57,9 @@ function preload() {
   makebaby_image = loadImage('enemySprites/makebaby.png')
   makebaby_data = loadJSON('enemySprites/makebaby.json')
 
+  bullet_image = loadImage('enemySprites/bullet.png')
+  bullet_data = loadJSON('enemySprites/bullet.json')
+
   for(var bar_square = 1;bar_square<=15;bar_square++){
     image_barrier_square[bar_square-1] = loadImage('barrier_sprites/barrier_squar/barrier_squar_'+bar_square+'.png');
   }
@@ -67,6 +74,17 @@ function preload() {
 
 }
 
+function setup_every_monster_image()
+{
+  monster_image_setup(octopus_image,octopus_data,octopus_animation)
+  monster_image_setup(squid_image,squid_data,squid_animation)
+  monster_image_setup(crab_image,crab_data,crab_animation)
+  monster_image_setup(baby_image,baby_data,baby_animation)
+  monster_image_setup(dead_image,dead_data,dead_animation)
+  monster_image_setup(makebaby_image,makebaby_data,makebaby_animation)
+  bullet_image_setup(bullet_image,bullet_data,bullet_animation)
+ 
+}
 
 function monster_image_setup(images,datas,ani)
 {
@@ -80,4 +98,17 @@ function monster_image_setup(images,datas,ani)
     }
     ani[name] = frames;
 }
+}
+function bullet_image_setup(images,datas,ani)
+{
+ for (let name of bulletName) {
+    let frames = [];
+    for (let frames_info of datas.frames) {
+      if (!frames_info.filename.includes(name))
+        continue;
+      frames.push(frames_info.frame);
+    }
+    ani[name] = frames;
+}
+
 }

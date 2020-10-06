@@ -14,58 +14,12 @@ var bulletEffectTimer;
 var UFOEffectTimer;
 var playerlevel = 1;
 var currentlevel = new level(LEVEL_16,playerlevel);
-
-
 var barrier_gameplay = [];
 
-// var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
-
-
-// function preload() {
-//   image_player = loadImage('playerSprites/Player.png');
-//   image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
-//   image_player_dead_2 = loadImage('playerSprites/Player_dead_2.png');
-//   image_bullet_break = loadImage('playerSprites/Bullet_break.png');
-//   image_UFO_1 = loadImage('enemySprites/UFO1_pink.png')
-//   image_UFO_2 = loadImage('enemySprites/UFO2_pink.png')
-//   image_UFO_1_dead = loadImage('enemySprites/UFO_dead_pink_1.png')
-//   image_UFO_2_dead = loadImage('enemySprites/UFO_dead_pink_2.png')
-
-//   octopus_image = loadImage('enemySprites/Octopus.png')
-//   octopus_data = loadJSON('enemySprites/Octopus.json');
-//   squid_image  = loadImage('enemySprites/Squid.png')
-//   squid_data = loadJSON('enemySprites/Squid.json')
-//    crab_image = loadImage('enemySprites/Crab.png')
-//    crab_data = loadJSON('enemySprites/Crab.json')
-//   baby_image = loadImage('enemySprites/baby.png')
-//   baby_data = loadJSON('enemySprites/baby.json')
-//   dead_image = loadImage('enemySprites/dead.png')
-//   dead_data = loadJSON('enemySprites/dead.json')
-//   makebaby_image = loadImage('enemySprites/makebaby.png')
-//   makebaby_data = loadJSON('enemySprites/makebaby.json')
-
-//   for(var bar_square = 1;bar_square<=15;bar_square++){
-//     image_barrier_square = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_square+'.png');
-//   }
-//   for(var bar_left = 1;bar_left<=6;bar_left++){
-//     image_barrier_left = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_left+'.png');
-//   }
-//   for(var bar_right = 1;bar_right<=6;bar_right++){
-//     image_barrier_right = loadImage('barrier/barrier_squar/Barrier_squar_'+bar_right+'.png');
-//   }
-//   image_barrier_bottom_edge = loadImage('barrier/barrier_bottom.png');
-//   image_blackspace = loadImage('barrier/barrier_blackspace.png');//barrier image load
-
-// }
 
 function setup() {
-  monster_image_setup(octopus_image,octopus_data,octopus_animation)
-  monster_image_setup(squid_image,squid_data,squid_animation)
-  monster_image_setup(crab_image,crab_data,crab_animation)
-  monster_image_setup(baby_image,baby_data,baby_animation)
-  monster_image_setup(dead_image,dead_data,dead_animation)
-  monster_image_setup(makebaby_image,makebaby_data,makebaby_animation)
-
+ 
+ setup_every_monster_image()
 
   createCanvas(480, 448);
   imageMode(CENTER)
@@ -96,7 +50,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
 currentlevel.color();
 currentlevel.draw();
 currentlevel.update();
-
+currentlevel.attack(p);
 
   p.update();
   p.draw();
