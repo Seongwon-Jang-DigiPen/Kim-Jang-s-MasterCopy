@@ -2,7 +2,7 @@ class monster_bullet {
   constructor(a,b) {
     this.position_x = a
     this.position_y = b;
-    this.position_speed = 5
+    this.position_speed = 2
     this.width = 6
     this.height = 16
     this.type = round(random(0,2));

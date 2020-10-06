@@ -3,6 +3,7 @@
 //GAM100
 //Fall, 2020
 
+
 //전달사항
 //열심히 하자 얘들아
 var attackArray = [];
@@ -116,3 +117,10 @@ function crash_effect_get_position(a) {
   y = a.position_y;
 
 }
+
+function bullet_removed(){
+    bulletEffectTimer = frameCount
+    crash_effect_get_position(attackArray[0]);
+    c.crash_one(attackArray)
+}
+

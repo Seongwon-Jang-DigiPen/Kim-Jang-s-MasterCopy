@@ -4,127 +4,134 @@
 //Fall, 2020
 class level {
 
-  constructor(level, playerlevel) {
+constructor(level, playerlevel) {
 
-    this.monster = [];
+  this.monster = [];
 
-    this.time = 0;
-    this.timeElapsed = 0;
-    this.movecount = 0;
-    this.rightmove = true;
-    this.downmove = false;
-    this.movespeed = 0.02;
+  this.time = 0;
+  this.timeElapsed = 0;
+  this.movecount = 0;
+  this.rightmove = true;
+  this.downmove = false;
+  this.movespeed = 0.02;
 
-    this.playerlevel = ((playerlevel - 1) % 8) * 16
+  this.playerlevel = ((playerlevel - 1) % 8) * 16
 
-    this.stiffen = false;
-    this.stiffenElapsed = 0;
-    this.monster_generate(level)
+  this.stiffen = false;
+  this.stiffenElapsed = 0;
+  this.monster_generate(level)
 
-    this.fire = false;
-    this.bullet = [0];
+  this.fire = false;
+  this.bullet = [0];
+  this.shootcount = 0
+  this.targeting = [true,true,true,false,false,false,false,false]
+}
+
+
+update() {
+  if (this.monster.length > 0 && !this.stiffen) {
+    this.position_check();
+    this.color();
+    this.move();
+    this.movecheck();
   }
 
-
-  update() {
-    if (this.monster.length > 0 && !this.stiffen) {
-      this.color();
-      this.move();
-      this.movecheck();
+  if (this.stiffen) {
+    this.stiffenElapsed += (millis() - this.time) / 1000;
+    if (this.stiffenElapsed >= 0.3) {
+      this.stiffenElapsed = 0;
+      this.stiffen = false;
     }
 
-    if (this.stiffen) {
-      this.stiffenElapsed += (millis() - this.time) / 1000;
-      if (this.stiffenElapsed >= 0.3) {
-        this.stiffenElapsed = 0;
-        this.stiffen = false;
-      }
-
-    }
-    this.time = millis();
   }
+  this.time = millis();
+}
 
 
-  monster_generate(level) {
-    var k = 0;
-    for (var i = level.length - 1; i > -1; i--) {
-      for (var j = 0; j < level[i].length; j++) {
-        switch (level[i][j]) {
-          case 0:
-            k--
-            break;
-          case 1:
-            this.monster[k] = {
-              type: 1,
-              position_x: 1 + j * 32,
-              position_y: 81 + this.playerlevel + (i * 32),
-              x_size: 16,
-              y_size: 16,
-              point: 10,
-              color: 0,
-              frame_count: 0
-            }
-            break;
+monster_generate(level) {
+  var k = 0;
+  for (var i = level.length - 1; i > -1; i--) {
+    for (var j = 0; j < level[i].length; j++) {
+      switch (level[i][j]) {
+        case 0:
+          k--
+          break;
+        case 1:
+          this.monster[k] = {
+            type: 1,
+            position_x: j * 32,
+            position_y: 80 + this.playerlevel + (i * 32),
+            x_size: 16,
+            y_size: 16,
+            point: 10,
+            color: 0,
+            frame_count: 0,
+            infront: false
+          }
+          break;
 
-          case 2:
-            this.monster[k] = {
-              type: 2,
-              position_x: 1 + j * 32,
-              position_y: 81 + this.playerlevel + (i * 32),
-              x_size: 14,
-              y_size: 16,
-              point: 20,
-              color: 0,
-              frame_count: 0
-            }
-            break;
+        case 2:
+          this.monster[k] = {
+            type: 2,
+            position_x: j * 32,
+            position_y: 80 + this.playerlevel + (i * 32),
+            x_size: 14,
+            y_size: 16,
+            point: 20,
+            color: 0,
+            frame_count: 0,
+            infront: false
+          }
+          break;
 
-          case 3:
-            this.monster[k] = {
-              type: 3,
-              position_x: 1 + j * 32,
-              position_y: 81 + this.playerlevel + (i * 32),
-              x_size: 12,
-              y_size: 14,
-              point: 30,
-              color: 0,
-              frame_count: 0
-            }
-            break;
-          case 4:
-            this.monster[k] = {
-              type: 4,
-              position_x: 1 + j * 32,
-              position_y: 81 + this.playerlevel + (i * 32),
-              x_size: 10,
-              y_size: 12,
-              point: 30,
-              color: 0,
-              frame_count: 0
-            }
-            break;
-        }
-        k++
+        case 3:
+          this.monster[k] = {
+            type: 3,
+            position_x:  j * 32,
+            position_y: 80 + this.playerlevel + (i * 32),
+            x_size: 12,
+            y_size: 14,
+            point: 30,
+            color: 0,
+            frame_count: 0,
+            infront: false
+          }
+          break;
+        case 4:
+          this.monster[k] = {
+            type: 4,
+            position_x: j * 32,
+            position_y: 80 + this.playerlevel + (i * 32),
+            x_size: 10,
+            y_size: 12,
+            point: 30,
+            color: 0,
+            frame_count: 0,
+            infront: false
+          }
+          break;
       }
+      k++
     }
   }
-  color() {
+}
+color() {
 
-    for (var i = 0; i < this.monster.length; i++) {
+  for (var i = 0; i < this.monster.length; i++) {
 
 
-      if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
-        this.monster[i].color = monsterColor[1]
-      } else if (BLUE_ZONE < this.monster[i].position_y && this.monster[i].position_y <= PINK_ZONE) {
-        this.monster[i].color = monsterColor[2]
-      } else if (PINK_ZONE < this.monster[i].position_y && this.monster[i].position_y <= YELLOW_ZONE) {
-        this.monster[i].color = monsterColor[3]
-      } else if (YELLOW_ZONE < this.monster[i].position_y) {
-        this.monster[i].color = monsterColor[4]
-      } else {
-        this.monster[i].color = monsterColor[0]
-      }
-    }
+    if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
+      this.monster[i].color = monsterColor[1]
+    } else if (BLUE_ZONE < this.monster[i].position_y && this.monster[i].position_y <= PINK_ZONE) {
+      this.monster[i].color = monsterColor[2]
+    } else if (PINK_ZONE < this.monster[i].position_y && this.monster[i].position_y <= YELLOW_ZONE) {
+      this.monster[i].color = monsterColor[3]
+    } else if (YELLOW_ZONE < this.monster[i].position_y) {
+      this.monster[i].color = monsterColor[4]
+    } else {
+      this.monster[i].color = monsterColor[0]
+    }   
+  }
   }
 
   draw() {
@@ -216,80 +223,96 @@ class level {
   }
 
   random_attack(player) {
+if(!this.fire)
+{
+  var infrontvalue = 0;
+ for (var i = 0; i < this.monster.length; i++) {
+       if(this.monster[i].infront)
+        {
+       infrontvalue+=1;
+        }
+      }
 
+var randomNumber = round(random(0,infrontvalue))
+ 
+ for (var i = 0; i < this.monster.length; i++) {
+       if(this.monster[i].infront)
+        {
+       infrontvalue-=1;
+        }
+if(randomNumber == infrontvalue)
+{
+  var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
+ this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
+        this.fire = true
+        this.shootcount +=1;
+            break;
+}
+      }
+
+}
   }
 
   target_attack(player) {
     if (!this.fire) {
       for (var i = 0; i < this.monster.length; i++) {
+        if(this.monster[i].infront)
+        {
         var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
-
-        if (monster_centerX > player.position_x && monster_centerX < player.position_x + 22) {
-          this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
-          this.fire = true
-          break;
+          if (monster_centerX > player.position_x-player.width/2 && monster_centerX < player.position_x + player.width/2) {
+            this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
+            this.fire = true
+            this.shootcount +=1;
+            break;
+        }
         }
       }
     }
   }
 
+position_check()
+{
+  if(this.movecount==0)
+  { 
+for (var i = 0; i < this.monster.length; i++) {
+  this.monster[i].infront = true;
+  for (var j = 0; j < this.monster.length; j++) {
+if(this.monster[i].position_x==this.monster[j].position_x&&this.monster[i].position_y<this.monster[j].position_y)
+{
+  this.monster[i].infront =false;
+  break;
+}
+  }
+}
+}
+}
+
   attack(player) {
+    if (this.monster.length > 0) {
+    if(this.targeting[this.shootcount]&& !this.stiffen)
+    {
       this.target_attack(player)
-    if (this.fire)
+    }
+    else if(!this.stiffen)
+    {
+      this.random_attack(player)
+    }
+    if(this.shootcount >= this.targeting.length)
+    {
+      this.shootcount = 0;
+    }
+    if (this.fire)  
       {
       this.bullet[0].draw()
       this.bullet[0].update()
+
     if(this.bullet[0].crashWallBullet())
     {
       this.bullet.splice(0,1)
       this.fire = false
     }
+
     }
-
 }
 }
-
-
-const monster_move_minimum = 1;
-const monster_move_maximum = 192 * 2 - 8 * 2;
-const play_scene_maximumX = 384;
-const play_scene_maximumY = 448;
-const GREEN_ZONE = 144
-const BLUE_ZONE = 208
-const PINK_ZONE = 272
-const YELLOW_ZONE = 336
-const LEVEL_1 = [
-  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-  [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-]
-const LEVEL_12 = [
-  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-  [3, 3, 0, 2, 2, 0, 2, 2, 0, 3, 3],
-  [1, 1, 1, 1, 2, 2, 2, 1, 1, 1, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-]
-const LEVEL_14 = [
-  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-  [4, 4, 4, 4, 4, 4, 4, 4, 4, 4, 4],
-  [3, 3, 3, 0, 2, 2, 2, 0, 3, 3, 3],
-  [1, 2, 2, 2, 0, 1, 0, 2, 2, 2, 1],
-  [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-]
-const LEVEL_16 = [
-  [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3],
-  [4, 4, 2, 0, 3, 3, 3, 4, 2, 4, 4],
-  [4, 4, 3, 0, 2, 3, 2, 0, 3, 4, 4],
-  [1, 1, 0, 2, 2, 2, 2, 2, 0, 1, 1],
-  [1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1]
-]
-const LEVEL_17 = [
-   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-   [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 3]
-]
+}
