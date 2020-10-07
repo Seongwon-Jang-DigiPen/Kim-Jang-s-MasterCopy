@@ -63,6 +63,7 @@ function preload() {
   for(var bar_square = 1;bar_square<=15;bar_square++){
     image_barrier_square[bar_square-1] = loadImage('barrier_sprites/barrier_squar/barrier_squar_'+bar_square+'.png');
   }
+  
   for(var bar_left = 1;bar_left<=6;bar_left++){
     image_barrier_left[bar_left-1] = loadImage('barrier_sprites/barrier_left/barrier_top_left_'+bar_left+'.png');
   }
@@ -71,7 +72,9 @@ function preload() {
   }
   image_barrier_bottom_edge = loadImage('barrier_sprites/barrier_bottom.png');
   image_blackspace = loadImage('barrier_sprites/barrier_blackspace.png');//barrier image load
-
+  image_barrier_square.push(image_blackspace);
+  image_barrier_left.push(image_blackspace);
+  image_barrier_right.push(image_blackspace);
 }
 
 function setup_every_monster_image()

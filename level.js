@@ -268,6 +268,7 @@ class level {
        {
         var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
         this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
+        barrier_gameplay[0].bulletCheck('monster');
         this.fire = true
         this.shootcount +=1;
         break;
@@ -284,8 +285,10 @@ target_attack(player)
       if(this.monster[i].infront)
       {
         var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
+
         if (monster_centerX > player.position_x-player.width/2 && monster_centerX < player.position_x + player.width/2) {
           this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
+          barrier_gameplay[0].bulletCheck('monster');
           this.fire = true
           this.shootcount +=1;
           break;
@@ -331,6 +334,9 @@ attack(player)
     {
       this.bullet[0].draw()
       this.bullet[0].update()
+      for(var monster_bullet_count = 0;monster_bullet_count<this.shootcount;monster_bullet_count++){
+        barrier_gameplay[0].hitRange(this.bullet[0],'monster');
+      }
 
       if(this.bullet[0].crashWallBullet())
       {
@@ -344,26 +350,28 @@ attack(player)
 
 monsterDeadcheck()
 {
-
-
  for (var i = 0; i < this.monster.length; i++) 
  {
-   if(this.monster[i].dead && this.monster[i].type == CRAB && )
-   {
+   // if(this.monster[i].dead && this.monster[i].type == CRAB && )
+   // {
 
-   }
-   else{
-  if(this.monster[i].dead&& !this.stiffen)
-  {
-   if((this.monstercount>i||this.monstercount==this.monster.length)&&this.monstercount!=0)
-   {
-    this.monstercount -= 1;
-  }
-  this.monster.splice(i, 1);
-}
+   // }
+   // else{
+    if(this.monster[i].dead&& !this.stiffen)
+    {
+     if((this.monstercount>i||this.monstercount==this.monster.length)&&this.monstercount!=0)
+     {
+      this.monstercount -= 1;
+    }
+    this.monster.splice(i, 1);
+ // }
 }
 }  
 }
+
+
+
+
 
 // createmini()
 // {
