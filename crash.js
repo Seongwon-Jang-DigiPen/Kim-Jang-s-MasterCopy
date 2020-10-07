@@ -28,19 +28,15 @@ class crash {
       var min_y = center.position_y;
       var max_y = center.position_y + center.y_size;
       if(a.position_x >= min_x && a.position_x <= max_x && a.position_y >= min_y && a.position_y <= max_y) {
-       
-if(currentlevel.movecount>=i&&currentlevel.movecount!=0)
-{
-currentlevel.movecount -= 1;
-}
-        currentlevel.stiffen = true
-        b.monster.splice(i, 1);
+
+        b.stiffen = true;
+        b.monster[i].dead=true;
         attackArray.splice(0,1)
-       
+
       }
     }  
   }
-z
+
   crash_one(a) {
     a.splice(-1, 1);
   }

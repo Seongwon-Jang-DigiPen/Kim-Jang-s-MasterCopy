@@ -22,14 +22,14 @@ function setup() {
  
  setup_every_monster_image()
 
-  createCanvas(480, 448);
-  imageMode(CENTER)
+ createCanvas(480, 448);
+ imageMode(CENTER)
+ randomSwitch = round(random(1))
+ setInterval(function() {
   randomSwitch = round(random(1))
-  setInterval(function() {
-    randomSwitch = round(random(1))
-  }, 5000);
+}, 5000);
 
-  barrier_gameplay.push(new barrier(200,350));
+ barrier_gameplay.push(new barrier(200,350));
 
 }
 
@@ -41,17 +41,17 @@ function draw() {
   background(0);
 
 
-barrier_gameplay[0].generate();
-barrier_gameplay[0].update();
-for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-  barrier_gameplay[0].hitRange(attackArray[bullet_count]);
-}
+  barrier_gameplay[0].generate();
+  barrier_gameplay[0].update();
+  for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
+    barrier_gameplay[0].hitRange(attackArray[bullet_count]);
+  }
 
 
-currentlevel.color();
-currentlevel.draw();
-currentlevel.update();
-currentlevel.attack(p);
+  currentlevel.color();
+  currentlevel.draw();
+  currentlevel.update();
+  currentlevel.attack(p);
 
   p.update();
   p.draw();
@@ -90,8 +90,8 @@ currentlevel.attack(p);
   }
 
   if(attackArray.length > 0) {
-     c.delete(attackArray[0], currentlevel)
-  }
+   c.delete(attackArray[0], currentlevel)
+ }
 }
 
 function keyPressed() {
@@ -119,8 +119,8 @@ function crash_effect_get_position(a) {
 }
 
 function bullet_removed(){
-    bulletEffectTimer = frameCount
-    crash_effect_get_position(attackArray[0]);
-    c.crash_one(attackArray)
+  bulletEffectTimer = frameCount
+  crash_effect_get_position(attackArray[0]);
+  c.crash_one(attackArray)
 }
 
