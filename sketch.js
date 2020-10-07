@@ -43,8 +43,9 @@ function draw() {
 
 barrier_gameplay[0].generate();
 barrier_gameplay[0].update();
+
 for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-  barrier_gameplay[0].hitRange(attackArray[bullet_count]);
+  barrier_gameplay[0].hitRange(attackArray[bullet_count],'player');
 }
 
 
@@ -97,7 +98,7 @@ currentlevel.attack(p);
 function keyPressed() {
   if (key == 'z' && attackArray.length == 0) {
     attackArray.push(new bullet(p.position_x));
-    barrier_gameplay[0].bulletCheck();
+    barrier_gameplay[0].bulletCheck('player');
   }
   if (key == 'u') {
     callUFO_1();
