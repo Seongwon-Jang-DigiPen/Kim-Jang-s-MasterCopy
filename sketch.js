@@ -13,8 +13,8 @@ let x;
 let y;
 var bulletEffectTimer;
 var UFOEffectTimer;
-var playerlevel = 1;
-var currentlevel = new level(LEVEL_16,playerlevel);
+var playerlevel = 12;
+var currentlevel = new level(LEVEL_17,playerlevel);
 var barrier_gameplay = [];
 
 

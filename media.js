@@ -54,8 +54,8 @@ function preload() {
   baby_data = loadJSON('enemySprites/baby.json')
   dead_image = loadImage('enemySprites/dead.png')
   dead_data = loadJSON('enemySprites/dead.json')
-  makebaby_image = loadImage('enemySprites/makebaby.png')
-  makebaby_data = loadJSON('enemySprites/makebaby.json')
+  makebaby_image = loadImage('enemySprites/Makebaby.png')
+  makebaby_data = loadJSON('enemySprites/Makebaby.json')
 
   bullet_image = loadImage('enemySprites/bullet.png')
   bullet_data = loadJSON('enemySprites/bullet.json')
