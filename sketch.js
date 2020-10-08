@@ -8,6 +8,7 @@
 //열심히 하자 얘들아
 var attackArray = [];
 var UFO_1Array = [];
+var UFO_2Array = [];
 var randomSwitch
 let x;
 let y;
@@ -19,18 +20,13 @@ var barrier_gameplay = [];
 
 
 function setup() {
- 
+
  setup_every_monster_image()
 
  createCanvas(480, 448);
  imageMode(CENTER)
- randomSwitch = round(random(1))
- setInterval(function() {
-  randomSwitch = round(random(1))
-}, 5000);
 
  barrier_gameplay.push(new barrier(200,350));
-
 }
 
 p = new player();
@@ -39,15 +35,18 @@ c = new crash();
 
 function draw() {
   background(0);
+  push()
+  stroke(255)
+  line(play_scene_maximumX,0,play_scene_maximumX,play_scene_maximumY)
+  pop()
 
 
+  barrier_gameplay[0].generate();
+  barrier_gameplay[0].update();
 
-barrier_gameplay[0].generate();
-barrier_gameplay[0].update();
-
-for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-  barrier_gameplay[0].hitRange(attackArray[bullet_count],'player');
-}
+  for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
+    barrier_gameplay[0].hitRange(attackArray[bullet_count],'player');
+  }
 
 
 
@@ -56,8 +55,10 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   currentlevel.update();
   currentlevel.attack(p);
 
+
   p.update();
   p.draw();
+
   
   for (let a of attackArray) {
     a.draw();
@@ -67,21 +68,31 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
     u.draw();
     u.update();
   }
+for (let u of UFO_2Array) {
+    u.draw();
+    u.update();
+    u.canmakecheck(currentlevel.monster)
+    u.makemonster(currentlevel)
+  }
 
 
 
-
+///////////////////////
+// UFO가 화면 바깥으로 사라졌을 떄
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
   
+  //UFO 총알에 맞았을 때
   if (attackArray.length > 0 && attackArray[0].deleteBullet() && UFO_1Array.length > 0 && UFO_1Array[0].deleteUFO()) {
     console.log(attackArray[0].deleteBullet())
     UFOEffectTimer = frameCount
     crash_effect_get_position(UFO_1Array[0]);
     c.crash_two(attackArray, UFO_1Array)
 
-  } else if (attackArray.length > 0 && attackArray[0].crashWallBullet()) {
+  } 
+//그냥 벽에 부딪힌다면
+  else if (attackArray.length > 0 && attackArray[0].crashWallBullet()) {
     bulletEffectTimer = frameCount
     crash_effect_get_position(attackArray[0]);
     c.crash_one(attackArray)
@@ -95,6 +106,11 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   if(attackArray.length > 0) {
    c.delete(attackArray[0], currentlevel)
  }
+//////////////////
+
+
+
+
 }
 
 function keyPressed() {
@@ -108,7 +124,7 @@ function keyPressed() {
 }
 
 function callUFO_1() {
-  UFO_1Array.push(new UFO_1());
+  UFO_2Array.push(new UFO_2());
 }
 
 function bullet_UFO_1_crash() {
