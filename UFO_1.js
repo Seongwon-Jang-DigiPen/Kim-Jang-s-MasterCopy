@@ -41,7 +41,7 @@ class UFO_1 {
   }
 
   goneUFO() {
-    if (this.position_x <= -21 || this.position_x >= 501) {
+    if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width/2) {
       return true
     }
   }

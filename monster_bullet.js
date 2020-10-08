@@ -1,4 +1,5 @@
 class monster_bullet {
+
   constructor(a,b) {
     this.position_x = a
     this.position_y = b;
@@ -10,17 +11,16 @@ class monster_bullet {
     this.bullet_break = 0;
   }
 
-  draw() {
-  	   var frame = bullet_animation[bulletName[this.type]]
-       image(bullet_image, this.position_x,this.position_y, this.width, this.height, frame[this.frame_count].x, frame[this.frame_count].y,frame[this.frame_count].w,frame[this.frame_count].h)
-       this.frame_count = (this.frame_count+1) % 4
+	draw() {
+		var frame = bullet_animation[bulletName[this.type]]
+		image(bullet_image, this.position_x,this.position_y, this.width, this.height, frame[this.frame_count].x, frame[this.frame_count].y,frame[this.frame_count].w,frame[this.frame_count].h)
+		this.frame_count = (this.frame_count+1) % 4
 
-  }
+	}
 
-  update() {
-    this.position_y += this.position_speed
-  }
-
+	update() {
+		this.position_y += this.position_speed
+	}
 
   crashWallBullet() {
     if (this.position_y > 448 || this.bullet_break == 1) {

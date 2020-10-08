@@ -19,9 +19,11 @@ class level {
 
     this.stiffen = false;
     this.stiffenElapsed = 0;
-    this.monster_generate(level)
+
+    this.monster_generate(level);
 
     this.fire = false;
+
     this.bullet = [];
     this.shootcount = 0
     this.targeting = [true,true,true,false,false,false,false]
@@ -87,8 +89,6 @@ class level {
 
 if(!playerArray[0].IsPlayerDie){
     for (var i = 0; i < this.monster.length; i++) {
-
-
       if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
         this.monster[i].color = monsterColor[1]
       } else if (BLUE_ZONE < this.monster[i].position_y && this.monster[i].position_y <= PINK_ZONE) {
@@ -112,7 +112,6 @@ if(!playerArray[0].IsPlayerDie){
   {
     push()
     imageMode(CORNER)
-
 
     for (var i = 0; i < this.monster.length; i++) {
 
@@ -164,8 +163,7 @@ if(!playerArray[0].IsPlayerDie){
         break;
       }
     }
-
-
+    
   }
   pop()
 }
@@ -363,7 +361,9 @@ returnBaby(i)
     infront: false,
     dead:false,
     make:true,
-    makebaby_move:true
+    makebaby_move:true,
+    row:this.monster[i].row+1,
+    column:this.monster[i].column
   }
   return B;
 }
@@ -406,7 +406,9 @@ makeOctopus(i,j)
   color: 0,
   frame_count: 0,
   infront: false,
-  dead:false
+  dead:false,
+  row:j,
+  column:i
 }  
 return octopus;
 }
@@ -423,7 +425,9 @@ makeCrab(i,j)
     color: 0,
     frame_count: 0,
     infront: false,
-    dead:false
+    dead:false,
+    row:j,
+    column:i
   }
   return crab;
 }
@@ -440,7 +444,9 @@ makeSquid(i,j)
   color: 0,
   frame_count: 0,
   infront: false,
-  dead:false
+  dead:false,
+  row:j,
+  column:i
 }
 return squid;
 }
@@ -457,7 +463,9 @@ makeBaby(i,j)
   color: 0,
   frame_count: 0,
   infront: false,
-  dead:false
+  dead:false,
+  row:j,
+  column:i
 }
 return baby;
 }
@@ -471,5 +479,25 @@ crabToBaby(i)
   this.monster[i].dead = false;
   this.monster[i].make = true
 }
+makeUFOsquid(i,j,k)
+{
+  var squid = {
+  type: SQUID,
+  position_x:  i,
+  position_y: j,
+  x_size: 12,
+  y_size: 14,
+  point: 30,
+  color: 0,
+  frame_count: 0,
+  infront: false,
+  dead:false,
+  row:k,
+  column:0
+}
+return squid;
+}
+
+
 
 }

@@ -8,7 +8,9 @@
 //열심히 하자 얘들아
 var attackArray = [];
 var UFO_1Array = [];
+var UFO_2Array = [];
 var playerArray = [];
+
 var randomSwitch
 let x;
 let y;
@@ -22,18 +24,15 @@ var highScore = 5000;
 let player2 = false;
 
 function setup() {
- 
+
  setup_every_monster_image()
 
  createCanvas(480, 448);
- imageMode(CENTER);
- randomSwitch = round(random(1))
- setInterval(function() {
-  randomSwitch = round(random(1))
-}, 5000);
+
+ imageMode(CENTER)
+
 
  barrier_gameplay.push(new barrier(200,350));
-
 }
 
 
@@ -42,7 +41,14 @@ c = new crash();
 
 function draw() {
   background(0);
+  push()
+  stroke(255)
+  line(play_scene_maximumX,0,play_scene_maximumX,play_scene_maximumY)
+  pop()
 
+
+  barrier_gameplay[0].generate();
+  barrier_gameplay[0].update();
 
 
 push();
@@ -66,6 +72,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   currentlevel.draw();
   currentlevel.update();
 
+
 // for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
 //   barrier_gameplay[0].hitRange(currentlevel.monster[monster_hit_check]);
 // }
@@ -81,6 +88,13 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
     u.draw();
     u.update();
   }
+for (let u of UFO_2Array) {
+    u.draw();
+    u.update();
+    u.canmakecheck(currentlevel.monster)
+    u.makemonster(currentlevel)
+  }
+
 
   draw_life()
   draw_text();
@@ -88,7 +102,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
-  
+
   
   if (attackArray.length > 0 && attackArray[0].deleteBullet() && UFO_1Array.length > 0 && UFO_1Array[0].deleteUFO()) {
     UFO_1Array[0].IsUFODie = true;
@@ -106,6 +120,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   }
 
   if(attackArray.length > 0) {
+
    c.delete_invader(attackArray[0], currentlevel);
   }
   if(currentlevel.bullet.length > 0) {
@@ -123,7 +138,7 @@ function keyPressed() {
 }
 
 function callUFO_1() {
-  UFO_1Array.push(new UFO_1());
+  UFO_2Array.push(new UFO_2());
 }
 
 function bullet_UFO_1_crash() {
