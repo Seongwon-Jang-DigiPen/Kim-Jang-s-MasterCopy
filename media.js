@@ -43,6 +43,10 @@ function preload() {
   image_UFO_2 = loadImage('enemySprites/UFO2_pink.png')
   image_UFO_1_dead = loadImage('enemySprites/UFO_dead_pink_1.png')
   image_UFO_2_dead = loadImage('enemySprites/UFO_dead_pink_2.png')
+  image_UFO_1_R = loadImage('enemySprites/UFO1_red.png')
+  image_UFO_2_R = loadImage('enemySprites/UFO2_red.png')
+  image_UFO_1_dead_R = loadImage('enemySprites/UFO_dead_red_1.png')
+  image_UFO_2_dead_R = loadImage('enemySprites/UFO_dead_red_2.png')
 
   octopus_image = loadImage('enemySprites/Octopus.png')
   octopus_data = loadJSON('enemySprites/Octopus.json');
