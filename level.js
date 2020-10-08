@@ -239,8 +239,7 @@ random_attack(player)
      if(randomNumber == infrontvalue)
      {
       var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
-      this.bullet.push(new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size));
-      barrier_gameplay[0].bulletCheck('monster');
+      this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
       this.fire = true
       this.shootcount +=1;
       break;
@@ -259,8 +258,7 @@ target_attack(player)
         var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
 
         if (monster_centerX > player.position_x-player.width/2 && monster_centerX < player.position_x + player.width/2) {
-          this.bullet.push(new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size));
-          barrier_gameplay[0].bulletCheck('monster');
+          this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
           this.fire = true
           this.shootcount +=1;
           break;
@@ -306,8 +304,8 @@ attack(player)
     {
       this.bullet[0].draw()
       this.bullet[0].update()
-      for(var monster_bullet_count = 0;monster_bullet_count<this.shootcount;monster_bullet_count++){
-        barrier_gameplay[0].hitRange(this.bullet[0],'monster');
+      if(this.fire){
+        barrier_gameplay[0].hitRange(this.bullet[0],'monster',this);
       }
 
       if(this.bullet[0].crashWallBullet())

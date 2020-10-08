@@ -64,6 +64,10 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   currentlevel.color();
   currentlevel.draw();
   currentlevel.update();
+
+// for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
+//   barrier_gameplay[0].hitRange(currentlevel.monster[monster_hit_check]);
+// }
   if(!playerArray[0].IsPlayerDie){
   currentlevel.attack(playerArray[0]);
 }
@@ -82,6 +86,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
+  
   
   if (attackArray.length > 0 && attackArray[0].deleteBullet() && UFO_1Array.length > 0 && UFO_1Array[0].deleteUFO()) {
     UFO_1Array[0].IsUFODie = true;
@@ -109,7 +114,6 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
 function keyPressed() {
   if (key == 'z' && attackArray.length == 0) {
     attackArray.push(new bullet(playerArray[0].position_x));
-    barrier_gameplay[0].bulletCheck('player');
   }
   if (key == 'u') {
     callUFO_1();
@@ -129,10 +133,11 @@ function bullet_UFO_1_crash() {
   return c.return_delete(attackArray, UFO_1Array)
 }
 
-function bullet_removed(){
+function bullet_removed(bullet_name){
   bulletEffectTimer = frameCount
-  crash_effect_get_position(attackArray[0]);
-  c.crash_one(attackArray)
+  crash_effect_get_position(bullet_name[0]);
+  // c.crash_one(attackArray)
+  c.crash_one(bullet_name);
 }
 
 function draw_text() {
