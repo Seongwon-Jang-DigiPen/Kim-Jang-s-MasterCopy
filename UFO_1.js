@@ -9,6 +9,9 @@ class UFO_1 {
     this.go_right = true;
     this.width = 40
     this.height = 20
+    this.time = 0;
+    this.count = 0;
+    this.IsUFODie = false;
   }
 
   randomized() {
@@ -22,15 +25,19 @@ class UFO_1 {
   }
 
   update() {
-    if (this.go_right) {
+    if (this.go_right && !playerArray[0].IsPlayerDie && !this.IsUFODie) {
       this.position_x += 3;
-    } else {
+    } else if (!this.go_right && !playerArray[0].IsPlayerDie && !this.IsUFODie) {
       this.position_x -= 3;
     }
   }
 
   draw() {
+    if(!playerArray[0].IsPlayerDie && !this.IsUFODie) {
     image(image_UFO_1, this.position_x, this.position_y, this.width, this.height);
+} else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
+    image(image_UFO_1_R, this.position_x, this.position_y, this.width, this.height);
+}
   }
 
   goneUFO() {
@@ -42,6 +49,36 @@ class UFO_1 {
   deleteUFO() {
     if (bullet_UFO_1_crash()) {
       return true
+    }
+  }
+
+  dieScene(c) {
+    this.IsUFODie = true;
+    if(this.count < 3){
+        this.time+=10
+    } 
+    if(this.count == 3){
+        this.IsUFODie = false;
+        this.count = 0;
+        c.crash_one(UFO_1Array);
+    }
+    if(this.time<100) {
+        if(!playerArray[0].IsPlayerDie){
+            image(image_UFO_1_dead, this.position_x, this.position_y, this.width, this.height);
+        } else if(playerArray[0].IsPlayerDie) {
+            image(image_UFO_1_dead_R, this.position_x, this.position_y, this.width, this.height);
+        }
+    }
+    else if(this.time>=100) {
+        if(!playerArray[0].IsPlayerDie){
+            image(image_UFO_2_dead, this.position_x, this.position_y, this.width, this.height);
+        } else if(playerArray[0].IsPlayerDie) {
+            image(image_UFO_2_dead_R, this.position_x, this.position_y, this.width, this.height);
+        }
+    }
+    if(this.time>200) {
+        this.time =0
+        this.count++
     }
   }
 }

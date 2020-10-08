@@ -8,22 +8,25 @@
 //열심히 하자 얘들아
 var attackArray = [];
 var UFO_1Array = [];
+var playerArray = [];
 var randomSwitch
 let x;
 let y;
 var bulletEffectTimer;
 var UFOEffectTimer;
 var playerlevel = 12;
+var Round = 1;
 var currentlevel = new level(LEVEL_17,playerlevel);
 var barrier_gameplay = [];
-
+var highScore = 5000;
+let player2 = false;
 
 function setup() {
  
  setup_every_monster_image()
 
  createCanvas(480, 448);
- imageMode(CENTER)
+ imageMode(CENTER);
  randomSwitch = round(random(1))
  setInterval(function() {
   randomSwitch = round(random(1))
@@ -33,14 +36,19 @@ function setup() {
 
 }
 
-p = new player();
+
 c = new crash();
 
 
 function draw() {
   background(0);
 
+draw_text();
 
+push();
+stroke(255);
+line(365, 0, 365, height);
+pop();
 
 barrier_gameplay[0].generate();
 barrier_gameplay[0].update();
@@ -49,19 +57,21 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   barrier_gameplay[0].hitRange(attackArray[bullet_count],'player');
 }
 
-
+  playerArray.push(new player());
+  playerArray[0].update();
+  playerArray[0].draw();
 
   currentlevel.color();
   currentlevel.draw();
   currentlevel.update();
-  currentlevel.attack(p);
+
 // for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
 //   barrier_gameplay[0].hitRange(currentlevel.monster[monster_hit_check]);
 // }
+  if(!playerArray[0].IsPlayerDie){
+  currentlevel.attack(playerArray[0]);
+}
 
-  p.update();
-  p.draw();
-  
   for (let a of attackArray) {
     a.draw();
     a.update();
@@ -71,38 +81,39 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
     u.update();
   }
 
-
-
+  draw_life()
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
   
-  if (attackArray.length > 0 && attackArray[0].deleteBullet(attackArray) && UFO_1Array.length > 0 && UFO_1Array[0].deleteUFO()) {
-    console.log(attackArray[0].deleteBullet(attackArray))
-    UFOEffectTimer = frameCount
-    crash_effect_get_position(UFO_1Array[0]);
-    c.crash_two(attackArray, UFO_1Array)
-
+  
+  if (attackArray.length > 0 && attackArray[0].deleteBullet() && UFO_1Array.length > 0 && UFO_1Array[0].deleteUFO()) {
+    UFO_1Array[0].IsUFODie = true;
+    c.crash_one(attackArray);
   } else if (attackArray.length > 0 && attackArray[0].crashWallBullet()) {
     bulletEffectTimer = frameCount
     crash_effect_get_position(attackArray[0]);
     c.crash_one(attackArray)
   }
+
   if (frameCount < bulletEffectTimer + 5) {
     image(image_bullet_break, x, y + 20, 20, 20);
-  } else if (frameCount < UFOEffectTimer + 5) {
-    image(image_UFO_1_dead, x, y, 50, 20);
+  } else if (UFO_1Array.length > 0 && UFO_1Array[0].IsUFODie) {
+    UFO_1Array[0].dieScene(c)
   }
 
   if(attackArray.length > 0) {
-   c.delete(attackArray[0], currentlevel)
- }
+   c.delete_invader(attackArray[0], currentlevel);
+  }
+  if(currentlevel.bullet.length > 0) {
+   c.delete_player(playerArray[0], currentlevel)
+  }
 }
 
 function keyPressed() {
   if (key == 'z' && attackArray.length == 0) {
-    attackArray.push(new bullet(p.position_x));
+    attackArray.push(new bullet(playerArray[0].position_x));
   }
   if (key == 'u') {
     callUFO_1();
@@ -113,14 +124,13 @@ function callUFO_1() {
   UFO_1Array.push(new UFO_1());
 }
 
-function bullet_UFO_1_crash() {
-  return c.return_delete(attackArray, UFO_1Array)
-}
-
 function crash_effect_get_position(a) {
   x = a.position_x;
   y = a.position_y;
+}
 
+function bullet_UFO_1_crash() {
+  return c.return_delete(attackArray, UFO_1Array)
 }
 
 function bullet_removed(bullet_name){
@@ -130,3 +140,81 @@ function bullet_removed(bullet_name){
   c.crash_one(bullet_name);
 }
 
+function draw_text() {
+    push()
+fill(255)
+  textFont(Font);
+  textSize(17);
+  text('HIGH\n SCORE', 385, 50);
+  if(highScore < 10000){
+    text('0' + highScore, 402, 104);
+} else {
+    text(highScore, 402, 104);
+}
+  text('1UP', 385, 140);
+    if(playerArray.currentScore < 10){
+        text('0000' + playerArray.currentScore, 402, 176);
+    }else if(playerArray.currentScore < 100){
+        text('000' + playerArray.currentScore, 402, 176);
+    }else if(playerArray.currentScore < 1000){
+        text('00' + playerArray.currentScore, 402, 176);
+    }else if(playerArray.currentScore < 10000){
+        text('0' + playerArray.currentScore, 402, 176);
+    } else {
+        text(playerArray.currentScore, 402, 176);
+    }
+
+  text('2UP', 385, 212);
+  if(player2){
+    if(p2CurrentScore < 10){
+        text('0000' + p2CurrentScore, 402, 248);
+    }else if(p2CurrentScore < 100){
+        text('000' + p2CurrentScore, 402, 248);
+    }else if(p2CurrentScore < 1000){
+        text('00' + p2CurrentScore, 402, 248);
+    }else if(p2CurrentScore < 10000){
+        text('0' + p2CurrentScore, 402, 248);
+    } else {
+        text(p2CurrentScore, 402, 248);
+    }
+  }
+  text('ROUND', 385, 290);
+  if(Round < 10){
+        text('0' + Round, 453, 322);
+    } else if (Round < 100) {
+        text(Round, 453, 322);
+    } else if (Round >= 100) {
+        Round -= 100;
+    }
+  pop()
+}
+
+function draw_life() {
+    push()
+    if(playerArray[0].life == 3){
+        if(!playerArray[0].IsPlayerDie){
+        image(image_player, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player, 420, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player, 450, 360, playerArray[0].width, playerArray[0].height)
+    } else if(playerArray[0].IsPlayerDie) {
+        image(image_player_R, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player_R, 420, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player_R, 450, 360, playerArray[0].width, playerArray[0].height)
+    }
+    } else if(playerArray[0].life == 2){
+        if(!playerArray[0].IsPlayerDie){
+        image(image_player, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player, 420, 360, playerArray[0].width, playerArray[0].height)
+    } else if(playerArray[0].IsPlayerDie){
+        image(image_player_R, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player_R, 420, 360, playerArray[0].width, playerArray[0].height)
+    }
+    } else if(playerArray[0].life == 1){
+        if(!playerArray[0].IsPlayerDie){
+        image(image_player, 390, 360, playerArray[0].width, playerArray[0].height)
+    } else if(playerArray[0].IsPlayerDie){
+        image(image_player_R, 390, 360, playerArray[0].width, playerArray[0].height)
+    }
+    }
+    pop()
+}

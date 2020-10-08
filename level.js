@@ -22,7 +22,7 @@ class level {
     this.monster_generate(level)
 
     this.fire = false;
-    this.bullet = [0];
+    this.bullet = [];
     this.shootcount = 0
     this.targeting = [true,true,true,false,false,false,false]
   }
@@ -36,9 +36,11 @@ class level {
     if (this.monster.length > 0 && !this.stiffen) {
       this.position_check();
       this.color();
-      this.movecheck();
-      this.move();
+      if(!playerArray[0].IsPlayerDie){
+        this.movecheck();
+        this.move();
     }
+  }
 
     if (this.stiffen) {
       this.stiffenElapsed += (millis() - this.time) / 1000;
@@ -83,6 +85,7 @@ class level {
   color() 
   {
 
+if(!playerArray[0].IsPlayerDie){
     for (var i = 0; i < this.monster.length; i++) {
 
 
@@ -97,6 +100,11 @@ class level {
       } else {
         this.monster[i].color = monsterColor[0]
       }   
+    }
+    } else if (playerArray[0].IsPlayerDie) {
+        for (var i = 0; i < this.monster.length; i++) {
+            this.monster[i].color = monsterColor[4]
+        }
     }
   }
 
