@@ -23,9 +23,10 @@ class level {
     this.monster_generate(level);
 
     this.fire = false;
-    this.bullet = [0];
-    this.shootcount = 0;
-    this.targeting = [true,true,true,false,false,false,false];
+
+    this.bullet = [];
+    this.shootcount = 0
+    this.targeting = [true,true,true,false,false,false,false]
   }
 
 
@@ -37,9 +38,11 @@ class level {
     if (this.monster.length > 0 && !this.stiffen) {
       this.position_check();
       this.color();
-      this.movecheck();
-      this.move();
+      if(!playerArray[0].IsPlayerDie){
+        this.movecheck();
+        this.move();
     }
+  }
 
     if (this.stiffen) {
       this.stiffenElapsed += (millis() - this.time) / 1000;
@@ -83,6 +86,8 @@ class level {
   }
   color() 
   {
+
+if(!playerArray[0].IsPlayerDie){
     for (var i = 0; i < this.monster.length; i++) {
       if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
         this.monster[i].color = monsterColor[1]
@@ -96,9 +101,11 @@ class level {
         this.monster[i].color = monsterColor[0]
       }   
     }
-
-
-
+    } else if (playerArray[0].IsPlayerDie) {
+        for (var i = 0; i < this.monster.length; i++) {
+            this.monster[i].color = monsterColor[4]
+        }
+    }
   }
 
   draw() 
@@ -231,7 +238,6 @@ random_attack(player)
      {
       var monster_centerX = this.monster[i].position_x + this.monster[i].x_size / 2
       this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
-      barrier_gameplay[0].bulletCheck('monster');
       this.fire = true
       this.shootcount +=1;
       break;
@@ -251,7 +257,6 @@ target_attack(player)
 
         if (monster_centerX > player.position_x-player.width/2 && monster_centerX < player.position_x + player.width/2) {
           this.bullet[0] = new monster_bullet(monster_centerX, this.monster[i].position_y + this.monster[i].y_size)
-          barrier_gameplay[0].bulletCheck('monster');
           this.fire = true
           this.shootcount +=1;
           break;
@@ -297,8 +302,8 @@ attack(player)
     {
       this.bullet[0].draw()
       this.bullet[0].update()
-      for(var monster_bullet_count = 0;monster_bullet_count<this.shootcount;monster_bullet_count++){
-        barrier_gameplay[0].hitRange(this.bullet[0],'monster');
+      if(this.fire){
+        barrier_gameplay[0].hitRange(this.bullet[0],'monster',this);
       }
 
       if(this.bullet[0].crashWallBullet())

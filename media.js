@@ -35,7 +35,9 @@ var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],
 
 
 function preload() {
+  Font = loadFont('Font/PressStart2P-Regular.ttf');
   image_player = loadImage('playerSprites/Player.png');
+  image_player_R = loadImage('playerSprites/Player_red.png')
   image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
   image_player_dead_2 = loadImage('playerSprites/Player_dead_2.png');
   image_bullet_break = loadImage('playerSprites/Bullet_break.png');
@@ -43,6 +45,10 @@ function preload() {
   image_UFO_2 = loadImage('enemySprites/UFO2_pink.png')
   image_UFO_1_dead = loadImage('enemySprites/UFO_dead_pink_1.png')
   image_UFO_2_dead = loadImage('enemySprites/UFO_dead_pink_2.png')
+  image_UFO_1_R = loadImage('enemySprites/UFO1_red.png')
+  image_UFO_2_R = loadImage('enemySprites/UFO2_red.png')
+  image_UFO_1_dead_R = loadImage('enemySprites/UFO_dead_red_1.png')
+  image_UFO_2_dead_R = loadImage('enemySprites/UFO_dead_red_2.png')
 
   octopus_image = loadImage('enemySprites/Octopus.png')
   octopus_data = loadJSON('enemySprites/Octopus.json');
