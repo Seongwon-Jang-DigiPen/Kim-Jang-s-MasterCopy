@@ -452,7 +452,6 @@ var right_barrier_image = [ //up_damaged
       }
     } //Check left, right, and middle
 
-
     switch (this.monster_object_status) {
       case 1:
         if (this.left_up_damaged < 3) {

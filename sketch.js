@@ -41,20 +41,6 @@ c = new crash();
 
 function draw() {
   background(0);
-  push()
-  stroke(255)
-  line(play_scene_maximumX,0,play_scene_maximumX,play_scene_maximumY)
-  pop()
-
-
-  barrier_gameplay[0].generate();
-  barrier_gameplay[0].update();
-
-
-push();
-stroke(255);
-line(365, 0, 365, height);
-pop();
 
 barrier_gameplay[0].generate();
 barrier_gameplay[0].update();
@@ -135,6 +121,11 @@ function keyPressed() {
   if (key == 'u') {
     callUFO_1();
   }
+}
+
+function crash_effect_get_position (a) {
+    x = a.position_x;
+    y = a.position_y;
 }
 
 function callUFO_1() {
