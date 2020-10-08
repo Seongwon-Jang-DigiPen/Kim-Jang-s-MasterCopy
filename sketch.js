@@ -43,7 +43,7 @@ c = new crash();
 function draw() {
   background(0);
 
-draw_text();
+
 
 push();
 stroke(255);
@@ -52,6 +52,7 @@ pop();
 
 barrier_gameplay[0].generate();
 barrier_gameplay[0].update();
+barrier_gameplay[0].draw_effect();
 
 for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   barrier_gameplay[0].hitRange(attackArray[bullet_count],'player');
@@ -82,6 +83,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   }
 
   draw_life()
+  draw_text();
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
@@ -124,11 +126,6 @@ function callUFO_1() {
   UFO_1Array.push(new UFO_1());
 }
 
-function crash_effect_get_position(a) {
-  x = a.position_x;
-  y = a.position_y;
-}
-
 function bullet_UFO_1_crash() {
   return c.return_delete(attackArray, UFO_1Array)
 }
@@ -152,16 +149,16 @@ fill(255)
     text(highScore, 402, 104);
 }
   text('1UP', 385, 140);
-    if(playerArray.currentScore < 10){
-        text('0000' + playerArray.currentScore, 402, 176);
-    }else if(playerArray.currentScore < 100){
-        text('000' + playerArray.currentScore, 402, 176);
-    }else if(playerArray.currentScore < 1000){
-        text('00' + playerArray.currentScore, 402, 176);
-    }else if(playerArray.currentScore < 10000){
-        text('0' + playerArray.currentScore, 402, 176);
+    if(playerArray[0].currentScore < 10){
+        text('0000' + playerArray[0].currentScore, 402, 176);
+    }else if(playerArray[0].currentScore < 100){
+        text('000' + playerArray[0].currentScore, 402, 176);
+    }else if(playerArray[0].currentScore < 1000){
+        text('00' + playerArray[0].currentScore, 402, 176);
+    }else if(playerArray[0].currentScore < 10000){
+        text('0' + playerArray[0].currentScore, 402, 176);
     } else {
-        text(playerArray.currentScore, 402, 176);
+        text(playerArray[0].currentScore, 402, 176);
     }
 
   text('2UP', 385, 212);

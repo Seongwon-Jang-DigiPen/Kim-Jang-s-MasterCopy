@@ -13,7 +13,7 @@ class player {
     this.IsPlayerDie = false;
     this.time = 0
     this.count = 0
-
+    this.currentScore = 0;
   }
 
   update() {
