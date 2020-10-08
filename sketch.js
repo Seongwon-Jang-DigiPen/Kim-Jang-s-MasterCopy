@@ -15,9 +15,11 @@ let y;
 var bulletEffectTimer;
 var UFOEffectTimer;
 var playerlevel = 12;
+var Round = 1;
 var currentlevel = new level(LEVEL_17,playerlevel);
 var barrier_gameplay = [];
-
+var highScore = 5000;
+let player2 = false;
 
 function setup() {
  
@@ -41,7 +43,12 @@ c = new crash();
 function draw() {
   background(0);
 
+draw_text();
 
+push();
+stroke(255);
+line(365, 0, 365, height);
+pop();
 
 barrier_gameplay[0].generate();
 barrier_gameplay[0].update();
@@ -69,6 +76,8 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
     u.draw();
     u.update();
   }
+
+  draw_life()
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
@@ -126,3 +135,81 @@ function bullet_removed(){
   c.crash_one(attackArray)
 }
 
+function draw_text() {
+    push()
+fill(255)
+  textFont(Font);
+  textSize(17);
+  text('HIGH\n SCORE', 385, 50);
+  if(highScore < 10000){
+    text('0' + highScore, 402, 104);
+} else {
+    text(highScore, 402, 104);
+}
+  text('1UP', 385, 140);
+    if(playerArray.currentScore < 10){
+        text('0000' + playerArray.currentScore, 402, 176);
+    }else if(playerArray.currentScore < 100){
+        text('000' + playerArray.currentScore, 402, 176);
+    }else if(playerArray.currentScore < 1000){
+        text('00' + playerArray.currentScore, 402, 176);
+    }else if(playerArray.currentScore < 10000){
+        text('0' + playerArray.currentScore, 402, 176);
+    } else {
+        text(playerArray.currentScore, 402, 176);
+    }
+
+  text('2UP', 385, 212);
+  if(player2){
+    if(p2CurrentScore < 10){
+        text('0000' + p2CurrentScore, 402, 248);
+    }else if(p2CurrentScore < 100){
+        text('000' + p2CurrentScore, 402, 248);
+    }else if(p2CurrentScore < 1000){
+        text('00' + p2CurrentScore, 402, 248);
+    }else if(p2CurrentScore < 10000){
+        text('0' + p2CurrentScore, 402, 248);
+    } else {
+        text(p2CurrentScore, 402, 248);
+    }
+  }
+  text('ROUND', 385, 290);
+  if(Round < 10){
+        text('0' + Round, 453, 322);
+    } else if (Round < 100) {
+        text(Round, 453, 322);
+    } else if (Round >= 100) {
+        Round -= 100;
+    }
+  pop()
+}
+
+function draw_life() {
+    push()
+    if(playerArray[0].life == 3){
+        if(!playerArray[0].IsPlayerDie){
+        image(image_player, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player, 420, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player, 450, 360, playerArray[0].width, playerArray[0].height)
+    } else if(playerArray[0].IsPlayerDie) {
+        image(image_player_R, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player_R, 420, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player_R, 450, 360, playerArray[0].width, playerArray[0].height)
+    }
+    } else if(playerArray[0].life == 2){
+        if(!playerArray[0].IsPlayerDie){
+        image(image_player, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player, 420, 360, playerArray[0].width, playerArray[0].height)
+    } else if(playerArray[0].IsPlayerDie){
+        image(image_player_R, 390, 360, playerArray[0].width, playerArray[0].height)
+        image(image_player_R, 420, 360, playerArray[0].width, playerArray[0].height)
+    }
+    } else if(playerArray[0].life == 1){
+        if(!playerArray[0].IsPlayerDie){
+        image(image_player, 390, 360, playerArray[0].width, playerArray[0].height)
+    } else if(playerArray[0].IsPlayerDie){
+        image(image_player_R, 390, 360, playerArray[0].width, playerArray[0].height)
+    }
+    }
+    pop()
+}

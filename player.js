@@ -9,7 +9,7 @@ class player {
     this.speed = 5;
     this.width = 36;
     this.height = 18;
-    this.life = 3;
+    this.life = 2;
     this.IsPlayerDie = false;
     this.time = 0
     this.count = 0
@@ -19,7 +19,7 @@ class player {
   update() {
     if (keyIsDown(LEFT_ARROW) && this.position_x >= 50 && !this.IsPlayerDie) {
       this.position_x -= this.speed;
-    } else if (keyIsDown(RIGHT_ARROW) && this.position_x <= 330 && !this.IsPlayerDie) {
+    } else if (keyIsDown(RIGHT_ARROW) && this.position_x <= 340 && !this.IsPlayerDie) {
       this.position_x += this.speed;
     }
   }
@@ -29,7 +29,7 @@ class player {
         image(image_player, this.position_x, this.position_y, this.width, this.height);
     } else if(this.IsPlayerDie) {
         this.dieScene()
-        this.life--
+        
     }
   }
 
@@ -40,6 +40,7 @@ class player {
     } 
     if(this.count == 6){
         this.gameover()
+        this.life--
     }
     if(this.time<100) {
         image(image_player_dead_1, this.position_x, this.position_y, this.width, this.height);

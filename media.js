@@ -35,7 +35,9 @@ var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],
 
 
 function preload() {
+  Font = loadFont('Font/PressStart2P-Regular.ttf');
   image_player = loadImage('playerSprites/Player.png');
+  image_player_R = loadImage('playerSprites/Player_red.png')
   image_player_dead_1 = loadImage('playerSprites/Player_dead_1.png');
   image_player_dead_2 = loadImage('playerSprites/Player_dead_2.png');
   image_bullet_break = loadImage('playerSprites/Bullet_break.png');
