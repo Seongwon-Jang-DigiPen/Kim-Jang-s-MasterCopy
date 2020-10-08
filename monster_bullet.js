@@ -7,6 +7,7 @@ class monster_bullet {
     this.height = 16
     this.type = round(random(0,2));
     this.frame_count = 0
+    this.bullet_break = 0;
   }
 
   draw() {
@@ -22,7 +23,7 @@ class monster_bullet {
 
 
   crashWallBullet() {
-    if (this.position_y > 448) {
+    if (this.position_y > 448 || this.bullet_break == 1) {
       return true
     }
   }
