@@ -7,7 +7,6 @@ class level {
   constructor(level, playerlevel) {
 
     this.monster = [];
-
     this.time = 0;
     this.timeElapsed = 0;
     this.monstercount = 0;
@@ -19,12 +18,28 @@ class level {
 
     this.stiffen = false;
     this.stiffenElapsed = 0;
-    this.monster_generate(level)
+
+    this.monster_generate(level);
 
     this.fire = false;
+
     this.bullet = [];
     this.shootcount = 0
     this.targeting = [true,true,true,false,false,false,false]
+
+        this.behindmonsterdata = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+for(var i=0;i<level[0].length;i++)
+{
+if(level[0][i] == 0)
+{
+  this.behindmonsterdata[i] = 0
+}
+else
+{
+  this.behindmonsterdata[i] = 1;
+}
+}
   }
 
 
@@ -34,10 +49,10 @@ class level {
     this.makebabymove()
 
     if (this.monster.length > 0 && !this.stiffen) {
-      this.position_check();
       this.color();
       if(!playerArray[0].IsPlayerDie){
         this.movecheck();
+        this.position_check();
         this.move();
     }
   }
@@ -81,14 +96,12 @@ class level {
         k++
       }
     }
-  }
+  } 
   color() 
   {
 
 if(!playerArray[0].IsPlayerDie){
     for (var i = 0; i < this.monster.length; i++) {
-
-
       if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
         this.monster[i].color = monsterColor[1]
       } else if (BLUE_ZONE < this.monster[i].position_y && this.monster[i].position_y <= PINK_ZONE) {
@@ -112,7 +125,6 @@ if(!playerArray[0].IsPlayerDie){
   {
     push()
     imageMode(CORNER)
-
 
     for (var i = 0; i < this.monster.length; i++) {
 
@@ -164,8 +176,7 @@ if(!playerArray[0].IsPlayerDie){
         break;
       }
     }
-
-
+    
   }
   pop()
 }
@@ -269,9 +280,9 @@ target_attack(player)
 }
 
 position_check()
-{
+{ 
   if(this.monstercount==0)
-  { 
+  {
     for (var i = 0; i < this.monster.length; i++) {
       this.monster[i].infront = true;
       for (var j = 0; j < this.monster.length; j++) {
@@ -283,6 +294,7 @@ position_check()
       }
     }
   }
+
 }
 
 attack(player) 
@@ -346,6 +358,10 @@ monsterDeadcheck()
        {
         this.monstercount -= 1;
       }
+      if(this.monster[i].column==0)
+      {
+        this.behindmonsterdata[this.monster[i].row] = 0; 
+      }
       this.monster.splice(i, 1);
     }
   }
@@ -366,7 +382,9 @@ returnBaby(i)
     infront: false,
     dead:false,
     make:true,
-    makebaby_move:true
+    makebaby_move:true,
+    row:this.monster[i].row+1,
+    column:this.monster[i].column
   }
   return B;
 }
@@ -409,7 +427,9 @@ makeOctopus(i,j)
   color: 0,
   frame_count: 0,
   infront: false,
-  dead:false
+  dead:false,
+  row:j,
+  column:i
 }  
 return octopus;
 }
@@ -426,7 +446,9 @@ makeCrab(i,j)
     color: 0,
     frame_count: 0,
     infront: false,
-    dead:false
+    dead:false,
+    row:j,
+    column:i
   }
   return crab;
 }
@@ -443,7 +465,9 @@ makeSquid(i,j)
   color: 0,
   frame_count: 0,
   infront: false,
-  dead:false
+  dead:false,
+  row:j,
+  column:i
 }
 return squid;
 }
@@ -460,7 +484,9 @@ makeBaby(i,j)
   color: 0,
   frame_count: 0,
   infront: false,
-  dead:false
+  dead:false,
+  row:j,
+  column:i
 }
 return baby;
 }
@@ -474,5 +500,25 @@ crabToBaby(i)
   this.monster[i].dead = false;
   this.monster[i].make = true
 }
+makeUFOsquid(i,j,k)
+{
+  var squid = {
+  type: SQUID,
+  position_x:  i,
+  position_y: j,
+  x_size: 12,
+  y_size: 14,
+  point: 30,
+  color: 0,
+  frame_count: 0,
+  infront: false,
+  dead:false,
+  row:k,
+  column:0
+}
+return squid;
+}
+
+
 
 }

@@ -9,6 +9,7 @@
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
+
 var randomSwitch
 let x;
 let y;
@@ -22,21 +23,17 @@ var highScore = 5000;
 let player2 = false;
 var barrier_num = 4;
 var barrier_pos_y = 350;
-var barrier_1_pos_x = 72;
-var barrier_2_pos_x = 152;
-var barrier_3_pos_x = 232;
-var barrier_4_pos_x = 312;
+var barrier_1_pos_x = 62;
+var barrier_2_pos_x = 142;
+var barrier_3_pos_x = 222;
+var barrier_4_pos_x = 302;
 
 function setup() {
- 
+
  setup_every_monster_image()
 
  createCanvas(480, 448);
- imageMode(CENTER);
- randomSwitch = round(random(1))
- setInterval(function() {
-  randomSwitch = round(random(1))
-}, 5000);
+
 
  // barrier_gameplay.push(new barrier(200,250));
  barrier_gameplay.push(new barrier(barrier_1_pos_x,barrier_pos_y));
@@ -44,6 +41,10 @@ function setup() {
  barrier_gameplay.push(new barrier(barrier_3_pos_x,barrier_pos_y));
  barrier_gameplay.push(new barrier(barrier_4_pos_x,barrier_pos_y));
 
+ imageMode(CENTER)
+
+
+ barrier_gameplay.push(new barrier(200,350));
 }
 
 
@@ -85,6 +86,7 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
 
 
 
+
   if(!playerArray[0].IsPlayerDie){
   currentlevel.attack(playerArray[0]);
 }
@@ -96,14 +98,19 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
   for (let u of UFO_1Array) {
     u.draw();
     u.update();
+    if(u.IsThisUfo2){
+    u.canmakecheck(currentlevel.monster);
+    u.makemonster(currentlevel);
+    }
   }
 
   draw_life()
+  draw_text();
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
-  
+
   
   if (attackArray.length > 0 && attackArray[0].deleteBullet() && UFO_1Array.length > 0 && UFO_1Array[0].deleteUFO()) {
     UFO_1Array[0].IsUFODie = true;
@@ -121,6 +128,7 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
   }
 
   if(attackArray.length > 0) {
+
    c.delete_invader(attackArray[0], currentlevel);
   }
   if(currentlevel.bullet.length > 0) {
@@ -133,20 +141,22 @@ function keyPressed() {
     attackArray.push(new bullet(playerArray[0].position_x));
   }
   if (key == 'u') {
-    callUFO_1();
+    callUFO_2();
   }
 }
 
-function callUFO_1() {
-  UFO_1Array.push(new UFO_1());
+function crash_effect_get_position (a) {
+    x = a.position_x;
+    y = a.position_y;
 }
 
-function crash_effect_get_position(a) {
-  x = a.position_x;
-  y = a.position_y;
+function callUFO_2() {
+  UFO_1Array.push(new UFO_1());
+  UFO_1Array[0].IsThisUfo2 = false;
 }
 
 function bullet_UFO_1_crash() {
+    console.log(c.return_delete(attackArray, UFO_1Array))
   return c.return_delete(attackArray, UFO_1Array)
 }
 
@@ -169,16 +179,16 @@ fill(255)
     text(highScore, 402, 104);
 }
   text('1UP', 385, 140);
-    if(playerArray.currentScore < 10){
-        text('0000' + playerArray.currentScore, 402, 176);
-    }else if(playerArray.currentScore < 100){
-        text('000' + playerArray.currentScore, 402, 176);
-    }else if(playerArray.currentScore < 1000){
-        text('00' + playerArray.currentScore, 402, 176);
-    }else if(playerArray.currentScore < 10000){
-        text('0' + playerArray.currentScore, 402, 176);
+    if(playerArray[0].currentScore < 10){
+        text('0000' + playerArray[0].currentScore, 402, 176);
+    }else if(playerArray[0].currentScore < 100){
+        text('000' + playerArray[0].currentScore, 402, 176);
+    }else if(playerArray[0].currentScore < 1000){
+        text('00' + playerArray[0].currentScore, 402, 176);
+    }else if(playerArray[0].currentScore < 10000){
+        text('0' + playerArray[0].currentScore, 402, 176);
     } else {
-        text(playerArray.currentScore, 402, 176);
+        text(playerArray[0].currentScore, 402, 176);
     }
 
   text('2UP', 385, 212);
