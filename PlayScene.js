@@ -16,6 +16,7 @@ this.barrier_gameplay.push(new barrier(200,350));
 this.barrier_gameplay = [];
 this.highScore = 5000;
 this.player2 = false;
+this.c = new crash();
     }
 
     Update()

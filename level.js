@@ -317,7 +317,10 @@ attack(player)
       this.bullet[0].draw()
       this.bullet[0].update()
       if(this.fire){
-        barrier_gameplay[0].hitRange(this.bullet[0],'monster',this);
+        for(var make_barr = 0;make_barr<barrier_num;make_barr++){
+          barrier_gameplay[make_barr].hitRange(this.bullet[0],'monster',this);
+        }
+        
       }
 
       if(this.bullet[0].crashWallBullet())
