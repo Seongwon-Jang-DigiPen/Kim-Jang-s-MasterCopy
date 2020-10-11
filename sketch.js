@@ -78,8 +78,6 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
     }
   }
 
-
-
   draw_life()
   draw_text();
 

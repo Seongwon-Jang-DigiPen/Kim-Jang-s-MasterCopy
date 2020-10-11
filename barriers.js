@@ -413,7 +413,6 @@ var right_barrier_image = [ //up_damaged
     this.my = currentlevel.bullet[0].position_y
     currentlevel.bullet[0].bullet_break = 1;
     this.monsterBulletEffectTimer = frameCount;
-    
   }
 
   draw_effect(){
