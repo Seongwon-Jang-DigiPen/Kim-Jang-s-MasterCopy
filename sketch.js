@@ -54,15 +54,18 @@ c = new crash();
 function draw() {
   background(0);
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> ec048dd308a0d73220e84e7667129f85f5f535b3
 
 for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++){
 barrier_gameplay[barrier_make].generate();
 barrier_gameplay[barrier_make].update();
 for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   // console.log(attackArray);
-    barrier_gameplay[barrier_make].hitRange(attackArray[bullet_count],'player');
+    barrier_gameplay[barrier_make].hitRange(attackArray[bullet_count],'player',currentlevel);
 
 }
 for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){

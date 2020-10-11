@@ -91,13 +91,11 @@ deleteUFO() {
     }
   }
 
-
-
-
-
   makemonster(level)
   {
-if(this.IsThisUfo2){
+    this.defalt_x = level.monster[0].position_x-(level.monster[0].row*MONSTERDISTANCE);
+    this.defalt_y = level.monster[0].position_y-(level.monster[0].column*MONSTERDISTANCE);
+console.log(level.behindmonsterdata)
     if(this.move == false)
     {
       level.stiffen = true
@@ -110,76 +108,59 @@ if(this.IsThisUfo2){
       } 
     }
     else{
-      for(var i = 0; i < this.canmake.length;i++)
+      for(var i = 0; i < level.behindmonsterdata.length;i++)
       {
-        if(this.position_x == this.canmake[i].x)
+        if(this.position_x == this.defalt_x + (MONSTERDISTANCE*i) && level.behindmonsterdata[i]==0 && this.position_x > MONSTERDISTANCE*2&& this.position_x < play_scene_maximumX - (MONSTERDISTANCE*2))
         {
          this.move = false;
          level.stiffen = true;
-      
-         level.monster.splice(this.canmake[i].splicenumber,0,level.makeUFOsquid(this.canmake[i].x,this.position_y))
-         this.UFOsquidvalue = this.canmake[i].splicenumber;
-   
-       }
-     }
-   }
-}
- }
 
- monsterdata(i,j)
- {
-    if(this.IsThisUfo2){
-  var a = {
-    x:i,
-    splicenumber:j
-  }
-  return a
-}
-}
+         var nextmonsternumber =0;
+         var itislast = true; 
 
+         for(var j = i; j < level.behindmonsterdata.length;j++)
+         {
+          if(level.behindmonsterdata[j]==1)
+          {
+           itislast=false;
+           for(var k=0;k<level.monster.length;k++)
 
+           {
+            if(level.monster[k].column == 0 && level.monster[k].row == j)
+            {
+              nextmonsternumber = j
+              break;
+            }
+          }
+          break;
+        }
+      }
 
+      if(itislast)
+      {
+        this.move = false;
+        level.monster.push(level.makeUFOsquid(this.defalt_x + (MONSTERDISTANCE*i),this.position_y,i))
+        level.behindmonsterdata[i]=1;
+        this.UFOsquidvalue = level.monster.length-1
+      }
 
+      else{
+        this.move = false;
+        this.UFOsquidvalue = nextmonsternumber
+        level.monster.splice(nextmonsternumber,0,level.makeUFOsquid(this.defalt_x + (MONSTERDISTANCE*i),this.position_y,i))
+        if(level.monstercount>nextmonsternumber)
+        {
+          level.monstercount+=1
+        }
+        level.behindmonsterdata[i]=1;
+      }
 
-canmakecheck(monster)
-{
-    if(this.IsThisUfo2){
-  this.defalt_x = monster[0].position_x+(monster[0].row*MONSTERDISTANCE);
-  this.defalt_y = monster[0].position_y-(monster[0].column*MONSTERDISTANCE);
+    }
 
-  this.canmake = []
-
-  var lefttopmonster=0;
-
-
-  for(var i=0;i<monster.length;i++)
-  {
-   if(monster[i].column == 0 && lefttopmonster == 0)
-   {
-    lefttopmonster = i;
-  }
-}
-
-var splicein = lefttopmonster;
-var rownumber =0;
-for (var i=this.defalt_x; i<play_scene_maximumX-MONSTERDISTANCE;i+=MONSTERDISTANCE)
-{
- var empty = true;
- for(var j=0;j<monster.length;j++)
- {
-  if(monster[j].column==0&&i<monster[j].position_x+5&&i+MONSTERDISTANCE-5>monster[j].position_x)
-  {
-    empty = false;
-    splicein = j;
   }
 }
+}
 
-if(empty)
-  {  this.canmake.push(this.monsterdata(i,splicein,rownumber))}
-rownumber+=1;
-}
-}
-}
 }
 
 
