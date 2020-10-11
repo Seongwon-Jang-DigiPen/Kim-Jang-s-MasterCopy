@@ -7,7 +7,6 @@ class level {
   constructor(level, playerlevel) {
 
     this.monster = [];
-
     this.time = 0;
     this.timeElapsed = 0;
     this.monstercount = 0;
@@ -27,6 +26,20 @@ class level {
     this.bullet = [];
     this.shootcount = 0
     this.targeting = [true,true,true,false,false,false,false]
+
+        this.behindmonsterdata = [0,0,0,0,0,0,0,0,0,0,0,0];
+
+for(var i=0;i<level[0].length;i++)
+{
+if(level[0][i] == 0)
+{
+  this.behindmonsterdata[i] = 0
+}
+else
+{
+  this.behindmonsterdata[i] = 1;
+}
+}
   }
 
 
@@ -36,10 +49,10 @@ class level {
     this.makebabymove()
 
     if (this.monster.length > 0 && !this.stiffen) {
-      this.position_check();
       this.color();
       if(!playerArray[0].IsPlayerDie){
         this.movecheck();
+        this.position_check();
         this.move();
     }
   }
@@ -83,7 +96,7 @@ class level {
         k++
       }
     }
-  }
+  } 
   color() 
   {
 
@@ -267,9 +280,9 @@ target_attack(player)
 }
 
 position_check()
-{
+{ 
   if(this.monstercount==0)
-  { 
+  {
     for (var i = 0; i < this.monster.length; i++) {
       this.monster[i].infront = true;
       for (var j = 0; j < this.monster.length; j++) {
@@ -281,6 +294,7 @@ position_check()
       }
     }
   }
+
 }
 
 attack(player) 
@@ -340,6 +354,10 @@ monsterDeadcheck()
        if((this.monstercount>i||this.monstercount==this.monster.length)&&this.monstercount!=0)
        {
         this.monstercount -= 1;
+      }
+      if(this.monster[i].column==0)
+      {
+        this.behindmonsterdata[this.monster[i].row] = 0; 
       }
       this.monster.splice(i, 1);
     }

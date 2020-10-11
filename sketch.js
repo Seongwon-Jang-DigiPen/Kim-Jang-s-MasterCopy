@@ -77,8 +77,7 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
 for (let u of UFO_2Array) {
     u.draw();
     u.update();
-    u.canmakecheck(currentlevel.monster)
-    u.makemonster(currentlevel)
+    u.makemonster(currentlevel);
   }
 
 
