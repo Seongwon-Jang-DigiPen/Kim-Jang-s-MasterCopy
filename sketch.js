@@ -13,7 +13,10 @@ var playerArray = [];
 var randomSwitch
 let x;
 let y;
+let mx;
+let my;
 var bulletEffectTimer;
+var monsterBulletEffectTimer;
 var UFOEffectTimer;
 var playerlevel = 12;
 var Round = 1;
@@ -54,19 +57,12 @@ c = new crash();
 function draw() {
   background(0);
 
-draw_text();
-
-push();
-stroke(255);
-line(365, 0, 365, height);
-pop();
-
 
 for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++){
 barrier_gameplay[barrier_make].generate();
 barrier_gameplay[barrier_make].update();
 for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-    barrier_gameplay[barrier_make].hitRange(attackArray[bullet_count],'player');
+    barrier_gameplay[barrier_make].hitRange(attackArray[bullet_count],'player', currentlevel);
 }
 for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
   barrier_gameplay[0].monsterCollision(currentlevel.monster[monster_hit_check]);
@@ -80,10 +76,6 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
   currentlevel.color();
   currentlevel.draw();
   currentlevel.update();
-
-
-
-
 
 
 
@@ -119,6 +111,11 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
     bulletEffectTimer = frameCount
     crash_effect_get_position(attackArray[0]);
     c.crash_one(attackArray)
+  }
+
+
+  if (frameCount < monsterBulletEffectTimer + 5) {
+      image(image_bullet_break, mx, my, 20, 20);
   }
 
   if (frameCount < bulletEffectTimer + 5) {

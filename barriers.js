@@ -22,9 +22,6 @@ class barrier {
     this.middle_image_1 = image_barrier_square[0];
     this.middle_image_2 = image_barrier_square[0];
 
-    this.monsterBulletEffectTimer = null;
-    this.mx = 0;
-    this.my = 0;
   }
   generate() {
     var barrier_left_1 = {
@@ -408,17 +405,12 @@ var right_barrier_image = [ //up_damaged
     this.right_image_3 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][2];
   }
 
-  crash_effect(){
-    this.mx = currentlevel.bullet[0].position_x
-    this.my = currentlevel.bullet[0].position_y
-    currentlevel.bullet[0].bullet_break = 1;
-    this.monsterBulletEffectTimer = frameCount;
-  }
+  crash_effect(a){
 
-  draw_effect(){
-    if (frameCount < this.monsterBulletEffectTimer + 5) {
-        image(image_bullet_break, this.mx, this.my, 20, 20);
-    }
+    mx = a.bullet[0].position_x
+    my = a.bullet[0].position_y
+    a.bullet[0].bullet_break = 1;
+    monsterBulletEffectTimer = frameCount;
   }
 
   hitRange(object, player_or_monster, currentlevel) {
@@ -462,7 +454,7 @@ var right_barrier_image = [ //up_damaged
         }
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged != 11)) {
-            this.crash_effect()
+            this.crash_effect(currentlevel)
           this.left_up_damaged++;
           this.monster_object_status = 0;
           // console.log('left'+this.left_up_damaged);
@@ -479,8 +471,7 @@ var right_barrier_image = [ //up_damaged
         }
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged != 9)) {
-            this.crash_effect()
-          currentlevel.bullet[0].bullet_break = 1;
+            this.crash_effect(currentlevel)
           this.up_damaged++;
           this.monster_object_status = 0;
           // console.log('middle'+this.up_damaged);
@@ -496,8 +487,7 @@ var right_barrier_image = [ //up_damaged
         }
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged != 11)) {
-            this.crash_effect()
-          currentlevel.bullet[0].bullet_break = 1;
+            this.crash_effect(currentlevel)
           this.right_up_damaged++;
           this.monster_object_status = 0;
           // console.log('right'+this.right_up_damaged);
