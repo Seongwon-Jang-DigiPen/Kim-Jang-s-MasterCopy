@@ -413,7 +413,7 @@ var right_barrier_image = [ //up_damaged
     monsterBulletEffectTimer = frameCount;
   }
 
-  hitRange(object, player_or_monster, currentlevel) {
+  m_hitRange(object, player_or_monster, currentlevel) {
     var left_x = this.x - this.image_size;
     var right_x = this.x + this.image_size;
     var Y = this.y;
@@ -495,6 +495,37 @@ var right_barrier_image = [ //up_damaged
         
         break;
     }
+}
+
+  p_hitRange(object, player_or_monster, currentlevel) {
+    var left_x = this.x - this.image_size;
+    var right_x = this.x + this.image_size;
+    var Y = this.y;
+    var object_size = 16;
+// console.log(attackArray);
+
+    if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
+      if (player_or_monster == 'player') {
+        this.player_object_status = 1;
+      } else {
+        this.monster_object_status = 1;
+      }
+
+    }
+    if (object.position_x <= right_x + this.image_size / 2 && object.position_x > right_x - this.image_size / 2 ) {
+      if (player_or_monster == 'player') {
+        this.player_object_status = 3;
+      } else {
+        this.monster_object_status = 3;
+      }
+    }
+    if (object.position_x <= this.x + this.image_size / 2 && object.position_x >= this.x - this.image_size / 2 ) {
+      if (player_or_monster == 'player') {
+        this.player_object_status = 2;
+      } else {
+        this.monster_object_status = 2;
+      }
+    } //Check left, right, and middle
 
     switch (this.player_object_status) {
       case 1:
@@ -544,7 +575,9 @@ var right_barrier_image = [ //up_damaged
         }
         break;
     }
-  }
+    }
+
+
   monsterCollision(object){
     var barrier_range = {
        left_bar : {
