@@ -8,7 +8,6 @@
 //열심히 하자 얘들아
 var attackArray = [];
 var UFO_1Array = [];
-var UFO_2Array = [];
 var playerArray = [];
 
 var randomSwitch
@@ -73,13 +72,11 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   for (let u of UFO_1Array) {
     u.draw();
     u.update();
-  }
-for (let u of UFO_2Array) {
-    u.draw();
-    u.update();
+    if(u.IsThisUfo2){
+    u.canmakecheck(currentlevel.monster);
     u.makemonster(currentlevel);
+    }
   }
-
 
   draw_life()
   draw_text();
@@ -118,7 +115,7 @@ function keyPressed() {
     attackArray.push(new bullet(playerArray[0].position_x));
   }
   if (key == 'u') {
-    callUFO_1();
+    callUFO_2();
   }
 }
 
@@ -127,11 +124,13 @@ function crash_effect_get_position (a) {
     y = a.position_y;
 }
 
-function callUFO_1() {
-  UFO_2Array.push(new UFO_2());
+function callUFO_2() {
+  UFO_1Array.push(new UFO_1());
+  UFO_1Array[0].IsThisUfo2 = false;
 }
 
 function bullet_UFO_1_crash() {
+    console.log(c.return_delete(attackArray, UFO_1Array))
   return c.return_delete(attackArray, UFO_1Array)
 }
 
