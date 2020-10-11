@@ -426,7 +426,7 @@ var right_barrier_image = [ //up_damaged
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-console.log(attackArray);
+// console.log(attackArray);
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {

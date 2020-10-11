@@ -54,11 +54,6 @@ c = new crash();
 function draw() {
   background(0);
 
-<<<<<<< HEAD
-
-
-=======
->>>>>>> ec048dd308a0d73220e84e7667129f85f5f535b3
 
 for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++){
 barrier_gameplay[barrier_make].generate();
