@@ -20,6 +20,12 @@ var currentlevel = new level(LEVEL_17,playerlevel);
 var barrier_gameplay = [];
 var highScore = 5000;
 let player2 = false;
+var barrier_num = 4;
+var barrier_pos_y = 350;
+var barrier_1_pos_x = 72;
+var barrier_2_pos_x = 152;
+var barrier_3_pos_x = 232;
+var barrier_4_pos_x = 312;
 
 function setup() {
  
@@ -32,7 +38,11 @@ function setup() {
   randomSwitch = round(random(1))
 }, 5000);
 
- barrier_gameplay.push(new barrier(200,350));
+ // barrier_gameplay.push(new barrier(200,250));
+ barrier_gameplay.push(new barrier(barrier_1_pos_x,barrier_pos_y));
+ barrier_gameplay.push(new barrier(barrier_2_pos_x,barrier_pos_y));
+ barrier_gameplay.push(new barrier(barrier_3_pos_x,barrier_pos_y));
+ barrier_gameplay.push(new barrier(barrier_4_pos_x,barrier_pos_y));
 
 }
 
@@ -50,11 +60,16 @@ stroke(255);
 line(365, 0, 365, height);
 pop();
 
-barrier_gameplay[0].generate();
-barrier_gameplay[0].update();
 
+for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++){
+barrier_gameplay[barrier_make].generate();
+barrier_gameplay[barrier_make].update();
 for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-  barrier_gameplay[0].hitRange(attackArray[bullet_count],'player');
+    barrier_gameplay[barrier_make].hitRange(attackArray[bullet_count],'player');
+}
+for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
+  barrier_gameplay[0].monsterCollision(currentlevel.monster[monster_hit_check]);
+}
 }
 
   playerArray.push(new player());
@@ -65,9 +80,11 @@ for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
   currentlevel.draw();
   currentlevel.update();
 
-// for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
-//   barrier_gameplay[0].hitRange(currentlevel.monster[monster_hit_check]);
-// }
+
+
+
+
+
   if(!playerArray[0].IsPlayerDie){
   currentlevel.attack(playerArray[0]);
 }

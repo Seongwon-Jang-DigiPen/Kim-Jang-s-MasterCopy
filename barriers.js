@@ -538,65 +538,72 @@ var right_barrier_image = [ //up_damaged
         break;
     }
   }
-  monsterCollision(){
-    var left_x = this.x - this.image_size;
-    var right_x = this.x + this.image_size;
-    var Y = this.y;
-    var object_size = 16;
-
-    switch (this.monster_object_status) {
-      case 1:
-        if (this.left_up_damaged < 3) {
-          Y = this.y - object_size;
-        } else if (this.left_up_damaged < 7) {
-          Y = this.y - object_size / 2;
-        } else if (this.left_up_damaged < 11) {
-          Y = this.y + object_size / 2;
-        }
-
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged != 11)) {
-          currentlevel.bullet[0].bullet_break = 1;
-          this.left_up_damaged++;
-          this.monster_object_status = 0;
-          // console.log('left'+this.left_up_damaged);
-        }
-        
-        break;
-      case 2:
-        if (this.up_damaged < 4) {
-          Y = this.y - object_size - object_size / 2;
-        } else if (this.up_damaged < 8) {
-          Y = this.y - object_size / 2;
-        } else if (this.up_damaged < 9) {
-          Y = this.y + object_size / 2;
-        }
-
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged != 9)) {
-          currentlevel.bullet[0].bullet_break = 1;
-          this.up_damaged++;
-          this.monster_object_status = 0;
-          // console.log('middle'+this.up_damaged);
-        }
-        break;
-      case 3:
-        if (this.right_up_damaged < 3) {
-          Y = this.y - object_size;
-        } else if (this.right_up_damaged < 7) {
-          Y = this.y - object_size / 2;
-        } else if (this.right_up_damaged < 11) {
-          Y = this.y + object_size / 2;
-        }
-
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged != 11)) {
-          currentlevel.bullet[0].bullet_break = 1;
-          this.right_up_damaged++;
-          this.monster_object_status = 0;
-          // console.log('right'+this.right_up_damaged);
-        }
-        
-        break;
+  monsterCollision(object){
+    var barrier_range = {
+       left_bar : {
+        right_x : this.x - this.image_size+this.image_size/2,
+        left_x : this.x - this.image_size-this.image_size/2
+      },
+       right_bar : {
+        right_x : this.x + this.image_size+this.image_size/2,
+        left_x : this.x + this.image_size-this.image_size/2
+       },
+       hor_middle_bar : {
+        right_x : this.x + this.image_size/2,
+        left_x : this.x - this.image_size/2
+       },
+       up_bar : {
+        up_y : this.y - this.image_size - this.image_size/2,
+        down_y : this.y - this.image_size + this.image_size/2
+       },
+       down_bar : {
+        up_y : this.y + this.image_size - this.image_size/2,
+        down_y : this.y + this.image_size + this.image_size/2
+       },
+       ver_middle_bar : {
+        up_y : this.y - this.image_size/2,
+        down_y : this.y + this.image_size/2
+       }
     }
+    var object_size = 14;
+    var object_range = {
+       object_right_x : object.position_x+ object_size/2,
+       object_left_x : object.position_x-object_size/2,
+       object_down_y : object.position_y+object_size/2,
+       object_up_y : object.position_y-object_size/2
+    }
+  if(collision(object_range,barrier_range.left_bar,barrier_range.up_bar) && this.left_up_damaged<3){
 
+      this.left_up_damaged = 3;console.log(4);
+      
+   } if(collision(object_range,barrier_range.left_bar,barrier_range.ver_middle_bar) && this.left_up_damaged<7){
+      this.left_up_damaged = 7;
+   } if(collision(object_range,barrier_range.left_bar,barrier_range.down_bar) && this.left_up_damaged<11){
+      this.left_up_damaged = 11;
+   }
+   if(collision(object_range,barrier_range.right_bar,barrier_range.up_bar) && this.right_up_damaged<3){
+      this.right_up_damaged = 3;
+      console.log(4);
+   } if(collision(object_range,barrier_range.right_bar,barrier_range.ver_middle_bar) && this.right_up_damaged<7){
+      this.right_up_damaged = 7;
+   } if(collision(object_range,barrier_range.right_bar,barrier_range.down_bar) && this.right_up_damaged<11){
+      this.right_up_damaged = 11;
+   }
 
+   if(collision(object_range,barrier_range.hor_middle_bar,barrier_range.up_bar) && this.up_damaged<5){
+    
+      this.up_damaged = 5;
+      console.log(4);
+   } if(collision(object_range,barrier_range.hor_middle_bar,barrier_range.ver_middle_bar) && this.up_damaged<9){
+      this.up_damaged = 9;
+   }
   }
+
+}
+function collision(object,barr_horsec,barr_versec){
+  if(object.object_right_x>=barr_horsec.left_x && object.object_left_x <= barr_horsec.right_x && object.object_up_y<=barr_versec.down_y && object.object_down_y>=barr_versec.up_y){
+    return true;
+  }
+  // console.log(0);
+  return false;
 }
