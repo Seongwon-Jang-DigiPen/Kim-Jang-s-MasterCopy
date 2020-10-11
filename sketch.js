@@ -54,22 +54,19 @@ c = new crash();
 function draw() {
   background(0);
 
-draw_text();
 
-push();
-stroke(255);
-line(365, 0, 365, height);
-pop();
 
 
 for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++){
 barrier_gameplay[barrier_make].generate();
 barrier_gameplay[barrier_make].update();
 for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
+  // console.log(attackArray);
     barrier_gameplay[barrier_make].hitRange(attackArray[bullet_count],'player');
+
 }
 for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
-  barrier_gameplay[0].monsterCollision(currentlevel.monster[monster_hit_check]);
+  barrier_gameplay[barrier_make].monsterCollision(currentlevel.monster[monster_hit_check]);
 }
 }
 
@@ -156,7 +153,7 @@ function callUFO_2() {
 }
 
 function bullet_UFO_1_crash() {
-    console.log(c.return_delete(attackArray, UFO_1Array))
+    // console.log(c.return_delete(attackArray, UFO_1Array))
   return c.return_delete(attackArray, UFO_1Array)
 }
 

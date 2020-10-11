@@ -426,7 +426,7 @@ var right_barrier_image = [ //up_damaged
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-
+console.log(attackArray);
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {
@@ -453,7 +453,7 @@ var right_barrier_image = [ //up_damaged
 
     switch (this.monster_object_status) {
       case 1:
-        if (this.left_up_damaged < 3) {
+        if (this.left_up_damaged < 3 ) {
           Y = this.y - object_size;
         } else if (this.left_up_damaged < 7) {
           Y = this.y - object_size / 2;
@@ -463,6 +463,7 @@ var right_barrier_image = [ //up_damaged
 
         if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged != 11)) {
             this.crash_effect()
+            currentlevel.bullet[0].bullet_break = 1;
           this.left_up_damaged++;
           this.monster_object_status = 0;
           // console.log('left'+this.left_up_damaged);
