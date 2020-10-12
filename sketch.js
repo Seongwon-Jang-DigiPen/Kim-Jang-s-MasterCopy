@@ -134,11 +134,11 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
 }
 
 function keyPressed() {
-  if (key == 'z' && attackArray.length == 0) {
+  if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie) {
     attackArray.push(new bullet(playerArray[0].position_x));
   }
   if (key == 'u') {
-    callUFO_2();
+    callUFO_1();
   }
 }
 
@@ -147,9 +147,9 @@ function crash_effect_get_position (a) {
     y = a.position_y;
 }
 
-function callUFO_2() {
+function callUFO_1() {
   UFO_1Array.push(new UFO_1());
-  UFO_1Array[0].IsThisUfo2 = false;
+  UFO_1Array[0].IsThisSpecialUFO = false;
 }
 
 function bullet_UFO_1_crash() {

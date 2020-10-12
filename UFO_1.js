@@ -14,7 +14,7 @@ class UFO_1 {
     this.canmake = [];
     this.move = true;
     this.UFOsquidvalue = 0;
-    this.IsThisUfo2 = true;
+    this.IsThisSpecialUFO = true;
     this.time = 0;
     this.count = 0;
     this.IsUFODie = false;
