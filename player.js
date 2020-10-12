@@ -29,8 +29,8 @@ class player {
         image(image_player, this.position_x, this.position_y, this.width, this.height);
     } else if(this.IsPlayerDie) {
         this.dieScene()
-        
     }
+    console.log(this.IsPlayerDie)
   }
 
   dieScene() {
@@ -55,7 +55,12 @@ class player {
   }
 
   gameover() {
-        this.IsPlayerDie = false;
-        this.count = 0
+        
+        if(this.life <= 0) {
+            currentScene = DIESCENE
+        } else {
+            this.IsPlayerDie = false;
+            this.count = 0
+        }
   }
 }
