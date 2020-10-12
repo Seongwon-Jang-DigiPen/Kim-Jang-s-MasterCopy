@@ -9,11 +9,16 @@ class bullet {
     this.position_speed = 6;
     this.width = 3
     this.height = 16
+
   }
 
   draw() {
     push();
+    if(!playerArray[0].IsPlayerDie){
     fill(255, 200);
+} else{
+    fill(188, 25, 0, 200)
+}
     rect(this.position_x, this.position_y, this.width, this.height);
     pop();
   }
