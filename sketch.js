@@ -9,7 +9,7 @@
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
-
+var currentScene = 4;
 var randomSwitch
 let x;
 let y;
@@ -30,11 +30,11 @@ var barrier_1_pos_x = 62;
 var barrier_2_pos_x = 142;
 var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
-
+const DIESCENE = 6;
 function setup() {
 
  setup_every_monster_image()
-
+textFont(Font);
  createCanvas(480, 448);
 
 
@@ -50,7 +50,7 @@ function setup() {
  barrier_gameplay.push(new barrier(200,350));
 }
 
-
+DieScene = new diescene();
 c = new crash();
 
 
@@ -131,6 +131,15 @@ for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_
   if(currentlevel.bullet.length > 0) {
    c.delete_player(playerArray[0], currentlevel)
   }
+  switch(currentScene){
+  case DIESCENE:
+  push()
+  fill(255)
+  textSize(15)
+  text('GAME OVER', 130, 130);
+  pop()
+  break;
+}
 }
 
 function keyPressed() {
@@ -167,7 +176,6 @@ function bullet_removed(bullet_name){
 function draw_text() {
     push()
 fill(255)
-  textFont(Font);
   textSize(17);
   text('HIGH\n SCORE', 385, 50);
   if(highScore < 10000){
