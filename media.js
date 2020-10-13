@@ -30,7 +30,11 @@ var bullet_image  = 0;
 var bullet_data = 0;
 var bullet_animation = []
 var bulletName = ["bullet1","bullet2","bullet3"]
-var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
+var image_barrier_left = []
+var image_barrier_right = []
+var image_barrier_square = []
+var image_barrier_bottom_edge
+var image_blackspace;//barrier image variable
 
 
 

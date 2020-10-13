@@ -406,11 +406,11 @@ var right_barrier_image = [ //up_damaged
   }
 
   crash_effect(a){
-
+    console.log(a.bullet[0].position_x);
     mx = a.bullet[0].position_x
     my = a.bullet[0].position_y
     a.bullet[0].bullet_break = 1;
-    monsterBulletEffectTimer = frameCount;
+   monsterBulletEffectTimer = frameCount;
   }
 
   m_hitRange(object, player_or_monster, currentlevel) {
@@ -418,7 +418,7 @@ var right_barrier_image = [ //up_damaged
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-// console.log(attackArray);
+
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {

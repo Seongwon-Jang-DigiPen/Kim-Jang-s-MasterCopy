@@ -55,4 +55,10 @@ const LEVEL_17 = [
 [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2],
 [0, 0, 2, 2, 2, 2, 2, 2, 2, 2, 2]
 ]
-////////////////////
+// ////////////////////
+// var barrier_num = 4;
+// var barrier_pos_y = 350;
+// var barrier_1_pos_x = 62;
+// var barrier_2_pos_x = 142;
+// var barrier_3_pos_x = 222;
+// var barrier_4_pos_x = 302;

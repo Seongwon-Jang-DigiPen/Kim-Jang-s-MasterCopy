@@ -12,7 +12,7 @@ class bullet {
 
   }
 
-  draw() {
+  draw(playerArray) {
     push();
     if(!playerArray[0].IsPlayerDie){
     fill(255, 200);
