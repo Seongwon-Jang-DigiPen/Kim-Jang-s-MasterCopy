@@ -2,6 +2,16 @@
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+const MAINSCENE = 1;
+const INFOSCENE = 2;
+const WAITSCENE = 3;
+const BLACKSCENE = 4;
+const PLAYSCENE = 5;
+const DIESCENE = 6;
+const SOSSCENE = 7;
+const INFO2SCENE = 8;
+
+
 /////////////////// level
 const monster_move_minimum = 0;
 const monster_move_maximum = 192 * 2 - 8 * 2;
