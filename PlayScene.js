@@ -26,8 +26,8 @@ var player2_Round = 1;
 var player1_level = new level(LEVEL_1,player1_Round);
 var player2_level = new level(LEVEL_1,player2_Round); 
 
-var player1_barrier
-var player2_barrier
+var player1_barrier = []
+var player2_barrier = []
 ///////////////////////
 var currentlevel = player1_level
 

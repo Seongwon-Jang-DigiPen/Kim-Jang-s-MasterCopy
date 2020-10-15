@@ -17,9 +17,8 @@ function setup() {
 	textFont(Font);
 	createCanvas(480, 448);
 makebarrier(barrier_gameplay)
-makebarrier(barrier_gameplay)
-makebarrier(barrier_gameplay)
-	
+makebarrier(player1_barrier)
+makebarrier(player2_barrier)
 	imageMode(CENTER)
 
 	Scene = new PlayScene();
@@ -49,8 +48,7 @@ function draw() {
 	background(0);
 	Scene.Update()
 	Scene.Draw()
-	console.log("player1: "+player1_player.life+"\n player2: "+player2_player.life)
-console.log(playerArray[0].life)
+
 }
 
 function keyPressed() {
