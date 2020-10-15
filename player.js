@@ -56,6 +56,9 @@ class player {
     this.count++
   }
 }
+// (barrier_gameplay)
+// makebarrier(player1_barrier)
+// makebarrier(player2_barrier)
 
 gameover() {
   currentScene = DIESCENE
@@ -64,7 +67,7 @@ gameover() {
   {
     this.time+=10
   } 
- 
+
   if(this.count > 12){
     this.count = 0;
     if(player2)
@@ -78,29 +81,29 @@ gameover() {
      playerArray[0] = player1_player
      player2_level = currentlevel
      currentlevel = player1_level
-
+     barrier_gameplay = player1_barrier
      if(playerArray[0].life <=-1)
      {
        currentScene = MAINSCENE;
      }
    }
-     else if(player1)
-     {
-      player2 = true;
-      player1 = false;
-       this.IsPlayerDie = false;
-      this.life--
-      currentScene = PLAYSCENE;
-      player1_player = playerArray[0]
-      playerArray[0] = player2_player
-      player1_level = currentlevel
-      currentlevel = player2_level
-
-      if(playerArray[0].life <=-1)
-      {
-       currentScene = MAINSCENE;
-     }
+   else if(player1)
+   {
+    player2 = true;
+    player1 = false;
+    this.IsPlayerDie = false;
+    this.life--
+    currentScene = PLAYSCENE;
+    player1_player = playerArray[0]
+    playerArray[0] = player2_player
+    player1_level = currentlevel
+    currentlevel = player2_level
+    barrier_gameplay = player2_barrier
+    if(playerArray[0].life <=-1)
+    {
+     currentScene = MAINSCENE;
    }
+ }
  
 
 }
@@ -123,6 +126,8 @@ changePlayer()
       player1_player = playerArray[0];
       player1 = false;
       player2 = true;
+      player1_barrier = barrier_gameplay
+      barrier_gameplay  = player2_barrier
       player1_level = currentlevel
       currentlevel = player2_level
       this.IsPlayerDie = false;
@@ -138,6 +143,8 @@ changePlayer()
       player2_player = playerArray[0];
       player1 = true;
       player2 = false;
+      player2_barrier = barrier_gameplay
+      barrier_gameplay  = player1_barrier
       player2_level = currentlevel;
       currentlevel = player1_level;
       this.IsPlayerDie = false;
