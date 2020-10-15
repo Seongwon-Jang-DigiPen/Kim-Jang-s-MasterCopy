@@ -45,13 +45,18 @@ function Player_manager()
 }
 
 function draw() {
-	background(0);
-	Scene.Update()
-	Scene.Draw()
+    background(0);
+sos.draw()
+sos.update()
+sos.changeDirection()
+sos.changeColor()
+Scene.Draw_text()
+	// Scene.Update()
+	// Scene.Draw()
 
 }
 
 function keyPressed() {
-	Scene.OnKeyPressed()
+	//Scene.OnKeyPressed()
 }
 

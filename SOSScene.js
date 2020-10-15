@@ -1,19 +1,24 @@
 class SOSScene extends EmptyScene {
   constructor () {
+    super()
     this.x = 60;
     this.y = 350;
     this.changeD = false;
-    this.switch = 0;
+    this.switchpink = false
+    this.switchblue = false;
+    this.switcht = 0;
   }
   
   draw()
   {
-    ellipse(this.x,this.y-20,20, 20);
-    ellipse(this.x,this.y,50, 20);
+    this.UFOdraw()
+    this.SOStext()
+
   }
   
   update() {
-    this.y -= 0.43;
+    this.y -= 0.54;
+
     if(!this.changeD){
     this.x += 2;
     } else
@@ -21,30 +26,77 @@ class SOSScene extends EmptyScene {
         this.x -= 2;
       }
   }
+
+  vibe() {
+    this.y +=2
+    setTimeout(this.vibe_(), 100)
+  }
+  vibe_() {
+    this.y -=2
+    setTimeout(this.vibe(), 100)
+  }
+
   changeDirection() {
-    if(this.x > 300){
+    if(this.x > 250){
       this.changeD = true;
-      this.switch += 1
+      this.switcht += 1
     } else if(this.x < 50) {
       this.changeD = false;
     }
   }
 
+
+  changeColor() {
+        if(this.x>=150){
+            this.switchpink = true
+        }
+        if(this.x<=50 && this.changeD){
+            this.switchpink = false
+            this.switchblue = true
+        }
+  }
+
+  UFOdraw() {
+    push()
+  if(!this.switchpink && !this.switchblue) {
+    push()
+    image(image_SOS_green,this.x,this.y-10,18, 18);
+    image(image_UFO_green,this.x,this.y+10,60, 20);
+    pop()
+}
+ if (this.switchpink){
+    push()
+    image(image_SOS_pink,this.x,this.y-10,18, 18);
+    image(image_UFO_1,this.x,this.y+10,60, 20);
+    pop()
+} if (this.switchblue) {
+    push()
+    image(image_SOS_blue,this.x,this.y-10,18, 18);
+    image(image_UFO_blue,this.x,this.y+10,60, 20);
+    pop()
+  } 
+  pop()
+}
+
   SOStext() {
-    if(this.switch > 0){
+    push()
+    textSize(15)
+    if(this.switcht > 0){
     push()
     fill(242,72,255)
-    text("SOS!!", 300, 300)
+    text("SOS!!", 300, 310)
     pop()
-} else if (this.switch > 1){
+} if (this.switcht > 1){
     push()
     fill(24,226,229)
     text("SOS!!", 300, 200)
     pop()
-} else if (this.switch > 2) {
+} if (this.switcht > 2) {
     push()
     fill(43,244,3)
-    text("SOS!!", 300, 100)
+    text("SOS!!", 300, 90)
     pop()
   }
+  pop()
+}
 }

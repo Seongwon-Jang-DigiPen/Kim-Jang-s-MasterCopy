@@ -74,9 +74,10 @@ class PlayScene extends EmptyScene{
    }
    this.time = millis();
  }
- Draw()
+ Draw_text()
  {
-
+    draw_life()
+  draw_text(player1_Score,player2_Score);
  }
  OnKeyPressed()
  {
@@ -165,9 +166,6 @@ function playScene_Update()
       u.makemonster(currentlevel);
     }
   }
-
-  draw_life()
-  draw_text(player1_Score,player2_Score);
 
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
