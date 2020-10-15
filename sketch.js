@@ -25,6 +25,7 @@ makebarrier(barrier_gameplay)
 	Scene = new PlayScene();
 	DieScene = new diescene();
 	c = new crash();
+    sos = new SOSScene();
 }
 
 
