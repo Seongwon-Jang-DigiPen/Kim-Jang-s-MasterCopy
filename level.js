@@ -13,7 +13,7 @@ class level {
     this.rightmove = true;
     this.downmove = false;
     this.movespeed = 0.02;
-    this.playerlevel = playerlevel
+    this.playerlevel = playerlevel;
     this.monster_y_locate = ((playerlevel - 1) % 8) * 16
 
     this.stiffen = false;
@@ -202,13 +202,11 @@ movecheck()
 
 animation() 
 {
-
   this.monster[this.monstercount].frame_count = (this.monster[this.monstercount].frame_count + 1) % 2
 }
 
 move() 
 {
-
   this.timeElapsed += (millis() - this.time) / 1000;
   if (this.timeElapsed >= this.monstercount * this.movespeed) {
 
@@ -256,7 +254,6 @@ random_attack(player)
       break;
     }
   }
-
 }
 }
 
@@ -294,7 +291,6 @@ position_check()
       }
     }
   }
-
 }
 
 attack(player) 
@@ -341,14 +337,14 @@ monsterDeadcheck(score)
   {
     if(this.monster[i].dead && this.monster[i].type == CRAB && 11 <= stagelevel)
     {
-      if(player2_play)
+      if(player1)
       {
-        player2_Score += this.monster[i].point;
+        player1_Score += this.monster[i].point;
 
       }
       else
       {
-        player1_Score += this.monster[i].point;
+        player2_Score += this.monster[i].point;
       }
 
       this.crabToBaby(i)
@@ -372,14 +368,14 @@ monsterDeadcheck(score)
       {
         this.behindmonsterdata[this.monster[i].row] = 0; 
       }
-      if(player2_play)
+      if(player1)
       {
-        player2_Score += this.monster[i].point;
+        player1_Score += this.monster[i].point;
 
       }
       else
       {
-        player1_Score += this.monster[i].point;
+        player2_Score += this.monster[i].point;
       }
       this.monster.splice(i, 1);
     }

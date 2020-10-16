@@ -4,19 +4,19 @@
 //Fall, 2020
 class player {
   constructor() {
-    this.position_x = 50;
+    this.position_x = 32;
     this.position_y = 410;
     this.speed = 3;
     this.width = 36;
     this.height = 18;
-    this.life = 0;
+    this.life = 2;
     this.IsPlayerDie = false;
     this.time = 0;
     this.count = 0;
   }
 
   update() {
-    if (keyIsDown(LEFT_ARROW) && this.position_x >= 50 && !this.IsPlayerDie) {
+    if (keyIsDown(LEFT_ARROW) && this.position_x >= 32 && !this.IsPlayerDie) {
       this.position_x -= this.speed;
     } else if (keyIsDown(RIGHT_ARROW) && this.position_x <= 340 && !this.IsPlayerDie) {
       this.position_x += this.speed;
@@ -56,9 +56,7 @@ class player {
     this.count++
   }
 }
-// (barrier_gameplay)
-// makebarrier(player1_barrier)
-// makebarrier(player2_barrier)
+
 
 gameover() {
   currentScene = DIESCENE
@@ -82,6 +80,7 @@ gameover() {
      player2_level = currentlevel
      currentlevel = player1_level
      barrier_gameplay = player1_barrier
+     Scene.black_Scene = true;
      if(playerArray[0].life <=-1)
      {
        currentScene = MAINSCENE;
@@ -99,6 +98,7 @@ gameover() {
     player1_level = currentlevel
     currentlevel = player2_level
     barrier_gameplay = player2_barrier
+    Scene.black_Scene = true;
     if(playerArray[0].life <=-1)
     {
      currentScene = MAINSCENE;
