@@ -28,7 +28,7 @@ makebarrier(player2_barrier)
 	c = new crash();
     sos = new SOSScene();
 
-    mainmenu_test = new InfoScene();
+
 }
 
 
@@ -49,11 +49,11 @@ function Player_manager()
 }
 
 function draw() {
-    background(0);
+	background(0);
 
-// Scene.Draw_text()
-// Scene.Update()
-// Scene.Draw()
+	Scene.Draw_text()
+	Scene.Update()
+	Scene.Draw()
 
 
 mainmenu_test.Draw();
@@ -62,8 +62,8 @@ mainmenu_test.Update();
 
 function keyPressed() {
 
-    Scene.OnKeyPressed()
-mainmenu_test.OnKeyPressed();
+	Scene.OnKeyPressed()
+
 
 }
 

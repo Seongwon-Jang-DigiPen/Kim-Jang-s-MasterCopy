@@ -456,14 +456,16 @@ function draw_text() {
 
   text('ROUND', 399, 290);
   var Round 
-  if(player2_play)
-  {
-    Round = player2_Round
-  }
-  else
+  if(player1)
   {
     Round = player1_Round
   }
+
+  else if(player2)
+  {
+    Round = player2_Round
+  }
+  
   if(Round < 10){
     text('0' + Round, 447, 322);
   } else if (Round < 100) {

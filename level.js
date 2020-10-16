@@ -184,22 +184,22 @@ class level {
 moveSound()
 {
 
-switch(this.soundcount)
-{
-case 0:
-move1_sound.play();
-break;
-case 1:
-move2_sound.play();
-break;
-case 2:
-move3_sound.play();
-break;
-case 3:
-move4_sound.play();
-break;
-}
-this.soundcount = (this.soundcount +1) % 4;
+// switch(this.soundcount)
+// {
+// case 0:
+// move1_sound.play();
+// break;
+// case 1:
+// move2_sound.play();
+// break;
+// case 2:
+// move3_sound.play();
+// break;
+// case 3:
+// move4_sound.play();
+// break;
+// }
+// this.soundcount = (this.soundcount +1) % 4;
 }
 movecheck() 
 {
