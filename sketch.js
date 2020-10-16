@@ -61,6 +61,3 @@ function keyPressed() {
 	//Scene.OnKeyPressed()
 }
 
-function play() {
-    sos.play()
-}
