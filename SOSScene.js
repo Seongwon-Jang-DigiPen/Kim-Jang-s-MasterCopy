@@ -7,17 +7,31 @@ class SOSScene extends EmptyScene {
     this.switchpink = false
     this.switchblue = false;
     this.switcht = 0;
+    this.a = false;
+    this.start = true;
   }
   
   draw()
   {
     this.UFOdraw()
     this.SOStext()
-
   }
   
+    timer() {
+        if(frameCount % 8 <4) {
+            this.a = true;
+        }
+        if(frameCount % 8 >= 4) {
+            this.a = false;
+        }
+    }
+
   update() {
-    this.y -= 0.54;
+    if(!this.a){
+    this.y -= 1.10;
+    } else if(this.a) {
+        this.y += 0.05;
+    }
 
     if(!this.changeD){
     this.x += 2;
@@ -25,16 +39,12 @@ class SOSScene extends EmptyScene {
       {
         this.x -= 2;
       }
+    if(this.start ){
+        sound_sos.play()
+        this.start = false;
+    }
   }
 
-  vibe() {
-    this.y +=2
-    setTimeout(this.vibe_(), 100)
-  }
-  vibe_() {
-    this.y -=2
-    setTimeout(this.vibe(), 100)
-  }
 
   changeDirection() {
     if(this.x > 250){

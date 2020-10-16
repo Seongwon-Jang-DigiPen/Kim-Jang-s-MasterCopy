@@ -70,6 +70,9 @@ function preload() {
   bullet_image = loadImage('enemySprites/bullet.png')
   bullet_data = loadJSON('enemySprites/bullet.json')
 
+
+  sound_sos = loadSound('sound/sos.mp3')
+
   for(var bar_square = 1;bar_square<=15;bar_square++){
     image_barrier_square[bar_square-1] = loadImage('barrier_sprites/barrier_squar/barrier_squar_'+bar_square+'.png');
   }
