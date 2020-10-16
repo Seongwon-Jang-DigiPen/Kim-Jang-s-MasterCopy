@@ -50,14 +50,10 @@ function Player_manager()
 
 function draw() {
     background(0);
-// sos.draw()
-// sos.update()
-// sos.changeDirection()
-// sos.changeColor()
-// sos.timer()
-// Scene.Draw_text()
-	// Scene.Update()
-	// Scene.Draw()
+
+Scene.Draw_text()
+Scene.Update()
+Scene.Draw()
 
 
 mainmenu_test.Draw();
@@ -66,6 +62,9 @@ mainmenu_test.OnKeyPressed();
 }
 
 function keyPressed() {
-	//Scene.OnKeyPressed()
+
+    Scene.OnKeyPressed()
+
+
 }
 
