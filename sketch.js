@@ -13,18 +13,19 @@ var Scene
 
 function setup() {
 
-	setup_every_monster_image()
-	textFont(Font);
-	createCanvas(480, 448);
-makebarrier(barrier_gameplay)
-makebarrier(player1_barrier)
-makebarrier(player2_barrier)
-	imageMode(CENTER)
+// 	setup_every_monster_image()
+// 	textFont(Font);
+// 	createCanvas(480, 448);
+// makebarrier(barrier_gameplay)
+// makebarrier(player1_barrier)
+// makebarrier(player2_barrier)
+// 	imageMode(CENTER)
 
-	Scene = new PlayScene();
-	DieScene = new diescene();
-	c = new crash();
-    sos = new SOSScene();
+// 	Scene = new PlayScene();
+// 	DieScene = new diescene();
+// 	c = new crash();
+//     sos = new SOSScene();
+
 }
 
 
@@ -45,17 +46,17 @@ function Player_manager()
 }
 
 function draw() {
-    background(0);
+	background(0);
 
-Scene.Draw_text()
-Scene.Update()
-Scene.Draw()
+	Scene.Draw_text()
+	Scene.Update()
+	Scene.Draw()
 
 }
 
 function keyPressed() {
 
-    Scene.OnKeyPressed()
+	Scene.OnKeyPressed()
 
 
 }

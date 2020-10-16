@@ -416,7 +416,7 @@ function each_bullet_crash() {
   c.crash_one(bullet_name);
 }
 
-function draw_text(player1_Score,player2_Score) {
+function draw_text() {
   push()
   fill(255)
   textSize(17);
@@ -456,13 +456,13 @@ function draw_text(player1_Score,player2_Score) {
 
   text('ROUND', 385, 290);
   var Round 
-  if(player2_play)
-  {
-    Round = player2_Round
-  }
-  else
+  if(player1)
   {
     Round = player1_Round
+  }
+  else if(player2)
+  {
+    Round = player2_Round
   }
   if(Round < 10){
     text('0' + Round, 453, 322);
