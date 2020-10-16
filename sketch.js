@@ -50,6 +50,7 @@ sos.draw()
 sos.update()
 sos.changeDirection()
 sos.changeColor()
+sos.timer()
 Scene.Draw_text()
 	// Scene.Update()
 	// Scene.Draw()
@@ -60,3 +61,6 @@ function keyPressed() {
 	//Scene.OnKeyPressed()
 }
 
+function play() {
+    sos.play()
+}
