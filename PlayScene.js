@@ -48,10 +48,6 @@ var barrier_1_pos_x = 62;
 var barrier_2_pos_x = 142;
 var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
-
-<<<<<<< HEAD
-
-=======
 var makeMonsterAnimation = [];
 
 // function set_gameScene()
@@ -85,11 +81,10 @@ var makeMonsterAnimation = [];
 // player1_Score = 0;
 // player2_Score = 0;
 // }
->>>>>>> 793640bc563d67d667b66b83bbb5e4cda92e9654
 class PlayScene extends EmptyScene{
   constructor(){
     super()
-    this.black_Scene = false
+    this.black_Scene = true
     this.timeElapsed = 0
     this.time = 0;
   }
@@ -118,9 +113,7 @@ class PlayScene extends EmptyScene{
  }
  OnKeyPressed()
  {
-<<<<<<< HEAD
   if(!this.black_Scene)
-=======
    draw_life()
    playerArray[0].update();
    playerArray[0].draw();
@@ -380,9 +373,6 @@ function playScene_Update()
   pop()
   break;
 }
-
-
-
 }
 
 function crash_effect_get_position (a) {
@@ -448,6 +438,7 @@ function draw_text(player1_Score,player2_Score) {
       text(player2_Score, 402, 248);
     }
   }
+
   text('ROUND', 385, 290);
   var Round 
   if(player2_play)
