@@ -416,7 +416,7 @@ function each_bullet_crash() {
   c.crash_one(bullet_name);
 }
 
-function draw_text(player1_Score,player2_Score) {
+function draw_text() {
   push()
   fill(255)
   textSize(17);
