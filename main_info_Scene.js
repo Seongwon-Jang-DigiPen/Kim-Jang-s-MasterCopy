@@ -42,9 +42,9 @@ class InfoScene extends EmptyScene{
 		}
 		this.TAITO_CORP={
 			text: 'ⓒ  TAITO CORP.MCMLXXXV',
-			x:31,
+			x:49,
 			y:414
-		};//will make 
+		};
 		this.score_board=0;//make scoreboard.js
 		this.static_text =[this.play,this.game_name,this.score_advance]
 		this.ufo =true;

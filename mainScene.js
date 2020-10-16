@@ -3,33 +3,33 @@ class mainScene{
 		this.PLEASE_SELECT = {
 			text : '    PLEASE SSELECT',
 			x : 49,
-			y : 159
+			y : 174
 		};
 		this.ONE_OR_TWO_PLAYER = {
 			text : ' <  1 OR 2 PLAYERS  >',
 			x : 49,
-			y : 207,
+			y : 222,
 			state : 1
 		}
 		this.ONE_PLAYER ={
 			text : '        1 PLAYER',
 			x : 49,
-			y : 271
+			y : 286
 		}
 		this.TWO_PLAYER = {
 			text : '        2 PLAYERS',
 			x : 49,
-			y : 303
+			y : 318
 			}
 		this.TAITO_CORP = {
 			text : 'ⓒ  TAITO CORP.MCMLXXXV',
 			x : 49,
-			y : 399
+			y : 414
 		}
 		this.HIGH_SCORE = {
 			text : ['HIGHT',' SCORE',' 05000','1UP',' 00000','2UP','ROUND'],
 			x : 385,
-			y : [32,48,80,112,144,176,256]
+			y : [47,63,95,127,159,191,271]
 		}
 	}
 	update(){}
