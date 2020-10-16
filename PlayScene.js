@@ -82,15 +82,18 @@ var makeMonsterAnimation = [];
 // player2_Score = 0;
 // }
 class PlayScene extends EmptyScene{
-  constructor(){
+   constructor(){
     super()
-    this.black_Scene = true
+    this.black_Scene = true;
+    this.new_Round = true;
     this.timeElapsed = 0
     this.time = 0;
+    this.pause = false;
   }
 
   Update()
   {
+    this.roundChange()
     if(this.black_Scene)
     {
       blackScreen()
@@ -100,6 +103,19 @@ class PlayScene extends EmptyScene{
         this.timeElapsed = 0;
         this.black_Scene = false;
       }
+      for(var i=0;i<currentlevel.monster.length;i++)
+      {
+        makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
+      }
+    }
+    else if(this.new_Round)
+    {
+
+      this.newRoundAnimation()
+    }
+    else if(this.pause)
+    {
+      this.changepause();
     }
     else{
      playScene_Update()
@@ -111,9 +127,8 @@ class PlayScene extends EmptyScene{
     draw_life()
   draw_text(player1_Score,player2_Score);
  }
- OnKeyPressed()
+changepause()
  {
-  if(!this.black_Scene)
    draw_life()
    playerArray[0].update();
    playerArray[0].draw();

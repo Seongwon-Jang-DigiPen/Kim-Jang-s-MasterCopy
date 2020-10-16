@@ -50,7 +50,6 @@ function draw() {
 Scene.Draw_text()
 Scene.Update()
 Scene.Draw()
-console.log(each_bullet_crash())
 
 }
 
