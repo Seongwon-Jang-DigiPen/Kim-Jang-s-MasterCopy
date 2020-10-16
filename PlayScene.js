@@ -460,10 +460,12 @@ function draw_text() {
   {
     Round = player1_Round
   }
+
   else if(player2)
   {
     Round = player2_Round
   }
+  
   if(Round < 10){
     text('0' + Round, 453, 322);
   } else if (Round < 100) {
