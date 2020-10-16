@@ -89,7 +89,8 @@ function preload() {
   image_barrier_left.push(image_blackspace);
   image_barrier_right.push(image_blackspace);
   for(var i = 1; i <=3;i++){
-    waiting_pattern[i-1] = createVideo(['waiting_video/pattern_'+i]);
+    waiting_pattern[i-1] = createVideo('waiting_video/pattern_'+i+'.mp4');
+    waiting_pattern[i-1].hide();
   }
 }
 
