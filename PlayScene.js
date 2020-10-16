@@ -49,7 +49,43 @@ var barrier_2_pos_x = 142;
 var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
 
+<<<<<<< HEAD
 
+=======
+var makeMonsterAnimation = [];
+
+// function set_gameScene()
+// {
+
+//   attackArray = [];
+//   UFO_1Array = [];
+//   playerArray = [];
+
+//   player1_player = new player()
+//   player2_player = new player()
+
+//   playerArray[0]= player1_player;
+
+//   player1_Round = 1;
+//   player2_Round = 1;
+
+//   player1_level = new level(LEVEL_1,player1_Round);
+//   player2_level = new level(LEVEL_1,player2_Round); 
+
+//   player1_barrier = []
+//   player2_barrier = []
+
+//   currentlevel = player1_level
+
+// player2_play = true;////////////////////////////////
+
+// player1 = true;
+// player2 = false;
+
+// player1_Score = 0;
+// player2_Score = 0;
+// }
+>>>>>>> 793640bc563d67d667b66b83bbb5e4cda92e9654
 class PlayScene extends EmptyScene{
   constructor(){
     super()
@@ -82,7 +118,116 @@ class PlayScene extends EmptyScene{
  }
  OnKeyPressed()
  {
+<<<<<<< HEAD
   if(!this.black_Scene)
+=======
+   draw_life()
+   playerArray[0].update();
+   playerArray[0].draw();
+   for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
+   {
+    barrier_gameplay[barrier_make].generate();
+    barrier_gameplay[barrier_make].update();
+  }
+  draw_text()
+  currentlevel.color()
+  currentlevel.draw()
+  push();
+  fill(255);
+  textAlign(CENTER)
+  text("PAUSE",play_scene_maximumX/2,play_scene_maximumY/4)
+  pop();
+}
+roundChange()
+{
+  if(currentlevel.monster.length == 0)
+  {
+    if(player1)
+    {
+      player1_Round++
+      var round = (player1_Round%17)
+      if(player1_Round>16)
+      {
+        round++
+      }
+      if(round==16)
+      {
+        currentlevel=new level(LEVEL_16,player1_Round);   
+      }
+      else if(round>=14)
+      {
+        currentlevel=new level(LEVEL_14,player1_Round);   
+      }
+      else if(round>=12)
+      {
+       currentlevel=new level(LEVEL_12,player1_Round);   
+     }
+     else
+     {
+      currentlevel=new level(LEVEL_1,player1_Round);
+    }
+  }
+  else if(player2)
+  {
+    player2_Round++
+    var round = (player2_Round%17)
+    if(player2_Round>16)
+    {
+      round++
+    }
+    if(round==16)
+    {
+      currentlevel=new level(LEVEL_16,player2_Round);   
+    }
+    else if(round>=14)
+    {
+      currentlevel=new level(LEVEL_14,player2_Round);   
+    }
+    else if(round>=12)
+    {
+     currentlevel=new level(LEVEL_12,player2_Round);   
+   }
+   else
+   {
+    currentlevel=new level(LEVEL_1,player2_Round);
+  }
+  }
+  this.new_Round = true;
+ for(var i=0;i<currentlevel.monster.length;i++)
+ {
+  makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
+ }
+}
+}
+newRoundAnimation()
+{
+  for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
+  {
+    barrier_gameplay[barrier_make].generate();
+    barrier_gameplay[barrier_make].update();
+  }
+  draw_text()
+  draw_life()
+  currentlevel.color()
+  currentlevel.draw()
+  for(var i=0; i<makeMonsterAnimation.length;i++)
+  {
+    push()
+    rectMode(CENTER)
+    fill(0)
+    rect(makeMonsterAnimation[i].x,makeMonsterAnimation[i].y,MONSTERDISTANCE,MONSTERDISTANCE)
+    pop()
+  }
+  makeMonsterAnimation.splice(0,1)
+  if(makeMonsterAnimation.length <= 0)
+  {
+    this.new_Round = false;
+  }
+}
+
+OnKeyPressed()
+{
+  if(!this.black_Scene&&!this.new_Round)
   {
     playScene_OnKeyPressd() 
   }
@@ -118,14 +263,34 @@ function blackScreen()
   pop();
 }
 
+
 function playScene_OnKeyPressd()
 {
- if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie) {
+ if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie &&!this.pause) {
+  fire_sound.play();
   attackArray.push(new bullet(playerArray[0].position_x));
 }
 if (key == 'u') {
   callUFO_1();    
 }
+
+if (key == 'a') {
+  currentlevel.monster.splice(0,1)   
+}
+if(keyCode == 13)
+{
+
+  if(Scene.pause)
+  {
+    Scene.pause = false;
+  }
+  else
+  {
+    Scene.pause = true;
+    pause_sound.play()
+  }
+}
+
 }
 
 function playScene_Update()

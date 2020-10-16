@@ -13,14 +13,27 @@ class player {
     this.IsPlayerDie = false;
     this.time = 0;
     this.count = 0;
+    this.diesound = false;
   }
+  
 
   update() {
+
     if (keyIsDown(LEFT_ARROW) && this.position_x >= 32 && !this.IsPlayerDie) {
       this.position_x -= this.speed;
     } else if (keyIsDown(RIGHT_ARROW) && this.position_x <= 340 && !this.IsPlayerDie) {
       this.position_x += this.speed;
     }
+if(this.IsPlayerDie&&!this.diesound)
+{
+player_die_sound.play()
+this.diesound = true
+
+}
+else if(!this.IsPlayerDie)
+{
+  this.diesound = false
+}
   }
 
   draw() {

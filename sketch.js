@@ -46,6 +46,7 @@ function Player_manager()
 
 function draw() {
     background(0);
+
 Scene.Draw_text()
 Scene.Update()
 Scene.Draw()
@@ -54,6 +55,9 @@ console.log(each_bullet_crash())
 }
 
 function keyPressed() {
+
     Scene.OnKeyPressed()
+
+
 }
 

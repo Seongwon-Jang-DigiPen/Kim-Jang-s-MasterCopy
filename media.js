@@ -33,6 +33,18 @@ var bulletName = ["bullet1","bullet2","bullet3"]
 var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
 
 
+var move1_sound = 0
+var move2_sound = 0
+var move3_sound = 0
+var move4_sound = 0
+var fire_sound = 0
+var invader_die_sound = 0
+var pause_sound = 0
+var player_die_sound = 0
+var ufo_sound = 0
+var ufo_die_sound = 0
+var waiting_pattern = [];
+
 
 function preload() {
   Font = loadFont('Font/PressStart2P-Regular.ttf');
@@ -58,8 +70,8 @@ function preload() {
   octopus_data = loadJSON('enemySprites/Octopus.json');
   squid_image  = loadImage('enemySprites/Squid.png')
   squid_data = loadJSON('enemySprites/Squid.json')
-   crab_image = loadImage('enemySprites/Crab.png')
-   crab_data = loadJSON('enemySprites/Crab.json')
+  crab_image = loadImage('enemySprites/Crab.png')
+  crab_data = loadJSON('enemySprites/Crab.json')
   baby_image = loadImage('enemySprites/baby.png')
   baby_data = loadJSON('enemySprites/baby.json')
   dead_image = loadImage('enemySprites/dead.png')
@@ -72,6 +84,16 @@ function preload() {
 
 
   sound_sos = loadSound('sound/sos.mp3')
+  move1_sound = loadSound('sound/note1.wav')
+  move2_sound = loadSound('sound/note2.wav')
+  move3_sound = loadSound('sound/note3.wav')
+  move4_sound = loadSound('sound/note4.wav')
+  fire_sound = loadSound('sound/fire.wav')
+  invader_die_sound = loadSound('sound/invader_die.wav')
+  pause_sound  = loadSound('sound/pause.mp3')
+  player_die_sound = loadSound('sound/player_die.wav')
+  ufo_sound = loadSound('sound/ufo.wav')
+  ufo_die_sound = loadSound('sound/ufo_die.wav')
 
   for(var bar_square = 1;bar_square<=15;bar_square++){
     image_barrier_square[bar_square-1] = loadImage('barrier_sprites/barrier_squar/barrier_squar_'+bar_square+'.png');
@@ -88,6 +110,9 @@ function preload() {
   image_barrier_square.push(image_blackspace);
   image_barrier_left.push(image_blackspace);
   image_barrier_right.push(image_blackspace);
+  for(var i = 1; i <=3;i++){
+    waiting_pattern[i-1] = createVideo(['waiting_video/pattern_'+i]);
+  }
 }
 
 function setup_every_monster_image()
@@ -99,32 +124,32 @@ function setup_every_monster_image()
   monster_image_setup(dead_image,dead_data,dead_animation)
   monster_image_setup(makebaby_image,makebaby_data,makebaby_animation)
   bullet_image_setup(bullet_image,bullet_data,bullet_animation)
- 
+
 }
 
 function monster_image_setup(images,datas,ani)
 {
 
  for (let name of monsterColor) {
-    let frames = [];
-    for (let frames_info of datas.frames) {
-      if (!frames_info.filename.includes(name))
-        continue;
-      frames.push(frames_info.frame);
-    }
-    ani[name] = frames;
+  let frames = [];
+  for (let frames_info of datas.frames) {
+    if (!frames_info.filename.includes(name))
+      continue;
+    frames.push(frames_info.frame);
+  }
+  ani[name] = frames;
 }
 }
 function bullet_image_setup(images,datas,ani)
 {
  for (let name of bulletName) {
-    let frames = [];
-    for (let frames_info of datas.frames) {
-      if (!frames_info.filename.includes(name))
-        continue;
-      frames.push(frames_info.frame);
-    }
-    ani[name] = frames;
+  let frames = [];
+  for (let frames_info of datas.frames) {
+    if (!frames_info.filename.includes(name))
+      continue;
+    frames.push(frames_info.frame);
+  }
+  ani[name] = frames;
 }
 
 }

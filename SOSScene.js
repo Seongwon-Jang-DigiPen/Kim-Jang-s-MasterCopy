@@ -43,6 +43,9 @@ class SOSScene extends EmptyScene {
         sound_sos.play()
         this.start = false;
     }
+    this.changeDirection()
+this.changeColor()
+this.timer()
   }
 
 
