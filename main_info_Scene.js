@@ -3,44 +3,48 @@ class InfoScene extends EmptyScene{
 		super();
 		this.play ={
 			text : 'PLA',
-			x:0,
-			y:0
+			x:161,
+			y:78
 		}
 		this.game_name = {
 			text : 'SPACE INVADERS',
-			x:0,
-			y:0
+			x:81,
+			y:126
 		}
 		this.score_advance = {
 			text : 'SCORE ADVANCE TABLE',
-			x:0,
-			y:0
+			x:49,
+			y:190
 		}
 		this.ufo_point ={
 			text : '= ? MYSTERY',
-			x:0,
-			y:0,
+			x:113,
+			y:238,
 			rate:0
 		}
 		this.squid_point ={
 			text:'= 30 POINTS',
-			x:0,
-			y:0,
+			x:113,
+			y:270,
 			rate:0
 		}
 		this.crab_point ={
 			text:'= 20 POINTS',
-			x:0,
-			y:0,
+			x:113,
+			y:302,
 			rate:0
 		}
 		this.octopus_point ={
 			text:'= 10 POINTS',
-			x:0,
-			y:0,
+			x:113,
+			y:334,
 			rate:0
 		}
-		this.TAITO_CORP=0;//will make
+		this.TAITO_CORP={
+			text: 'ⓒ  TAITO CORP.MCMLXXXV',
+			x:31,
+			y:414
+		};//will make 
 		this.score_board=0;//make scoreboard.js
 		this.static_text =[this.play,this.game_name,this.score_advance]
 		this.ufo =true;
@@ -96,5 +100,6 @@ class InfoScene extends EmptyScene{
 			text.rate =text.text.length;
 		}
 	}
+	OnKeyPressed(){}
 	
 }
