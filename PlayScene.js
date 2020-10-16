@@ -126,9 +126,10 @@ class PlayScene extends EmptyScene{
    }
    this.time = millis();
  }
- Draw()
+ Draw_text()
  {
-
+    draw_life()
+  draw_text();
  }
 
  changepause()
@@ -342,9 +343,9 @@ function playScene_Update()
     }
   }
 
-  draw_life()
-  draw_text();
 
+  draw_life()
+  draw_text();  
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }

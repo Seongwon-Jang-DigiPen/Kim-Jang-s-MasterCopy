@@ -49,7 +49,11 @@ function preload() {
   image_UFO_2_R = loadImage('enemySprites/UFO2_red.png')
   image_UFO_1_dead_R = loadImage('enemySprites/UFO_dead_red_1.png')
   image_UFO_2_dead_R = loadImage('enemySprites/UFO_dead_red_2.png')
-
+  image_UFO_green = loadImage('enemySprites/UFO1_green.png')
+  image_UFO_blue = loadImage('enemySprites/UFO1_blue.png')
+  image_SOS_blue = loadImage('enemySprites/Octopus_blue.png')
+  image_SOS_green = loadImage('enemySprites/Octopus_green.png')
+  image_SOS_pink = loadImage('enemySprites/Octopus_pink.png')
   octopus_image = loadImage('enemySprites/Octopus.png')
   octopus_data = loadJSON('enemySprites/Octopus.json');
   squid_image  = loadImage('enemySprites/Squid.png')
