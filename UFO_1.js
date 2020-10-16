@@ -18,6 +18,8 @@ class UFO_1 {
     this.time = 0;
     this.count = 0;
     this.IsUFODie = false;
+
+    this.ufoSound = false
   }
 
   randomized() {
@@ -31,6 +33,13 @@ class UFO_1 {
   }
 
   update() {
+if(!this.ufoSound)
+    {
+      ufo_sound.loop()
+      ufo_sound.play()
+      this.ufoSound = true
+    }
+
     if(this.move){
     if (this.go_right && !playerArray[0].IsPlayerDie && !this.IsUFODie) {
       this.position_x += 1;
@@ -50,12 +59,14 @@ class UFO_1 {
 
 goneUFO() {
   if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width/2) {
+    ufo_sound.stop()
     return true
   }
 }
 
 deleteUFO() {
   if (bullet_UFO_1_crash()) {
+    ufo_sound.stop()
     return true
   }
 }

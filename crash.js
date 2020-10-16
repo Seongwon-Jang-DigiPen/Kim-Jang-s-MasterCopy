@@ -31,6 +31,7 @@ class crash {
 
         b.stiffen = true;
         b.monster[i].dead=true;
+        invader_die_sound.play()
         attackArray.splice(0,1)
       }
     }  

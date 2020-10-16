@@ -15,6 +15,7 @@ class level {
     this.movespeed = 0.02;
     this.playerlevel = playerlevel;
     this.monster_y_locate = ((playerlevel - 1) % 8) * 16
+    this.soundcount = 0;
 
     this.stiffen = false;
     this.stiffenElapsed = 0;
@@ -180,9 +181,30 @@ class level {
   }
   pop()
 }
+moveSound()
+{
+
+switch(this.soundcount)
+{
+case 0:
+move1_sound.play();
+break;
+case 1:
+move2_sound.play();
+break;
+case 2:
+move3_sound.play();
+break;
+case 3:
+move4_sound.play();
+break;
+}
+this.soundcount = (this.soundcount +1) % 4;
+}
 movecheck() 
 {
   if (this.monstercount >= this.monster.length) {
+    this.moveSound();
     this.monstercount = 0
     this.timeElapsed = 0;
     this.downmove = false;
@@ -358,6 +380,7 @@ monsterDeadcheck(score)
     }
     else
     {
+      
       if(this.monster[i].dead&& !this.stiffen)
       {
        if((this.monstercount>i||this.monstercount==this.monster.length)&&this.monstercount!=0)

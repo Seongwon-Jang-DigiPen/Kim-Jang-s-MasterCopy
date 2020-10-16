@@ -54,37 +54,37 @@ var barrier_4_pos_x = 302;
 
 var makeMonsterAnimation = [];
 
-function set_gameScene()
-{
+// function set_gameScene()
+// {
 
-  attackArray = [];
-  UFO_1Array = [];
-  playerArray = [];
+//   attackArray = [];
+//   UFO_1Array = [];
+//   playerArray = [];
 
-  player1_player = new player()
-  player2_player = new player()
+//   player1_player = new player()
+//   player2_player = new player()
 
-  playerArray[0]= player1_player;
+//   playerArray[0]= player1_player;
 
-  player1_Round = 1;
-  player2_Round = 1;
+//   player1_Round = 1;
+//   player2_Round = 1;
 
-  player1_level = new level(LEVEL_1,player1_Round);
-  player2_level = new level(LEVEL_1,player2_Round); 
+//   player1_level = new level(LEVEL_1,player1_Round);
+//   player2_level = new level(LEVEL_1,player2_Round); 
 
-  player1_barrier = []
-  player2_barrier = []
+//   player1_barrier = []
+//   player2_barrier = []
 
-  currentlevel = player1_level
+//   currentlevel = player1_level
 
-player2_play = true;////////////////////////////////
+// player2_play = true;////////////////////////////////
 
-player1 = true;
-player2 = false;
+// player1 = true;
+// player2 = false;
 
-player1_Score = 0;
-player2_Score = 0;
-}
+// player1_Score = 0;
+// player2_Score = 0;
+// }
 class PlayScene extends EmptyScene{
   constructor(){
     super()
@@ -136,7 +136,7 @@ class PlayScene extends EmptyScene{
  {
    draw_life()
    playerArray[0].update();
-   playerArray[0].draw();    
+   playerArray[0].draw();
    for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
    {
     barrier_gameplay[barrier_make].generate();
@@ -278,9 +278,11 @@ function blackScreen()
   pop();
 }
 
+
 function playScene_OnKeyPressd()
 {
  if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie &&!this.pause) {
+  fire_sound.play();
   attackArray.push(new bullet(playerArray[0].position_x));
 }
 if (key == 'u') {
@@ -299,6 +301,7 @@ if(keyCode == 13)
   else
   {
     Scene.pause = true;
+    pause_sound.play()
   }
 }
 }

@@ -46,11 +46,9 @@ function Player_manager()
 
 function draw() {
     background(0);
-sos.draw()
-sos.update()
-sos.changeDirection()
-sos.changeColor()
-sos.timer()
+Scene.Draw()
+Scene.Update()
+
 Scene.Draw_text()
 	// Scene.Update()
 	// Scene.Draw()
@@ -58,7 +56,7 @@ Scene.Draw_text()
 }
 
 function keyPressed() {
-	//Scene.OnKeyPressed()
+	Scene.OnKeyPressed()
 }
 
 function play() {
