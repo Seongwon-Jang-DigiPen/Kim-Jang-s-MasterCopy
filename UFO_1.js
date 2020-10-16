@@ -32,9 +32,9 @@ class UFO_1 {
 
   update() {
     if(this.move){
-    if (this.go_right && !playerArray[0].IsPlayerDie && !this.IsUFODie) {
+    if (this.go_right && !this.IsUFODie) {
       this.position_x += 1;
-    } else if (!this.go_right && !playerArray[0].IsPlayerDie && !this.IsUFODie) {
+    } else if (!this.go_right && !this.IsUFODie) {
       this.position_x -= 1;
     }
 }

@@ -43,14 +43,34 @@ class crash {
       var min_x = center.position_x;
       var max_x = center.position_x + center.width;
 
-      var min_y = center.position_y;
-      var max_y = center.position_y + center.height;
+      var min_y = center.position_y - center.height;
 
       var player_min_x = a.position_x - a.width/2;
       var player_max_x = a.position_x + a.width/2;
       var player_min_y = a.position_y - a.width/2;
       var player_max_y = a.posotion_y + a.width/2;
-      if(player_min_x <= min_x && player_max_x >= max_x && (player_min_y <= max_y || player_max_y >= min_y)) {
+      if(player_min_x <= min_x && player_max_x >= max_x && (player_min_y <= min_y || player_max_y >= min_y)) {
+        a.IsPlayerDie = true;
+        b.fire = false;
+        b.bullet.splice(i,1);
+      }
+    }  
+  }
+
+      delete_bullet(a, b) {
+    for(let i = b.bullet.length - 1; i >=0; i--) {
+      var center = b.bullet[i];
+
+      var min_x = center.position_x;
+      var max_x = center.position_x + center.width;
+
+      var min_y = center.position_y - center.height;
+
+      var player_min_x = a.position_x - a.width/2;
+      var player_max_x = a.position_x + a.width/2;
+      var player_min_y = a.position_y - a.width/2;
+      var player_max_y = a.posotion_y + a.width/2;
+      if(player_min_x <= min_x && player_max_x >= max_x && (player_min_y <= min_y || player_max_y >= min_y)) {
         a.IsPlayerDie = true;
         b.fire = false;
         b.bullet.splice(i,1);
