@@ -125,7 +125,7 @@ class PlayScene extends EmptyScene{
  Draw_text()
  {
     draw_life()
-  draw_text(player1_Score,player2_Score);
+  draw_text();
  }
 changepause()
  {
@@ -420,41 +420,41 @@ function draw_text() {
   push()
   fill(255)
   textSize(17);
-  text('HIGH\n SCORE', 385, 50);
+  text('HIGH\n SCORE', 379, 50);
   if(highScore < 10000){
-    text('0' + highScore, 402, 104);
+    text('0' + highScore, 396, 104);
   } else {
-    text(highScore, 402, 104);
+    text(highScore, 396, 104);s
   }
-  text('1UP', 385, 140);
+  text('1UP', 379, 140);
   if(player1_Score < 10){
-    text('0000' + player1_Score, 402, 176);
+    text('0000' + player1_Score, 396, 176);
   }else if(player1_Score < 100){
-    text('000' + player1_Score, 402, 176);
+    text('000' + player1_Score, 396, 176);
   }else if(player1_Score < 1000){
-    text('00' + player1_Score, 402, 176);
+    text('00' + player1_Score, 396, 176);
   }else if(player1_Score < 10000){
-    text('0' + player1_Score, 402, 176);
+    text('0' + player1_Score, 396, 176);
   } else {
-    text(player1_Score, 402, 176);
+    text(player1_Score, 396, 176);
   }
 
-  text('2UP', 385, 212);
+  text('2UP', 379, 212);
   if(player2_play){
     if(player2_Score < 10){
-      text('0000' + player2_Score, 402, 248);
+      text('0000' + player2_Score, 396, 248);
     }else if(player2_Score < 100){
-      text('000' + player2_Score, 402, 248);
+      text('000' + player2_Score, 396, 248);
     }else if(player2_Score < 1000){
-      text('00' + player2_Score, 402, 248);
+      text('00' + player2_Score, 396, 248);
     }else if(player2_Score < 10000){
-      text('0' + player2_Score, 402, 248);
+      text('0' + player2_Score, 396, 248);
     } else {
-      text(player2_Score, 402, 248);
+      text(player2_Score, 396, 248);
     }
   }
 
-  text('ROUND', 385, 290);
+  text('ROUND', 399, 290);
   var Round 
   if(player2_play)
   {
@@ -465,9 +465,9 @@ function draw_text() {
     Round = player1_Round
   }
   if(Round < 10){
-    text('0' + Round, 453, 322);
+    text('0' + Round, 447, 322);
   } else if (Round < 100) {
-    text(Round, 453, 322);
+    text(Round, 447, 322);
   } else if (Round >= 100) {
     Round -= 100;
   }
