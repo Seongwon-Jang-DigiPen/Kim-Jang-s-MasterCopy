@@ -11,7 +11,7 @@
 
 var Scene
 var mainmenu_test
-var currentScene = 1;
+var currentScene = 4;
 
 
 function setup() {
@@ -93,9 +93,6 @@ switch(currentScene){
 }
 
 function keyPressed() {
-
-	Scene.OnKeyPressed()
-
-
+	playscene.OnKeyPressed()
 }
 

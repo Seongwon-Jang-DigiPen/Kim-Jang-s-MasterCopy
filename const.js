@@ -5,11 +5,10 @@
 const MAINSCENE = 1;
 const INFOSCENE = 2;
 const WAITSCENE = 3;
-const BLACKSCENE = 4;
-const PLAYSCENE = 5;
-const DIESCENE = 6;
-const SOSSCENE = 7;
-const INFO2SCENE = 8;
+const PLAYSCENE = 4;
+const DIESCENE = 5;
+const SOSSCENE = 6;
+const INFO2SCENE = 7;
 
 
 /////////////////// level
