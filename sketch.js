@@ -10,8 +10,13 @@
 
 
 var Scene
+<<<<<<< HEAD
 var mainmenu_test
 var currentScene = 4;
+=======
+var previousScene = 0
+
+>>>>>>> 2738087fb42d48c1387c151bbc93cb635c31a01a
 
 
 function setup() {
@@ -23,71 +28,54 @@ function setup() {
 	makebarrier(player1_barrier)
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
-    c = new crash();
-    sos = new SOSScene();
-    mainmenu = new MainScene();
-    infoscene = new InfoScene();
-    waitscene = new WaitingScene();
-    playscene = new PlayScene();
-    dieScene = new diescene();
+
+
+	c = new crash();
 
 }
 
 
-
-function SceneManager()
+function toWaitScene()
 {
-
-
-	mainmenu_test = new WaitingScene();
+	Scene = new WaitingScene()
 }
 
+function toMainScene()
+{
+	Scene = new MainScene()
+}
 
+function toInfoScene()
+{
+	Scene = new InfoScene();
+}
 
-// const MAINSCENE = 1;
-// const INFOSCENE = 2;
-// const WAITSCENE = 3;
-// const PLAYSCENE = 4;
-// const DIESCENE = 5;
-// const SOSSCENE = 6;
-// const INFO2SCENE = 7;
+function toSOSScene()
+{
+	previousScene = Scene;
+	Scene = new SOSScene();
+}
+
+function toPlayScene()
+{
+	if(previousScene != 0)
+	{
+		Scene = previousScene;
+		previousScene = 0;
+	}
+	else
+	{
+		Scene = new PlayScene();
+	}
+}
+
 
 function draw() {
 	background(0);
-switch(currentScene){
-    case MAINSCENE:
-    mainmenu.Draw();
-    mainmenu.Update();
-    break;
-    case INFOSCENE:
-    infoscene.Draw();
-    infoscene.Update();
-    break;
-    case WAITSCENE:
-    waitscene.Draw();
-    waitscene.Update();
-    break;
-    case PLAYSCENE:
-    playscene.Draw_text()
-    playscene.Update()
-    playscene.Draw()
-    break;
-    case DIESCENE:
-    playscene.Draw_text()
-    playscene.Update()
-    playscene.Draw()
-    dieScene.draw();
-    break;
-    case SOSSCENE:
-    infoscene.Draw();
-    infoscene.Update();
-    break;
-    case INFO2SCENE:
-    info2scene.Draw();
-    info2scene.Update();
-    break;
-}
 
+
+	Scene.Update()
+	Scene.Draw()
 
 
 }

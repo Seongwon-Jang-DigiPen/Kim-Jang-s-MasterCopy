@@ -24,16 +24,16 @@ class player {
     } else if (keyIsDown(RIGHT_ARROW) && this.position_x <= 340 && !this.IsPlayerDie) {
       this.position_x += this.speed;
     }
-if(this.IsPlayerDie&&!this.diesound)
-{
-player_die_sound.play()
-this.diesound = true
+    if(this.IsPlayerDie&&!this.diesound)
+    {
+      player_die_sound.play()
+      this.diesound = true
 
-}
-else if(!this.IsPlayerDie)
-{
-  this.diesound = false
-}
+    }
+    else if(!this.IsPlayerDie)
+    {
+      this.diesound = false
+    }
   }
 
   draw() {
@@ -96,25 +96,32 @@ gameover() {
      Scene.black_Scene = true;
      if(playerArray[0].life <=-1)
      {
-       currentScene = MAINSCENE;
+      toMainScene()
+    }
+  }
+  else if(player1)
+  {
+    if(player2_play)
+    {
+      player2 = true;
+      player1 = false;
+      this.IsPlayerDie = false;
+      this.life--
+      currentScene = PLAYSCENE;
+      player1_player = playerArray[0]
+      playerArray[0] = player2_player
+      player1_level = currentlevel
+      currentlevel = player2_level
+      barrier_gameplay = player2_barrier
+      Scene.black_Scene = true;
+      if(playerArray[0].life <=-1)
+      {
+       toMainScene()
      }
    }
-   else if(player1)
+   else
    {
-    player2 = true;
-    player1 = false;
-    this.IsPlayerDie = false;
-    this.life--
-    currentScene = PLAYSCENE;
-    player1_player = playerArray[0]
-    playerArray[0] = player2_player
-    player1_level = currentlevel
-    currentlevel = player2_level
-    barrier_gameplay = player2_barrier
-    Scene.black_Scene = true;
-    if(playerArray[0].life <=-1)
-    {
-     currentScene = MAINSCENE;
+    toMainScene()
    }
  }
  

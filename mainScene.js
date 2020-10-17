@@ -3,8 +3,13 @@ class MainScene{
 		this.PLEASE_SELECT = {
 			text : '  PLEASE SSELECT',
 			x : 49,
+<<<<<<< HEAD
+			y : 159,
+			s_position : 0
+=======
 			y : 174,
 			color : '#51ccd3'
+>>>>>>> 32f2404874da5fbae84bdaad9a2bc2771d0bc64d
 		};
 		this.ONE_OR_TWO_PLAYER = {
 			text : '< 1 OR 2 PLAYERS >',
@@ -30,7 +35,7 @@ class MainScene{
 			x : 49,
 			y : 318,
 			color:'#3cd6d6'
-			}
+		}
 		this.TAITO_CORP = {
 			text : '  TAITO CORP.MCMLXXXV',
 			x : 31,
@@ -64,6 +69,8 @@ class MainScene{
 			squid_animate:true,
 			bullet_animate:false
 		}
+
+		this.changeinfoCount = 0;
 	}
 	Update(){
 		if(this.squid.squid_animate){
@@ -85,6 +92,14 @@ class MainScene{
 				this.squid.bullet_draw = false;
 			}
 		}
+
+		if(7<this.changeinfoCount)
+		{
+			toInfoScene()
+		}
+console.log(deltaTime)
+		this.changeinfoCount += deltaTime;
+
 	}
 	Draw(){
 		push();
@@ -106,6 +121,8 @@ class MainScene{
 		else if(this.ONE_OR_TWO_PLAYER.state==2){
 			image(this.ONE_OR_TWO_PLAYER.two_image,this.ONE_OR_TWO_PLAYER.two_x,this.ONE_OR_TWO_PLAYER.two_y)
 		}
+		// image()//monster animation
+		// image()//player choose image
 		pop();
 		if(this.squid.squid_draw){
 			image(this.squid.image[floor(this.squid.image_num)],this.squid.x,this.squid.y);
@@ -122,12 +139,26 @@ class MainScene{
 	}
 	OnKeyPressed(){
 		if(keyCode == 16){
+			this.changeinfoCount = 0
 			// console.log(this.ONE_OR_TWO_PLAYER.state)
 			if(this.ONE_OR_TWO_PLAYER.state==1){
 				this.ONE_OR_TWO_PLAYER.state = 2;
 			}
 			else if(this.ONE_OR_TWO_PLAYER.state==2){
 				this.ONE_OR_TWO_PLAYER.state = 1;
+			}
+		}
+		if(keyCode == 13)
+		{
+			if(this.ONE_OR_TWO_PLAYER.state==1)
+			{
+				set_gameScene(false)
+				toPlayScene()
+			}
+			else if(this.ONE_OR_TWO_PLAYER.state==2)
+			{
+				set_gameScene(true)
+				toPlayScene()
 			}
 		}
 	}
