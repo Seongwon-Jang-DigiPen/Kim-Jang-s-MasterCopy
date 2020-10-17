@@ -2,15 +2,6 @@
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
-const MAINSCENE = 1;
-const INFOSCENE = 2;
-const WAITSCENE = 3;
-const BLACKSCENE = 4;
-const PLAYSCENE = 5;
-const DIESCENE = 6;
-const SOSSCENE = 7;
-const INFO2SCENE = 8;
-
 
 /////////////////// level
 const monster_move_minimum = 0;
@@ -22,7 +13,7 @@ const BLUE_ZONE = 208
 const PINK_ZONE = 272
 const YELLOW_ZONE = 336
 const MONSTERDISTANCE = 32;
-const MONSTERYOFFSET = 80;
+const MONSTERYOFFSET = 96;
 const OCTOPUS = 1;
 const CRAB = 2;
 const SQUID = 3;
