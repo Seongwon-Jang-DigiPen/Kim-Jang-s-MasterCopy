@@ -10,13 +10,7 @@
 
 
 var Scene
-<<<<<<< HEAD
-var mainmenu_test
-var currentScene = 4;
-=======
 var previousScene = 0
-
->>>>>>> 2738087fb42d48c1387c151bbc93cb635c31a01a
 
 
 function setup() {
