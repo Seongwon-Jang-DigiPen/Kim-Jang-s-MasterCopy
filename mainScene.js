@@ -3,13 +3,11 @@ class MainScene{
 		this.PLEASE_SELECT = {
 			text : '  PLEASE SSELECT',
 			x : 49,
-<<<<<<< HEAD
 			y : 159,
 			s_position : 0
-=======
 			y : 174,
 			color : '#51ccd3'
->>>>>>> 32f2404874da5fbae84bdaad9a2bc2771d0bc64d
+
 		};
 		this.ONE_OR_TWO_PLAYER = {
 			text : '< 1 OR 2 PLAYERS >',
