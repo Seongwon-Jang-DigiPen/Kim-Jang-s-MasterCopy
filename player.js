@@ -150,13 +150,12 @@ changePlayer()
       player1_player = playerArray[0];
       player1 = false;
       player2 = true;
-      player1_barrier = barrier_gameplay
-      barrier_gameplay  = player2_barrier
       player1_level = currentlevel
       currentlevel = player2_level
       this.IsPlayerDie = false;
       playerArray[0] = player2_player;
-      Scene.black_Scene = true;
+      Scene.black_Scene = true; 
+      console.log(12121)
     }
 
     else if(player2) // change 2 to 1
@@ -167,8 +166,6 @@ changePlayer()
       player2_player = playerArray[0];
       player1 = true;
       player2 = false;
-      player2_barrier = barrier_gameplay
-      barrier_gameplay  = player1_barrier
       player2_level = currentlevel;
       currentlevel = player1_level;
       this.IsPlayerDie = false;
