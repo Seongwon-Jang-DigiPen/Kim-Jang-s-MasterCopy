@@ -13,8 +13,10 @@ class level {
     this.rightmove = true;
     this.downmove = false;
     this.movespeed = 0.02;
-    this.playerlevel = playerlevel
+    this.playerlevel = playerlevel;
     this.monster_y_locate = ((playerlevel - 1) % 8) * 16
+    this.soundcount = 0;
+    this.UFOON =false;
 
     this.stiffen = false;
     this.stiffenElapsed = 0;
@@ -27,19 +29,19 @@ class level {
     this.shootcount = 0
     this.targeting = [true,true,true,false,false,false,false]
 
-        this.behindmonsterdata = [0,0,0,0,0,0,0,0,0,0,0,0];
+    this.behindmonsterdata = [0,0,0,0,0,0,0,0,0,0,0,0];
 
-for(var i=0;i<level[0].length;i++)
-{
-if(level[0][i] == 0)
-{
-  this.behindmonsterdata[i] = 0
-}
-else
-{
-  this.behindmonsterdata[i] = 1;
-}
-}
+    for(var i=0;i<level[0].length;i++)
+    {
+      if(level[0][i] == 0)
+      {
+        this.behindmonsterdata[i] = 0
+      }
+      else
+      {
+        this.behindmonsterdata[i] = 1;
+      }
+    }
   }
 
 
@@ -49,13 +51,14 @@ else
     this.makebabymove()
 
     if (this.monster.length > 0 && !this.stiffen) {
+      this.makeUFO()
       this.color();
       if(!playerArray[0].IsPlayerDie){
         this.movecheck();
         this.position_check();
         this.move();
+      }
     }
-  }
 
     if (this.stiffen) {
       this.stiffenElapsed += (millis() - this.time) / 1000;
@@ -100,24 +103,24 @@ else
   color() 
   {
 
-if(!playerArray[0].IsPlayerDie){
-    for (var i = 0; i < this.monster.length; i++) {
-      if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
-        this.monster[i].color = monsterColor[1]
-      } else if (BLUE_ZONE < this.monster[i].position_y && this.monster[i].position_y <= PINK_ZONE) {
-        this.monster[i].color = monsterColor[2]
-      } else if (PINK_ZONE < this.monster[i].position_y && this.monster[i].position_y <= YELLOW_ZONE) {
-        this.monster[i].color = monsterColor[3]
-      } else if (YELLOW_ZONE < this.monster[i].position_y) {
-        this.monster[i].color = monsterColor[4]
-      } else {
-        this.monster[i].color = monsterColor[0]
-      }   
-    }
+    if(!playerArray[0].IsPlayerDie){
+      for (var i = 0; i < this.monster.length; i++) {
+        if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
+          this.monster[i].color = monsterColor[1]
+        } else if (BLUE_ZONE < this.monster[i].position_y && this.monster[i].position_y <= PINK_ZONE) {
+          this.monster[i].color = monsterColor[2]
+        } else if (PINK_ZONE < this.monster[i].position_y && this.monster[i].position_y <= YELLOW_ZONE) {
+          this.monster[i].color = monsterColor[3]
+        } else if (YELLOW_ZONE < this.monster[i].position_y) {
+          this.monster[i].color = monsterColor[4]
+        } else {
+          this.monster[i].color = monsterColor[0]
+        }   
+      }
     } else if (playerArray[0].IsPlayerDie) {
-        for (var i = 0; i < this.monster.length; i++) {
-            this.monster[i].color = monsterColor[4]
-        }
+      for (var i = 0; i < this.monster.length; i++) {
+        this.monster[i].color = monsterColor[4]
+      }
     }
   }
 
@@ -180,9 +183,30 @@ if(!playerArray[0].IsPlayerDie){
   }
   pop()
 }
+moveSound()
+{
+  switch(this.soundcount)
+  {
+    case 0:
+    move1_sound.play();
+    break;
+    case 1:
+    move2_sound.play();
+    break;
+    case 2:
+    move3_sound.play();
+    break;
+    case 3:
+    move4_sound.play();
+    break;
+  }
+  this.soundcount = (this.soundcount +1) % 4;
+}
+
 movecheck() 
 {
   if (this.monstercount >= this.monster.length) {
+    this.moveSound();
     this.monstercount = 0
     this.timeElapsed = 0;
     this.downmove = false;
@@ -199,16 +223,21 @@ movecheck()
   }
 }
 
-
+makeUFO()
+{
+  if(!this.UFOON&&this.monster.length<30)
+  {
+    callUFO_1(); 
+    this.UFOON = true;
+  }
+}
 animation() 
 {
-
   this.monster[this.monstercount].frame_count = (this.monster[this.monstercount].frame_count + 1) % 2
 }
 
 move() 
 {
-
   this.timeElapsed += (millis() - this.time) / 1000;
   if (this.timeElapsed >= this.monstercount * this.movespeed) {
 
@@ -256,7 +285,6 @@ random_attack(player)
       break;
     }
   }
-
 }
 }
 
@@ -294,7 +322,6 @@ position_check()
       }
     }
   }
-
 }
 
 attack(player) 
@@ -333,7 +360,7 @@ attack(player)
   }
 }
 
-monsterDeadcheck()
+monsterDeadcheck(score)
 {
   var stagelevel = (this.playerlevel-1)%16
 
@@ -341,6 +368,16 @@ monsterDeadcheck()
   {
     if(this.monster[i].dead && this.monster[i].type == CRAB && 11 <= stagelevel)
     {
+      if(player1)
+      {
+        player1_Score += this.monster[i].point;
+
+      }
+      else
+      {
+        player2_Score += this.monster[i].point;
+      }
+
       this.crabToBaby(i)
 
       if( this.monster[i].position_x + MONSTERDISTANCE < play_scene_maximumX)
@@ -352,6 +389,7 @@ monsterDeadcheck()
     }
     else
     {
+
       if(this.monster[i].dead&& !this.stiffen)
       {
        if((this.monstercount>i||this.monstercount==this.monster.length)&&this.monstercount!=0)
@@ -361,6 +399,15 @@ monsterDeadcheck()
       if(this.monster[i].column==0)
       {
         this.behindmonsterdata[this.monster[i].row] = 0; 
+      }
+      if(player1)
+      {
+        player1_Score += this.monster[i].point;
+
+      }
+      else
+      {
+        player2_Score += this.monster[i].point;
       }
       this.monster.splice(i, 1);
     }
@@ -503,20 +550,20 @@ crabToBaby(i)
 makeUFOsquid(i,j,k)
 {
   var squid = {
-  type: SQUID,
-  position_x:  i,
-  position_y: j,
-  x_size: 12,
-  y_size: 14,
-  point: 30,
-  color: 0,
-  frame_count: 0,
-  infront: false,
-  dead:false,
-  row:k,
-  column:0
-}
-return squid;
+    type: SQUID,
+    position_x:  i,
+    position_y: j,
+    x_size: 12,
+    y_size: 14,
+    point: 30,
+    color: 0,
+    frame_count: 0,
+    infront: false,
+    dead:false,
+    row:k,
+    column:0
+  }
+  return squid;
 }
 
 

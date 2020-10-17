@@ -22,8 +22,16 @@ class monster_bullet {
 		this.position_y += this.position_speed
 	}
 
-  crashWallBullet() {
-    if (this.position_y > 448 || this.bullet_break == 1) {
+  crashWallBullet() 
+  {
+    if (this.bullet_break == 1) {
+      return true
+    }
+  }
+
+  crashLandBullet() 
+  {
+    if (this.position_y > height) {
       return true
     }
   }
