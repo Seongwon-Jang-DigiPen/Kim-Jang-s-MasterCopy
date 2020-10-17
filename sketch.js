@@ -75,6 +75,6 @@ function draw() {
 }
 
 function keyPressed() {
-	playscene.OnKeyPressed()
+	Scene.OnKeyPressed()
 }
 

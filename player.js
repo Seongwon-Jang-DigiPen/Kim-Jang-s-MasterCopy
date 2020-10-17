@@ -50,6 +50,11 @@ class player {
     if(this.count > 6){
       if(this.life <= 0) 
       {
+       push()
+       fill(255)
+       textSize(15)
+       text('GAME OVER', 130, 130);
+       pop()
        this.gameover()
      }
 
@@ -72,7 +77,6 @@ class player {
 
 
 gameover() {
-  currentScene = DIESCENE
 
   if(this.count < 12)
   {
@@ -122,9 +126,9 @@ gameover() {
    else
    {
     toMainScene()
-   }
- }
- 
+  }
+}
+
 
 }
 
@@ -152,7 +156,7 @@ changePlayer()
       currentlevel = player2_level
       this.IsPlayerDie = false;
       playerArray[0] = player2_player;
-      this.Scene.black_Scene = true;
+      Scene.black_Scene = true;
     }
 
     else if(player2) // change 2 to 1
@@ -169,7 +173,7 @@ changePlayer()
       currentlevel = player1_level;
       this.IsPlayerDie = false;
       playerArray[0] = player1_player;
-      this.Scene.black_Scene = true;
+      Scene.black_Scene = true;
     }
 
   }
@@ -179,7 +183,7 @@ changePlayer()
     this.position_x = 50;
     this.position_y = 410;
     this.IsPlayerDie = false;
-    this.Scene.black_Scene = true;
+    Scene.black_Scene = true;
   }
 }
 }

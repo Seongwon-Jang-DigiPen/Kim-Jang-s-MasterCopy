@@ -4,10 +4,9 @@ class MainScene{
 			text : '  PLEASE SSELECT',
 			x : 49,
 			y : 159,
-			s_position : 0
+			s_position : 0,
 			y : 174,
 			color : '#51ccd3'
-
 		};
 		this.ONE_OR_TWO_PLAYER = {
 			text : '< 1 OR 2 PLAYERS >',
