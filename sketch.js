@@ -11,6 +11,8 @@
 
 var Scene
 
+var mainmenu_test
+
 function setup() {
 
 	setup_every_monster_image()
@@ -25,6 +27,8 @@ makebarrier(player2_barrier)
 	DieScene = new diescene();
 	c = new crash();
     sos = new SOSScene();
+
+
 }
 
 
@@ -45,17 +49,20 @@ function Player_manager()
 }
 
 function draw() {
-    background(0);
+	background(0);
 
-Scene.Draw_text()
-Scene.Update()
-Scene.Draw()
+	Scene.Draw_text()
+	Scene.Update()
+	Scene.Draw()
 
+
+mainmenu_test.Draw();
+mainmenu_test.Update();
 }
 
 function keyPressed() {
 
-    Scene.OnKeyPressed()
+	Scene.OnKeyPressed()
 
 
 }
