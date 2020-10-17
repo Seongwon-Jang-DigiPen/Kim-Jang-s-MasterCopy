@@ -50,101 +50,102 @@ var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
 var makeMonsterAnimation = [];
 
-// function set_gameScene()
-// {
+function set_gameScene(play2)
+{
 
-//   attackArray = [];
-//   UFO_1Array = [];
-//   playerArray = [];
+  attackArray = [];
+  UFO_1Array = [];
+  playerArray = [];
 
-//   player1_player = new player()
-//   player2_player = new player()
+  player1_player = new player()
+  player2_player = new player()
 
-//   playerArray[0]= player1_player;
+  playerArray[0]= player1_player;
 
-//   player1_Round = 1;
-//   player2_Round = 1;
+  player1_Round = 1;
+  player2_Round = 1;
 
-//   player1_level = new level(LEVEL_1,player1_Round);
-//   player2_level = new level(LEVEL_1,player2_Round); 
+  player1_level = new level(LEVEL_1,player1_Round);
+  player2_level = new level(LEVEL_1,player2_Round); 
 
-//   player1_barrier = []
-//   player2_barrier = []
+  player1_barrier = []
+  player2_barrier = []
 
-//   currentlevel = player1_level
+  currentlevel = player1_level
 
-// player2_play = true;////////////////////////////////
+  player2_play = play2;
 
-// player1 = true;
-// player2 = false;
+  player1 = true;
+  player2 = false;
 
-// player1_Score = 0;
-// player2_Score = 0;
-// }
+  player1_Score = 0;
+  player2_Score = 0;
+}
 class PlayScene extends EmptyScene{
-   constructor(){
-    super()
-    this.black_Scene = true;
-    this.new_Round = true;
-    this.timeElapsed = 0
-    this.time = 0;
-    this.pause = false;
-  }
+ constructor(){
+  super()
+  this.black_Scene = true;
+  this.new_Round = true;
+  this.timeElapsed = 0
+  this.time = millis();
+  this.pause = false;
+}
 
-  Update()
+Update()
+{
+  this.roundChange()
+  if(this.black_Scene)
   {
-    this.roundChange()
-    if(this.black_Scene)
+    blackScreen()
+    this.timeElapsed += (millis() - this.time) / 1000;
+    if(this.timeElapsed > 3)
     {
-      blackScreen()
-      this.timeElapsed += (millis() - this.time) / 1000;
-      if(this.timeElapsed > 3)
-      {
-        this.timeElapsed = 0;
-        this.black_Scene = false;
-      }
-      for(var i=0;i<currentlevel.monster.length;i++)
-      {
-        makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
-      }
+      this.timeElapsed = 0;
+      this.black_Scene = false;
     }
-    else if(this.new_Round)
+    for(var i=0;i<currentlevel.monster.length;i++)
     {
-
-      this.newRoundAnimation()
+      makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
     }
-    else if(this.pause)
-    {
-      this.changepause();
-    }
-    else{
-     playScene_Update()
-   }
-   this.time = millis();
- }
- Draw_text()
- {
-    draw_life()
-  draw_text();
- }
-changepause()
- {
-   draw_life()
-   playerArray[0].update();
-   playerArray[0].draw();
-   for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
-   {
-    barrier_gameplay[barrier_make].generate();
-    barrier_gameplay[barrier_make].update();
   }
-  draw_text()
-  currentlevel.color()
-  currentlevel.draw()
-  push();
-  fill(255);
-  textAlign(CENTER)
-  text("PAUSE",play_scene_maximumX/2,play_scene_maximumY/4)
-  pop();
+  else if(this.new_Round)
+  {
+
+    this.newRoundAnimation()
+  }
+  else if(this.pause)
+  {
+    this.changepause();
+  }
+  else{
+  this.Draw_text()
+   playScene_Update()
+ }
+ this.time = millis();
+}
+Draw_text()
+{
+  draw_life()
+  draw_text();
+}
+changepause()
+{
+ draw_life()
+ playerArray[0].update();
+ playerArray[0].draw();
+ for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
+ {
+  barrier_gameplay[barrier_make].generate();
+  barrier_gameplay[barrier_make].update();
+}
+draw_text()
+currentlevel.color()
+currentlevel.draw()
+push();
+fill(255);
+textAlign(CENTER)
+text("PAUSE",play_scene_maximumX/2,play_scene_maximumY/4)
+pop();
 }
 roundChange()
 {
@@ -199,12 +200,12 @@ roundChange()
    {
     currentlevel=new level(LEVEL_1,player2_Round);
   }
-  }
-  this.new_Round = true;
- for(var i=0;i<currentlevel.monster.length;i++)
- {
+}
+this.new_Round = true;
+for(var i=0;i<currentlevel.monster.length;i++)
+{
   makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
- }
+}
 }
 }
 newRoundAnimation()
@@ -339,6 +340,16 @@ function playScene_Update()
     }
   }
 
+  for (let m of currentlevel.monster)
+  {
+    if(m.position_y>400)
+    {
+      playerArray[0].life = -1;
+      playerArray[0].IsPlayerDie = true
+
+    }
+  }
+
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
@@ -354,11 +365,11 @@ function playScene_Update()
 
   if(currentlevel.bullet.length > 0 && currentlevel.bullet[0].crashLandBullet())
   {
-            monsterBulletEffectTimer2 = frameCount
-            crash_effect_get_position(currentlevel.bullet[0]);
-            c.crash_one(currentlevel.bullet)
-                    currentlevel.fire = false
-    }
+    monsterBulletEffectTimer2 = frameCount
+    crash_effect_get_position(currentlevel.bullet[0]);
+    c.crash_one(currentlevel.bullet)
+    currentlevel.fire = false
+  }
   if (frameCount < monsterBulletEffectTimer + 5) {
     image(image_bullet_break, mx, my, 20, 20);
   } else if (frameCount < monsterBulletEffectTimer2 + 5) {
@@ -403,16 +414,16 @@ function callUFO_1() {
 }
 
 function bullet_UFO_1_crash() {
-    return c.return_delete(attackArray, UFO_1Array)
-  }
+  return c.return_delete(attackArray, UFO_1Array)
+}
 
 function each_bullet_crash() {
-    return c.return_delete(attackArray, currentlevel.bullet)
-  }
+  return c.return_delete(attackArray, currentlevel.bullet)
+}
 
-  function bullet_removed(bullet_name){
-    bulletEffectTimer = frameCount
-    crash_effect_get_position(bullet_name[0]);
+function bullet_removed(bullet_name){
+  bulletEffectTimer = frameCount
+  crash_effect_get_position(bullet_name[0]);
   c.crash_one(bullet_name);
 }
 

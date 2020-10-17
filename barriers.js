@@ -614,7 +614,8 @@ var right_barrier_image = [ //up_damaged
     }
   if(collision(object_range,barrier_range.left_bar,barrier_range.up_bar) && this.left_up_damaged<3){
 
-      this.left_up_damaged = 3;console.log(4);
+      this.left_up_damaged = 3;
+
       
    } if(collision(object_range,barrier_range.left_bar,barrier_range.ver_middle_bar) && this.left_up_damaged<7){
       this.left_up_damaged = 7;
@@ -623,7 +624,7 @@ var right_barrier_image = [ //up_damaged
    }
    if(collision(object_range,barrier_range.right_bar,barrier_range.up_bar) && this.right_up_damaged<3){
       this.right_up_damaged = 3;
-      console.log(4);
+   
    } if(collision(object_range,barrier_range.right_bar,barrier_range.ver_middle_bar) && this.right_up_damaged<7){
       this.right_up_damaged = 7;
    } if(collision(object_range,barrier_range.right_bar,barrier_range.down_bar) && this.right_up_damaged<11){
@@ -633,7 +634,7 @@ var right_barrier_image = [ //up_damaged
    if(collision(object_range,barrier_range.hor_middle_bar,barrier_range.up_bar) && this.up_damaged<5){
     
       this.up_damaged = 5;
-      console.log(4);
+ 
    } if(collision(object_range,barrier_range.hor_middle_bar,barrier_range.ver_middle_bar) && this.up_damaged<9){
       this.up_damaged = 9;
    }

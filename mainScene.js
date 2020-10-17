@@ -30,7 +30,7 @@ class MainScene{
 			x : 49,
 			y : 318,
 			color:'#3cd6d6'
-			}
+		}
 		this.TAITO_CORP = {
 			text : '  TAITO CORP.MCMLXXXV',
 			x : 31,
@@ -64,6 +64,8 @@ class MainScene{
 			squid_animate:true,
 			bullet_animate:false
 		}
+
+		this.changeinfoCount = 0;
 	}
 	Update(){
 		if(this.squid.squid_animate){
@@ -85,6 +87,14 @@ class MainScene{
 				this.squid.bullet_draw = false;
 			}
 		}
+
+		if(7<this.changeinfoCount)
+		{
+			toInfoScene()
+		}
+console.log(deltaTime)
+		this.changeinfoCount += deltaTime;
+
 	}
 	Draw(){
 		push();
@@ -122,12 +132,26 @@ class MainScene{
 	}
 	OnKeyPressed(){
 		if(keyCode == 16){
+			this.changeinfoCount = 0
 			// console.log(this.ONE_OR_TWO_PLAYER.state)
 			if(this.ONE_OR_TWO_PLAYER.state==1){
 				this.ONE_OR_TWO_PLAYER.state = 2;
 			}
 			else if(this.ONE_OR_TWO_PLAYER.state==2){
 				this.ONE_OR_TWO_PLAYER.state = 1;
+			}
+		}
+		if(keyCode == 13)
+		{
+			if(this.ONE_OR_TWO_PLAYER.state==1)
+			{
+				set_gameScene(false)
+				toPlayScene()
+			}
+			else if(this.ONE_OR_TWO_PLAYER.state==2)
+			{
+				set_gameScene(true)
+				toPlayScene()
 			}
 		}
 	}

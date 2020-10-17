@@ -11,9 +11,11 @@
 
 var Scene
 
-var mainmenu_test
-
-
+var main
+var die
+var sos
+var wait
+var previousScene = 0
 function setup() {
 
 	setup_every_monster_image()
@@ -24,34 +26,59 @@ function setup() {
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
 
-	Scene = new PlayScene();
-	DieScene = new diescene();
 	c = new crash();
 
-    sos = new SOSScene();
+	Scene = new MainScene();
+	play = new PlayScene();
+	main = new MainScene();
+	INFO = new InfoScene();
+	sos = new SOSScene();
+	wait = new WaitingScene();
 }
 
 
-
-function SceneManager()
+function toWaitScene()
 {
-
-
-	mainmenu_test = new WaitingScene();
+	Scene = new WaitingScene()
 }
 
+function toMainScene()
+{
+	Scene = new MainScene()
+}
+
+function toInfoScene()
+{
+	Scene = new InfoScene();
+}
+
+function toSOSScene()
+{
+	previousScene = Scene;
+	Scene = new SOSScene();
+}
+
+function toPlayScene()
+{
+	if(previousScene != 0)
+	{
+		Scene = previousScene;
+		previousScene = 0;
+	}
+	else
+	{
+		Scene = new PlayScene();
+	}
+}
 
 
 function draw() {
 	background(0);
 
-	Scene.Draw_text()
+
 	Scene.Update()
 	Scene.Draw()
 
-
-mainmenu_test.Draw();
-mainmenu_test.Update();
 }
 
 function keyPressed() {
