@@ -3,8 +3,13 @@ class MainScene{
 		this.PLEASE_SELECT = {
 			text : '  PLEASE SSELECT',
 			x : 49,
+<<<<<<< HEAD
+			y : 159,
+			s_position : 0
+=======
 			y : 174,
 			color : '#51ccd3'
+>>>>>>> 32f2404874da5fbae84bdaad9a2bc2771d0bc64d
 		};
 		this.ONE_OR_TWO_PLAYER = {
 			text : '< 1 OR 2 PLAYERS >',
@@ -116,6 +121,8 @@ class MainScene{
 		else if(this.ONE_OR_TWO_PLAYER.state==2){
 			image(this.ONE_OR_TWO_PLAYER.two_image,this.ONE_OR_TWO_PLAYER.two_x,this.ONE_OR_TWO_PLAYER.two_y)
 		}
+		// image()//monster animation
+		// image()//player choose image
 		pop();
 		if(this.squid.squid_draw){
 			image(this.squid.image[floor(this.squid.image_num)],this.squid.x,this.squid.y);
