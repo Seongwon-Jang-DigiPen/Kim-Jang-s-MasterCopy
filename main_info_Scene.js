@@ -184,6 +184,7 @@ class InfoScene extends EmptyScene{
 						// console.log('on!!!!!!!!');
 						// console.log(this.fix_y_ani)
 						this.fix_y_ani.squid_state ='returnY'
+						this.timer =0;
 					}
 				}
 			}
@@ -200,14 +201,11 @@ class InfoScene extends EmptyScene{
 			}
 			if(this.fix_y_ani.squid_state == 'ani_end'){
 				this.fix_y_ani.squid_draw = false;
+				this.timer +=1/60;
+				if(this.timer > 5){
+					toWaitScene()
+				}
 			}
-		}
-		//
-		//animation 'y' and squid
-
-			if(this.fix_y_ani.squid_state == 'ani_end')
-		{
-			toWaitScene()
 		}
 	}
 	text_animation(info_text){
