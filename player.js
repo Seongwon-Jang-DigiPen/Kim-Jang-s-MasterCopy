@@ -50,6 +50,11 @@ class player {
     if(this.count > 6){
       if(this.life <= 0) 
       {
+       push()
+       fill(255)
+       textSize(15)
+       text('GAME OVER', 130, 130);
+       pop()
        this.gameover()
      }
 
@@ -72,7 +77,6 @@ class player {
 
 
 gameover() {
-  currentScene = DIESCENE
 
   if(this.count < 12)
   {
@@ -122,9 +126,9 @@ gameover() {
    else
    {
     toMainScene()
-   }
- }
- 
+  }
+}
+
 
 }
 

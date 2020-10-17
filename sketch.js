@@ -25,6 +25,8 @@ function setup() {
 	imageMode(CENTER)
 test = new Info2Scene();
 
+    Scene = new MainScene()
+
 	c = new crash();
 
 }
@@ -76,9 +78,6 @@ test.Update();
 }
 
 function keyPressed() {
-
 	Scene.OnKeyPressed()
-
-
 }
 

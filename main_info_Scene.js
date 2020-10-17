@@ -204,6 +204,11 @@ class InfoScene extends EmptyScene{
 		}
 		//
 		//animation 'y' and squid
+
+			if(this.fix_y_ani.squid_state == 'ani_end')
+		{
+			toWaitScene()
+		}
 	}
 	text_animation(info_text){
 if(info_text.rate>=info_text.text.length){
@@ -221,6 +226,12 @@ if(info_text.rate>=info_text.text.length){
 			info_text.rate +=0.1;
 		}
 	}
-	OnKeyPressed(){}
+	OnKeyPressed(){
+
+		if(keyCode == 13)
+		{
+			toMainScene()
+		}
+	}
 	
 }

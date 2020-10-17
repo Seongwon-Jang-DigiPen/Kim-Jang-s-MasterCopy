@@ -110,7 +110,6 @@ Update()
   }
   else if(this.new_Round)
   {
-
     this.newRoundAnimation()
   }
   else if(this.pause)
@@ -118,10 +117,10 @@ Update()
     this.changepause();
   }
   else{
-  this.Draw_text()
-   playScene_Update()
- }
- this.time = millis();
+    this.Draw_text()
+    playScene_Update()
+  }
+  this.time = millis();
 }
 Draw_text()
 {
@@ -155,7 +154,7 @@ roundChange()
     {
       player1_Round++
       var round = (player1_Round%17)
-      if(player1_Round>16)
+      if(player1_Round>17)
       {
         round++
       }
@@ -180,7 +179,7 @@ roundChange()
   {
     player2_Round++
     var round = (player2_Round%17)
-    if(player2_Round>16)
+    if(player2_Round>17)
     {
       round++
     }
@@ -206,10 +205,13 @@ for(var i=0;i<currentlevel.monster.length;i++)
 {
   makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
 }
+toSOSScene();
 }
+
 }
 newRoundAnimation()
 {
+
   for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
   {
     barrier_gameplay[barrier_make].generate();
@@ -228,6 +230,12 @@ newRoundAnimation()
     pop()
   }
   makeMonsterAnimation.splice(0,1)
+if(makeMonsterAnimation.length<=50)
+{
+        barrier_gameplay = []
+    makebarrier(barrier_gameplay)
+}
+
   if(makeMonsterAnimation.length <= 0)
   {
     this.new_Round = false;
@@ -284,7 +292,7 @@ if (key == 'u') {
 }
 
 if (key == 'a') {
-  currentlevel.monster.splice(0,1)   
+  currentlevel.monster.splice(0,11)   
 }
 if(keyCode == 13)
 {
@@ -389,16 +397,6 @@ function playScene_Update()
    c.delete_player(playerArray[0], currentlevel)
  }
 
-
- switch(currentScene){
-  case DIESCENE:
-  push()
-  fill(255)
-  textSize(15)
-  text('GAME OVER', 130, 130);
-  pop()
-  break;
-}
 }
 
 function crash_effect_get_position (a) {
