@@ -24,7 +24,7 @@ function setup() {
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
 
-
+	Scene = new MainScene()
 	c = new crash();
 
 }

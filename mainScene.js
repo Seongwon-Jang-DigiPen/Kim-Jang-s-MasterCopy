@@ -92,8 +92,8 @@ class MainScene{
 		{
 			toInfoScene()
 		}
-console.log(deltaTime)
-		this.changeinfoCount += deltaTime;
+   
+		this.changeinfoCount += 1/60;
 
 	}
 	Draw(){

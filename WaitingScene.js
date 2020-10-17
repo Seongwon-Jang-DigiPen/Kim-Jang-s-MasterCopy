@@ -13,25 +13,30 @@ class WaitingScene extends EmptyScene{
 		image(this.waiting_patterns[this.pattern_num],240,224,480*scalex, 448*scaley);
 		if(this.current){
 			// this.waiting_patterns[this.pattern_num].size(50,50)
-		this.waiting_patterns[this.pattern_num].play();
-		this.current = false;
-	}
+			this.waiting_patterns[this.pattern_num].play();
+			this.current = false;
+		}
 	// push();
 	// noStroke();
 	// fill(0,100);
 	// rect(0,0,width,height);
 	// pop();
-	}
-	Update(){
-		this.timer += 1/60;
-		if(this.timer>15){
-			this.waiting_patterns[this.pattern_num].stop();
+}
+Update(){
+	this.timer += 1/60;
+	if(this.timer>15){
+		this.waiting_patterns[this.pattern_num].stop();
+			toMainScene()
 			//mainmenu
 		}
 	}
 	OnKeyPressed(){
 		if(false){
-		this.waiting_patterns[this.pattern_num].stop();
+			this.waiting_patterns[this.pattern_num].stop();
+		}
+		if(keyCode == 13)
+		{
+			toMainScene()
 		}
 	}
 }
