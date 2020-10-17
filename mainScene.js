@@ -3,7 +3,8 @@ class mainScene{
 		this.PLEASE_SELECT = {
 			text : '    PLEASE SSELECT',
 			x : 49,
-			y : 159
+			y : 159,
+			s_position : 0
 		};
 		this.ONE_OR_TWO_PLAYER = {
 			text : ' <  1 OR 2 PLAYERS  >',
@@ -32,13 +33,19 @@ class mainScene{
 			y : [32,48,80,112,144,176,256]
 		}
 	}
-	update(){}
+	update(){
+		//if(){}//enter key pressed scene = playscene
+		//if(){}//shift key pressed state = 2
+		// if(){}//monster bullet hit 's' text = '    PLEASE  SELECT'
+		//if(){}//time is over ?? scene = info scene
+		//if(){}//time is over ?? scene = waiting scene
+	}
 	Draw(){
 		push();
 		textSize(25);
 		background(0);
 		fill(255);
-		text(this.PLEASE_SELECT.text,this.PLEASE_SELECT.x,this.PLEASE_SELECT.y);
+		text(this.PLEASE_SELECT.text,this.PLEASE_SELECT.x,this.PLEASE_SELECT.y);//make array and use for()
 		text(this.ONE_OR_TWO_PLAYER.text,this.ONE_OR_TWO_PLAYER.x,this.ONE_OR_TWO_PLAYER.y);
 		text(this.ONE_PLAYER.text,this.ONE_PLAYER.x,this.ONE_PLAYER.y);
 		text(this.TWO_PLAYER.text,this.TWO_PLAYER.x,this.TWO_PLAYER.y);
@@ -46,6 +53,8 @@ class mainScene{
 		for(var i = 0;i<this.HIGH_SCORE.text.length;i++){
 			text(this.HIGH_SCORE.text[i],this.HIGH_SCORE.x,this.HIGH_SCORE.y[i]);
 		}
+		// image()//monster animation
+		// image()//player choose image
 		pop();
 	}
 	OnKeyPressed(){}
