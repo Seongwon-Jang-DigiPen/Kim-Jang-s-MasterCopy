@@ -46,7 +46,7 @@ class player {
 
   dieScene() {
     this.time+=10
-
+ufo_sound.stop()
     if(this.count > 6){
       if(this.life <= 0) 
       {

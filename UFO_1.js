@@ -21,6 +21,11 @@ class UFO_1 {
     this.ufoSound = false
     this.point = 50*(round(random(1,5)))
     this.textsize = 15
+    if(random(0,100)<50)
+    {
+      this.go_right = false;
+      this.position_x = play_scene_maximumX - this.width
+    }
 
   }
 
@@ -60,7 +65,7 @@ class UFO_1 {
   }
 
   goneUFO() {
-    if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width) {
+    if (this.position_x < 0 || this.position_x >= play_scene_maximumX - this.width) {
       ufo_sound.stop()
       return true
     }

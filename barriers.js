@@ -81,6 +81,18 @@ class barrier {
     pop();
   }
   update() {
+    if(this.left_up_damaged + this.left_down_damaged >= 11){
+      this.left_up_damaged = 11;
+      this.left_down_damaged = 0;
+    }
+    if(this.right_up_damaged + this.right_down_damaged >= 11){
+      this.right_up_damaged = 11;
+      this.right_down_damaged = 0;
+    }
+    if(this.up_damaged + this.down_damaged >= 9){
+      this.up_damaged = 9;
+      this.down_damaged = 0;
+    }
 
 var square_image_num = [
       [0, 5, 9, 12, 14, 15],
@@ -399,7 +411,7 @@ var right_barrier_image = [ //up_damaged
     this.left_image_1 = left_barrier_image[this.left_up_damaged][this.left_down_damaged][0];
     this.left_image_2 = left_barrier_image[this.left_up_damaged][this.left_down_damaged][1];
     this.left_image_3 = left_barrier_image[this.left_up_damaged][this.left_down_damaged][2];
-
+console.log(this.right_image_1);
     this.right_image_1 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][0];
     this.right_image_2 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][1];
     this.right_image_3 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][2];
@@ -453,7 +465,7 @@ var right_barrier_image = [ //up_damaged
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged != 11)) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged < 11)) {
             this.crash_effect(currentlevel)
           this.left_up_damaged++;
           this.monster_object_status = 0;
@@ -470,7 +482,7 @@ var right_barrier_image = [ //up_damaged
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged != 9)) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged < 9)) {
             this.crash_effect(currentlevel)
           this.up_damaged++;
           this.monster_object_status = 0;
@@ -486,7 +498,7 @@ var right_barrier_image = [ //up_damaged
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged != 11)) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged < 11)) {
             this.crash_effect(currentlevel)
           this.right_up_damaged++;
           this.monster_object_status = 0;
@@ -537,7 +549,7 @@ var right_barrier_image = [ //up_damaged
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.left_up_damaged + this.left_down_damaged != 11)) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.left_up_damaged + this.left_down_damaged < 11)) {
           bullet_removed(attackArray)
           this.left_down_damaged++;
           this.player_object_status = 0;
@@ -567,7 +579,7 @@ var right_barrier_image = [ //up_damaged
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.right_up_damaged + this.right_down_damaged != 11)) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.right_up_damaged + this.right_down_damaged < 11)) {
           bullet_removed(attackArray)
           this.right_down_damaged++;
           this.player_object_status = 0;

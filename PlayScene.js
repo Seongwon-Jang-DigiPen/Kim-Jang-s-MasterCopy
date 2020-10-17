@@ -334,7 +334,7 @@ if (key == 'u') {
 }
 
 if (key == 'a') {
-  currentlevel.monster.splice(0,11)   
+  currentlevel.monster.splice(0,54)   
 }
 
 if(keyCode == 13)

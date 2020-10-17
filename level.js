@@ -15,6 +15,10 @@ class level {
     this.movespeed = 0.02;
     this.playerlevel = playerlevel;
     this.monster_y_locate = ((playerlevel - 1) % 8) * 16
+    if((playerlevel - 1) % 8 > 5)
+      {this.monster_y_locate -=16}
+     if((playerlevel - 1) % 8 > 7)
+      {this.monster_y_locate -=16}
     this.soundcount = 0;
     this.UFOON =false;
 
