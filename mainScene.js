@@ -94,7 +94,6 @@ class MainScene{
 		{
 			toInfoScene()
 		}
-		this.changeinfoCount += 1/60;
 	}
 	Draw(){
 		push();

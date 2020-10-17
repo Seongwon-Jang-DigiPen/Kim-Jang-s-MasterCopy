@@ -11,78 +11,89 @@ class SOSScene extends EmptyScene {
     this.start = true;
   }
   
-  draw()
+  Draw()
   {
-    this.UFOdraw()
-    this.SOStext()
+   for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
+   {
+    barrier_gameplay[barrier_make].generate();
+    barrier_gameplay[barrier_make].update();
   }
-  
-    timer() {
-        if(frameCount % 8 <4) {
-            this.a = true;
-        }
-        if(frameCount % 8 >= 4) {
-            this.a = false;
-        }
-    }
+  draw_life()
+  draw_text();
+  this.UFOdraw()
+  this.SOStext()
+}
 
-  update() {
-    if(!this.a){
+timer() {
+  if(frameCount % 8 <4) {
+    this.a = true;
+  }
+  if(frameCount % 8 >= 4) {
+    this.a = false;
+  }
+}
+
+Update() {
+  if(this.y<50)
+  {
+    toPlayScene()
+  }
+  if(!this.a){
     this.y -= 1.10;
-    } else if(this.a) {
-        this.y += 0.05;
-    }
+  } else if(this.a) {
+    this.y += 0.05;
+  }
 
-    if(!this.changeD){
+  if(!this.changeD){
     this.x += 2;
-    } else
-      {
-        this.x -= 2;
-      }
-    if(this.start ){
-        sound_sos.play()
-        this.start = false;
-    }
-this.changeDirection()
-this.changeColor()
-this.timer()
+  } else
+  {
+    this.x -= 2;
   }
-
-
-  changeDirection() {
-    if(this.x > 250){
-      this.changeD = true;
-      this.switcht += 1
-    } else if(this.x < 50) {
-      this.changeD = false;
-    }
+  if(this.start ){
+    sound_sos.play()
+    this.start = false;
   }
+  this.changeDirection()
+  this.changeColor()
+  this.timer()
+}
 
 
-  changeColor() {
-        if(this.x>=150){
-            this.switchpink = true
-        }
-        if(this.x<=50 && this.changeD){
-            this.switchpink = false
-            this.switchblue = true
-        }
+changeDirection() {
+  if(this.x > 250){
+    this.changeD = true;
+    this.switcht += 1
+  } else if(this.x < 50) {
+    this.changeD = false;
   }
+}
 
-  UFOdraw() {
-    push()
+
+changeColor() {
+  if(this.x>=150){
+    this.switchpink = true
+  }
+  if(this.x<=50 && this.changeD){
+    this.switchpink = false
+    this.switchblue = true
+  }
+}
+
+UFOdraw() {
+  push()
   if(!this.switchpink && !this.switchblue) {
     push()
     image(image_SOS_green,this.x,this.y-10,18, 18);
     image(image_UFO_green,this.x,this.y+10,60, 20);
     pop()
-}
- if (this.switchpink){
+  }
+  if (this.switchpink){
     push()
     image(image_SOS_pink,this.x,this.y-10,18, 18);
     image(image_UFO_1,this.x,this.y+10,60, 20);
     pop()
-} if (this.switchblue) {
+  } if (this.switchblue) {
     push()
     image(image_SOS_blue,this.x,this.y-10,18, 18);
     image(image_UFO_blue,this.x,this.y+10,60, 20);
@@ -91,20 +102,20 @@ this.timer()
   pop()
 }
 
-  SOStext() {
-    push()
-    textSize(15)
-    if(this.switcht > 0){
+SOStext() {
+  push()
+  textSize(15)
+  if(this.switcht > 0){
     push()
     fill(242,72,255)
     text("SOS!!", 300, 310)
     pop()
-} if (this.switcht > 1){
+  } if (this.switcht > 1){
     push()
     fill(24,226,229)
     text("SOS!!", 300, 200)
     pop()
-} if (this.switcht > 2) {
+  } if (this.switcht > 2) {
     push()
     fill(43,244,3)
     text("SOS!!", 300, 90)

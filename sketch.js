@@ -24,6 +24,7 @@ function setup() {
 	imageMode(CENTER)
 
     Scene = new MainScene()
+
 	c = new crash();
 
 }
