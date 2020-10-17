@@ -10,12 +10,10 @@
 
 
 var Scene
-
-var main
-var die
-var sos
-var wait
 var previousScene = 0
+
+
+
 function setup() {
 
 	setup_every_monster_image()
@@ -26,14 +24,9 @@ function setup() {
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
 
+
 	c = new crash();
 
-	Scene = new MainScene();
-	play = new PlayScene();
-	main = new MainScene();
-	INFO = new InfoScene();
-	sos = new SOSScene();
-	wait = new WaitingScene();
 }
 
 
@@ -78,6 +71,7 @@ function draw() {
 
 	Scene.Update()
 	Scene.Draw()
+
 
 }
 
