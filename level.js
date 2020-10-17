@@ -16,6 +16,7 @@ class level {
     this.playerlevel = playerlevel;
     this.monster_y_locate = ((playerlevel - 1) % 8) * 16
     this.soundcount = 0;
+    this.UFOON =false;
 
     this.stiffen = false;
     this.stiffenElapsed = 0;
@@ -50,6 +51,7 @@ class level {
     this.makebabymove()
 
     if (this.monster.length > 0 && !this.stiffen) {
+      this.makeUFO()
       this.color();
       if(!playerArray[0].IsPlayerDie){
         this.movecheck();
@@ -183,24 +185,24 @@ class level {
 }
 moveSound()
 {
-
-// switch(this.soundcount)
-// {
-// case 0:
-// move1_sound.play();
-// break;
-// case 1:
-// move2_sound.play();
-// break;
-// case 2:
-// move3_sound.play();
-// break;
-// case 3:
-// move4_sound.play();
-// break;
-// }
-// this.soundcount = (this.soundcount +1) % 4;
+  switch(this.soundcount)
+  {
+    case 0:
+    move1_sound.play();
+    break;
+    case 1:
+    move2_sound.play();
+    break;
+    case 2:
+    move3_sound.play();
+    break;
+    case 3:
+    move4_sound.play();
+    break;
+  }
+  this.soundcount = (this.soundcount +1) % 4;
 }
+
 movecheck() 
 {
   if (this.monstercount >= this.monster.length) {
@@ -221,7 +223,14 @@ movecheck()
   }
 }
 
-
+makeUFO()
+{
+  if(!this.UFOON&&this.monster.length<30)
+  {
+    callUFO_1(); 
+    this.UFOON = true;
+  }
+}
 animation() 
 {
   this.monster[this.monstercount].frame_count = (this.monster[this.monstercount].frame_count + 1) % 2
@@ -380,7 +389,7 @@ monsterDeadcheck(score)
     }
     else
     {
-      
+
       if(this.monster[i].dead&& !this.stiffen)
       {
        if((this.monstercount>i||this.monstercount==this.monster.length)&&this.monstercount!=0)

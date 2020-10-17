@@ -18,8 +18,9 @@ class UFO_1 {
     this.time = 0;
     this.count = 0;
     this.IsUFODie = false;
-
     this.ufoSound = false
+    this.point = 50*(round(random(1,5)))
+
   }
 
   randomized() {
@@ -33,7 +34,7 @@ class UFO_1 {
   }
 
   update() {
-if(!this.ufoSound)
+    if(!this.ufoSound)
     {
       ufo_sound.loop()
       ufo_sound.play()
@@ -41,64 +42,77 @@ if(!this.ufoSound)
     }
 
     if(this.move){
-    if (this.go_right && !this.IsUFODie) {
-      this.position_x += 1;
-    } else if (!this.go_right && !this.IsUFODie) {
-      this.position_x -= 1;
+      if (this.go_right && !this.IsUFODie) {
+        this.position_x += 1;
+      } else if (!this.go_right && !this.IsUFODie) {
+        this.position_x -= 1;
+      }
     }
-}
   }
 
- draw() {
+  draw() {
     if(!playerArray[0].IsPlayerDie && !this.IsUFODie) {
-    image(image_UFO_1, this.position_x, this.position_y, this.width, this.height);
-} else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
-    image(image_UFO_1_R, this.position_x, this.position_y, this.width, this.height);
-}
+      image(image_UFO_1, this.position_x, this.position_y, this.width, this.height);
+    } else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
+      image(image_UFO_1_R, this.position_x, this.position_y, this.width, this.height);
+    }
   }
 
-goneUFO() {
-  if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width/2) {
-    ufo_sound.stop()
-    return true
+  goneUFO() {
+    if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width/2) {
+      ufo_sound.stop()
+      return true
+    }
   }
-}
 
-deleteUFO() {
-  if (bullet_UFO_1_crash()) {
-    ufo_sound.stop()
-    return true
+  deleteUFO() {
+    if (bullet_UFO_1_crash()) {
+      ufo_sound.stop()
+      return true
+    }
   }
-}
 
 
   dieScene(c) {
     this.IsUFODie = true;
-    if(this.count < 3){
-        this.time+=10
+    this.time+=10
+    if(this.count >= 3){
+      push()
+      fill(255)
+      text(this.point,this.position_x,this.position_y)
+      pop()
     } 
-    if(this.count == 3){
-        this.IsUFODie = false;
-        this.count = 0;
-        c.crash_one(UFO_1Array);
+    if(this.count == 6){
+      this.IsUFODie = false;
+      //this.count = 0;
+      if(player1)
+      {
+        player1_Score += this.point;
+      }
+      else
+      {
+        player2_Score += this.point;
+      }
+
+      c.crash_one(UFO_1Array);
     }
-    if(this.time<100) {
-        if(!playerArray[0].IsPlayerDie){
-            image(image_UFO_1_dead, this.position_x, this.position_y, this.width, this.height);
-        } else if(playerArray[0].IsPlayerDie) {
-            image(image_UFO_1_dead_R, this.position_x, this.position_y, this.width, this.height);
-        }
+    if(this.time<100&&this.count<3) {
+      if(!playerArray[0].IsPlayerDie){
+        image(image_UFO_1_dead, this.position_x, this.position_y, this.width, this.height);
+      } else if(playerArray[0].IsPlayerDie) {
+        image(image_UFO_1_dead_R, this.position_x, this.position_y, this.width, this.height);
+      }
     }
-    else if(this.time>=100) {
-        if(!playerArray[0].IsPlayerDie){
-            image(image_UFO_2_dead, this.position_x, this.position_y, this.width, this.height);
-        } else if(playerArray[0].IsPlayerDie) {
-            image(image_UFO_2_dead_R, this.position_x, this.position_y, this.width, this.height);
-        }
+    else if(this.time>=100&&this.count<3) {
+      if(!playerArray[0].IsPlayerDie){
+        image(image_UFO_2_dead, this.position_x, this.position_y, this.width, this.height);
+      } else if(playerArray[0].IsPlayerDie) {
+        image(image_UFO_2_dead_R, this.position_x, this.position_y, this.width, this.height);
+      }
     }
     if(this.time>200) {
-        this.time =0
-        this.count++
+      this.time =0
+      this.count++
     }
   }
 
@@ -106,7 +120,7 @@ deleteUFO() {
   {
     this.defalt_x = level.monster[0].position_x-(level.monster[0].row*MONSTERDISTANCE);
     this.defalt_y = level.monster[0].position_y-(level.monster[0].column*MONSTERDISTANCE);
-console.log(level.behindmonsterdata)
+    console.log(level.behindmonsterdata)
     if(this.move == false)
     {
       level.stiffen = true

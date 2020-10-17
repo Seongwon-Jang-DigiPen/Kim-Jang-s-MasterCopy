@@ -10,17 +10,18 @@
 
 
 var Scene
-
 var mainmenu_test
 var currentScene = 1;
+
+
 function setup() {
 
 	setup_every_monster_image()
 	textFont(Font);
 	createCanvas(480, 448);
-makebarrier(barrier_gameplay)
-makebarrier(player1_barrier)
-makebarrier(player2_barrier)
+	makebarrier(barrier_gameplay)
+	makebarrier(player1_barrier)
+	makebarrier(player2_barrier)
 	imageMode(CENTER)
     c = new crash();
     sos = new SOSScene();
@@ -37,17 +38,12 @@ makebarrier(player2_barrier)
 function SceneManager()
 {
 
+
+	mainmenu_test = new WaitingScene();
 }
 
-function RoundManager()
-{
 
-}
 
-function Player_manager()
-{
-
-}
 // const MAINSCENE = 1;
 // const INFOSCENE = 2;
 // const WAITSCENE = 3;
@@ -55,6 +51,7 @@ function Player_manager()
 // const DIESCENE = 5;
 // const SOSSCENE = 6;
 // const INFO2SCENE = 7;
+
 function draw() {
 	background(0);
 switch(currentScene){

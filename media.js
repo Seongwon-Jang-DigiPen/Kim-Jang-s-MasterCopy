@@ -38,12 +38,14 @@ var move1_sound = 0
 var move2_sound = 0
 var move3_sound = 0
 var move4_sound = 0
+
 var fire_sound = 0
 var invader_die_sound = 0
 var pause_sound = 0
 var player_die_sound = 0
 var ufo_sound = 0
 var ufo_die_sound = 0
+ var waiting_pattern = [];
 var waiting_pattern = [];
 var mainscene_squid_image = [];
 var circle_c_image;
@@ -86,18 +88,18 @@ function preload() {
   bullet_data = loadJSON('enemySprites/bullet.json')
 
 
-  // sound_sos = loadSound('sound/sos.mp3')
-  // move1_sound = loadSound('sound/note1.wav')
-  // move2_sound = loadSound('sound/note2.wav')
-  // move3_sound = loadSound('sound/note3.wav')
-  // move4_sound = loadSound('sound/note4.wav')
+  sound_sos = loadSound('sound/sos.mp3')
+  move1_sound = loadSound('sound/note1.wav')
+  move2_sound = loadSound('sound/note2.wav')
+  move3_sound = loadSound('sound/note3.wav')
+  move4_sound = loadSound('sound/note4.wav')
   fire_sound = loadSound('sound/fire.wav')
   
-  // invader_die_sound = loadSound('sound/invader_die.wav')
-  // pause_sound  = loadSound('sound/pause.mp3')
-  // player_die_sound = loadSound('sound/player_die.wav')
-  // ufo_sound = loadSound('sound/ufo.wav')
-  // ufo_die_sound = loadSound('sound/ufo_die.wav')
+  invader_die_sound = loadSound('sound/invader_die.wav')
+  pause_sound  = loadSound('sound/pause.mp3')
+  player_die_sound = loadSound('sound/player_die.wav')
+  ufo_sound = loadSound('sound/ufo.wav')
+  ufo_die_sound = loadSound('sound/ufo_die.wav')
 
   for(var bar_square = 1;bar_square<=15;bar_square++){
     image_barrier_square[bar_square-1] = loadImage('barrier_sprites/barrier_squar/barrier_squar_'+bar_square+'.png');
