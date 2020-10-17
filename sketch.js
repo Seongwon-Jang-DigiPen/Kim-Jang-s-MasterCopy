@@ -10,13 +10,7 @@
 
 
 var Scene
-<<<<<<< HEAD
-var mainmenu_test
-var currentScene = 4;
-=======
 var previousScene = 0
-
->>>>>>> 2738087fb42d48c1387c151bbc93cb635c31a01a
 
 
 function setup() {
@@ -29,7 +23,7 @@ function setup() {
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
 
-
+    Scene = new MainScene()
 	c = new crash();
 
 }
@@ -81,6 +75,6 @@ function draw() {
 }
 
 function keyPressed() {
-	playscene.OnKeyPressed()
+	Scene.OnKeyPressed()
 }
 

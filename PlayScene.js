@@ -388,17 +388,6 @@ function playScene_Update()
  if(currentlevel.bullet.length > 0) {
    c.delete_player(playerArray[0], currentlevel)
  }
-
-
- switch(currentScene){
-  case DIESCENE:
-  push()
-  fill(255)
-  textSize(15)
-  text('GAME OVER', 130, 130);
-  pop()
-  break;
-}
 }
 
 function crash_effect_get_position (a) {
