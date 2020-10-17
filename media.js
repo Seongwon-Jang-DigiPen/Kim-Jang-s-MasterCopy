@@ -33,18 +33,23 @@ var bulletName = ["bullet1","bullet2","bullet3"]
 var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
 
 
+
 var move1_sound = 0
 var move2_sound = 0
 var move3_sound = 0
 var move4_sound = 0
-let fire_sound = 0
+
+var fire_sound = 0
 var invader_die_sound = 0
 var pause_sound = 0
 var player_die_sound = 0
 var ufo_sound = 0
 var ufo_die_sound = 0
  var waiting_pattern = [];
-
+var waiting_pattern = [];
+var mainscene_squid_image = [];
+var circle_c_image;
+var info_scene_image =[];
 
 function preload() {
   Font = loadFont('Font/PressStart2P-Regular.ttf');
@@ -115,6 +120,25 @@ function preload() {
     waiting_pattern[i-1] = createVideo('waiting_video/pattern_'+i+'.mp4');
     waiting_pattern[i-1].hide();
   }
+  for(var i = 0;i<2;i++){
+    mainscene_squid_image[i] = loadImage('mainmenu/choose_player_'+i+'.png');
+  }
+  for(var i = 1;i<=4;i++){
+    mainscene_squid_image[1+i] = loadImage('mainmenu/Enemy_bullet3_'+i+'.png');
+  }
+  for(var i = 1;i<=2;i++){
+    mainscene_squid_image[5+i] = loadImage('mainmenu/Squid_green_'+i+'.png');
+  }
+  circle_c_image = loadImage('mainmenu/circle_c.png');
+  info_scene_image[0] = loadImage('infoScene/reverse_y.png');
+  info_scene_image[1] = loadImage('infoScene/red_player_choose.png');
+  info_scene_image[2] = loadImage('infoScene/ufo.png');
+  info_scene_image[3] = loadImage('infoScene/Crab_green_2.png');
+  info_scene_image[4] = loadImage('infoScene/Octopus_blue_2.png');
+  info_scene_image[5] = loadImage('infoScene/Squid_green_1.png');
+  info_scene_image[6] = loadImage('infoScene/Squid_green_2.png');
+  info_scene_image[7] = loadImage('infoScene/fix_y_squid_1.png');
+  info_scene_image[8] = loadImage('infoScene/fix_y_squid_2.png');
 }
 
 function setup_every_monster_image()

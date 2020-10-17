@@ -13,8 +13,8 @@ var Scene
 
 var mainmenu_test
 
-function setup() 
-{
+
+function setup() {
 
 	setup_every_monster_image()
 	textFont(Font);
@@ -27,7 +27,15 @@ function setup()
 	Scene = new PlayScene();
 	DieScene = new diescene();
 	c = new crash();
-	sos = new SOSScene();
+
+    sos = new SOSScene();
+}
+
+
+
+function SceneManager()
+{
+
 
 	mainmenu_test = new WaitingScene();
 }
@@ -42,9 +50,8 @@ function draw() {
 	Scene.Draw()
 
 
-	// mainmenu_test.Draw();
-	// mainmenu_test.Update();
-	// mainmenu_test.OnKeyPressed();
+mainmenu_test.Draw();
+mainmenu_test.Update();
 }
 
 function keyPressed() {
