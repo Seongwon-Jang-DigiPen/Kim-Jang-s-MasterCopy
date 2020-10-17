@@ -50,6 +50,7 @@ var waiting_pattern = [];
 var mainscene_squid_image = [];
 var circle_c_image;
 var info_scene_image =[];
+var info_2_image = [];
 
 function preload() {
   Font = loadFont('Font/PressStart2P-Regular.ttf');
@@ -139,6 +140,12 @@ function preload() {
   info_scene_image[6] = loadImage('infoScene/Squid_green_2.png');
   info_scene_image[7] = loadImage('infoScene/fix_y_squid_1.png');
   info_scene_image[8] = loadImage('infoScene/fix_y_squid_2.png');
+  info_2_image[0] = loadImage('info2/red_ufo.png');
+  info_2_image[1] = loadImage('info2/green_ufo.png');
+  info_2_image[2] = loadImage('info2/squid_m.png');
+  info_2_image[3] = loadImage('info2/crab_m.png');
+  info_2_image[4] = loadImage('info2/octopus_m.png');
+  info_2_image[5] = loadImage('info2/baby_m.png');
 }
 
 function setup_every_monster_image()

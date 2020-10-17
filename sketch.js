@@ -5,14 +5,14 @@
 
 
 //전달사항
-//열심히 하자 얘들아
+
 
 
 
 var Scene
 var previousScene = 0
 
-var test ;
+
 
 function setup() {
 
@@ -23,7 +23,7 @@ function setup() {
 	makebarrier(player1_barrier)
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
-test = new Info2Scene();
+
 
     Scene = new MainScene()
 
@@ -73,8 +73,8 @@ function draw() {
 
 	Scene.Update()
 	Scene.Draw()
-test.Draw();
-test.Update();
+
+
 }
 
 function keyPressed() {

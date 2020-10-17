@@ -2,8 +2,10 @@ class Info2Scene extends EmptyScene{
 	constructor(){
 		super();
 		this.game_name = {
-			text : 'SPACE INVADERS',
-			x:81,
+			text : 'SPACE INVADERS I',
+            I : 'I',
+            I_interval : 16*16-8,
+			x:65,
 			y:126,
 			color : '#51ccd3'
 		}
@@ -24,49 +26,52 @@ class Info2Scene extends EmptyScene{
 			y:238,
 			rate:0,
 			color:'#972d1f',
-			image : info_scene_image[2],
+			image : info_2_image[0],
 			image_x:95,
 			image_y:230
 		}
 		this.green_ufo_point ={
 			text : '= ? MYSTERY',
 			x:113,
-			y:238,
+			y:270,
 			rate:0,
-			color:'#972d1f',
-			image : info_scene_image[2],
-			image_x:95,
-			image_y:250
+			color:'#50dd2e',
+			image : info_2_image[1],
+			image_x:90,
+			image_y:262
 		}
 		this.baby_squid_point ={
 			text:'= 30 POINTS',
 			x:113,
-			y:270,
+			y:302,
 			rate:0,
 			color:'#50dd2e',
-			image : info_scene_image[5],
+			image : info_2_image[2],
 			image_x:103,
-			image_y:264
+			image_y:296,
+            baby_image : info_2_image[5],
+            baby_x: 60,
+            baby_y:296
 		}
 		this.crab_point ={
 			text:'= 20 POINTS',
 			x:113,
-			y:302,
+			y:334,
 			rate:0,
-			color:'#50dd2e',
-			image : info_scene_image[3],
+			color : '#51ccd3',
+			image : info_2_image[3],
 			image_x:102,
-			image_y:296
+			image_y:328,
 		}
 		this.octopus_point ={
 			text:'= 10 POINTS',
 			x:113,
-			y:334,
+			y:366,
 			rate:0,
 			color : '#51ccd3',
-			image : info_scene_image[4],
+			image : info_2_image[4],
 			image_x:103,
-			image_y:328
+			image_y:360
 		}
 		this.TAITO_CORP={
 			text: '  TAITO CORP.MCMLXXXV',
@@ -90,6 +95,8 @@ class Info2Scene extends EmptyScene{
 		textSize(16);
 		background(0);
 		fill(255);
+        fill(this.game_name.color);
+        text(this.game_name.I,this.game_name.x+this.game_name.I_interval,this.game_name.y);
 		for(var i =0;i<this.static_text.length;i++){
 			push();
 		fill(this.static_text[i].color)
@@ -98,11 +105,12 @@ class Info2Scene extends EmptyScene{
 	}
 	image(this.score_advance.choose_image,this.score_advance.image_x1,this.score_advance.image_y1);
 	image(this.score_advance.choose_image,this.score_advance.image_x2,this.score_advance.image_y2);
-	// image(this.red_ufo_point.image,this.red_ufo_point.image_x,this.red_ufo_point.image_y);
-	// image(this.green_ufo_point.image,this.green_ufo_point.image_x,this.green_ufo_point.image_y);
-	// image(this.baby_squid_point.image,this.baby_squid_point.image_x,this.baby_squid_point.image_y);
-	// image(this.crab_point.image,this.crab_point.image_x,this.crab_point.image_y);
-	// image(this.octopus_point.image,this.octopus_point.image_x,this.octopus_point.image_y);
+	image(this.red_ufo_point.image,this.red_ufo_point.image_x,this.red_ufo_point.image_y);
+	image(this.green_ufo_point.image,this.green_ufo_point.image_x,this.green_ufo_point.image_y);
+	image(this.baby_squid_point.image,this.baby_squid_point.image_x,this.baby_squid_point.image_y);
+    image(this.baby_squid_point.baby_image,this.baby_squid_point.baby_x,this.baby_squid_point.baby_y);
+	image(this.crab_point.image,this.crab_point.image_x,this.crab_point.image_y);
+	image(this.octopus_point.image,this.octopus_point.image_x,this.octopus_point.image_y);
 	image(this.TAITO_CORP.cicle_c,this.TAITO_CORP.c_x,this.TAITO_CORP.c_y);
 	if(this.red_ufo){
 		this.text_animation(this.red_ufo_point);
@@ -122,10 +130,7 @@ class Info2Scene extends EmptyScene{
 	//draw score boards
 	pop();
 	draw_text();
-	// push();
-	// fill(0);
-	// rect(447, 300,50,50);
-	// pop();
+    draw_life();
 	}
 	Update(){
 		if(this.red_ufo_point.rate ==this.red_ufo_point.text.length){
@@ -134,7 +139,7 @@ class Info2Scene extends EmptyScene{
 		if(this.green_ufo_point.rate ==this.green_ufo_point.text.length){
 			this.baby_squid = true;
 		}
-		if(this.squid_point.rate ==this.squid_point.text.length){
+		if(this.baby_squid_point.rate ==this.baby_squid_point.text.length){
 			this.crab = true;
 		}
 		if(this.crab_point.rate ==this.crab_point.text.length){
