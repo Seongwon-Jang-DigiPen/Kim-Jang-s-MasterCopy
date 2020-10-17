@@ -12,7 +12,7 @@
 var Scene
 
 var mainmenu_test
-
+var currentScene = 1;
 function setup() {
 
 	setup_every_monster_image()
@@ -22,12 +22,13 @@ makebarrier(barrier_gameplay)
 makebarrier(player1_barrier)
 makebarrier(player2_barrier)
 	imageMode(CENTER)
-
-	Scene = new PlayScene();
-	DieScene = new diescene();
-	c = new crash();
+    c = new crash();
     sos = new SOSScene();
-
+    mainmenu = new MainScene();
+    infoscene = new InfoScene();
+    waitscene = new WaitingScene();
+    playscene = new PlayScene();
+    dieScene = new diescene();
 
 }
 
@@ -47,17 +48,51 @@ function Player_manager()
 {
 
 }
-
+// const MAINSCENE = 1;
+// const INFOSCENE = 2;
+// const WAITSCENE = 3;
+// const PLAYSCENE = 4;
+// const DIESCENE = 5;
+// const SOSSCENE = 6;
+// const INFO2SCENE = 7;
 function draw() {
 	background(0);
+switch(currentScene){
+    case MAINSCENE:
+    mainmenu.Draw();
+    mainmenu.Update();
+    break;
+    case INFOSCENE:
+    infoscene.Draw();
+    infoscene.Update();
+    break;
+    case WAITSCENE:
+    waitscene.Draw();
+    waitscene.Update();
+    break;
+    case PLAYSCENE:
+    playscene.Draw_text()
+    playscene.Update()
+    playscene.Draw()
+    break;
+    case DIESCENE:
+    playscene.Draw_text()
+    playscene.Update()
+    playscene.Draw()
+    dieScene.draw();
+    break;
+    case SOSSCENE:
+    infoscene.Draw();
+    infoscene.Update();
+    break;
+    case INFO2SCENE:
+    info2scene.Draw();
+    info2scene.Update();
+    break;
+}
 
-	Scene.Draw_text()
-	Scene.Update()
-	Scene.Draw()
 
 
-mainmenu_test.Draw();
-mainmenu_test.Update();
 }
 
 function keyPressed() {

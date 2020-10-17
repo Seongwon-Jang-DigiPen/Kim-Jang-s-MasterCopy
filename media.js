@@ -33,7 +33,7 @@ var bulletName = ["bullet1","bullet2","bullet3"]
 var image_barrier_left = [],image_barrier_right = [], image_barrier_square = [],image_barrier_bottom_edge,image_blackspace;//barrier image variable
 
 
-<<<<<<< HEAD
+
 var move1_sound = 0
 var move2_sound = 0
 var move3_sound = 0

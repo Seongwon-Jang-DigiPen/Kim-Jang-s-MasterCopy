@@ -1,7 +1,7 @@
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
-var currentScene = 4;
+
 var randomSwitch
 let x;
 let y;
