@@ -70,6 +70,9 @@ class MainScene{
 		this.changeinfoCount = 0;
 	}
 	Update(){
+		player1_Score = 0;
+		player2_Score = 0;
+		
 		if(this.squid.squid_animate){
 			this.squid.x +=this.squid.speed;
 			this.squid.image_num =(this.squid.image_num+0.25)%2;
@@ -94,9 +97,7 @@ class MainScene{
 		{
 			toInfoScene()
 		}
-   
-		this.changeinfoCount += 1/60;
-
+		this.changeinfoCount+=1/60
 	}
 	Draw(){
 		push();

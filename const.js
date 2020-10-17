@@ -3,7 +3,6 @@
 //GAM100
 //Fall, 2020
 
-
 /////////////////// level
 const monster_move_minimum = 0;
 const monster_move_maximum = 192 * 2 - 8 * 2;

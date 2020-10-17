@@ -20,6 +20,7 @@ class UFO_1 {
     this.IsUFODie = false;
     this.ufoSound = false
     this.point = 50*(round(random(1,5)))
+    this.textsize = 15
 
   }
 
@@ -59,7 +60,7 @@ class UFO_1 {
   }
 
   goneUFO() {
-    if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width/2) {
+    if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width) {
       ufo_sound.stop()
       return true
     }
@@ -78,8 +79,9 @@ class UFO_1 {
     this.time+=10
     if(this.count >= 3){
       push()
-      fill(255)
-      text(this.point,this.position_x,this.position_y)
+      textSize(this.textsize)
+      fill(242,122,255)
+      text(this.point,this.position_x-20,this.position_y+10)
       pop()
     } 
     if(this.count == 6){

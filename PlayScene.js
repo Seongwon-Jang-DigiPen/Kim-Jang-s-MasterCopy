@@ -29,6 +29,9 @@ var player2_level = new level(LEVEL_1,player2_Round);
 
 var player1_barrier = []
 var player2_barrier = []
+
+var player1_bonus_life = false
+var player2_bonus_life = false
 ///////////////////////
 var currentlevel = player1_level
 
@@ -49,6 +52,35 @@ var barrier_2_pos_x = 142;
 var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
 var makeMonsterAnimation = [];
+
+function highScorecheck()
+{
+  if(highScore<player1_Score)
+  {
+    highScore=player1_Score
+  }
+if(highScore<player2_Score)
+  {
+    highScore=player2_Score
+  }
+}
+
+function bonusLife()
+{
+if(1500<=player1_Score&&!player1_bonus_life)
+{
+playerArray[0].life++
+player1_bonus_life = true
+bonus_life_sound.play()
+}
+if(1500<=player2_Score&&!player2_bonus_life)
+{
+playerArray[0].life++
+player2_bonus_life = true
+bonus_life_sound.play()
+}
+
+}
 
 function set_gameScene(play2)
 {
@@ -93,6 +125,8 @@ class PlayScene extends EmptyScene{
 
 Update()
 {
+  highScorecheck()
+  bonusLife()
   this.roundChange()
   if(this.black_Scene)
   {
@@ -205,7 +239,14 @@ for(var i=0;i<currentlevel.monster.length;i++)
 {
   makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
 }
-toSOSScene();
+if(round==9)
+{
+toInfo2Scene()
+}
+if(round>9)
+{
+  toSOSScene();
+}
 }
 
 }
@@ -288,12 +329,14 @@ function playScene_OnKeyPressd()
   attackArray.push(new bullet(playerArray[0].position_x));
 }
 if (key == 'u') {
-  callUFO_1();    
+  player1_Score += 100
+  player2_Score += 90
 }
 
 if (key == 'a') {
   currentlevel.monster.splice(0,11)   
 }
+
 if(keyCode == 13)
 {
 
@@ -396,7 +439,6 @@ function playScene_Update()
  if(currentlevel.bullet.length > 0) {
    c.delete_player(playerArray[0], currentlevel)
  }
-
 
 }
 

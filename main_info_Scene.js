@@ -90,7 +90,6 @@ class InfoScene extends EmptyScene{
 			squid_animate:false,
 			squid_state : 'going',
 		}
-		this.score_board=0;//make scoreboard.js
 		this.static_text =[this.play,this.game_name,this.score_advance,this.TAITO_CORP]
 		this.ufo =true;
 		this.squid =false;
@@ -185,6 +184,7 @@ class InfoScene extends EmptyScene{
 						// console.log('on!!!!!!!!');
 						// console.log(this.fix_y_ani)
 						this.fix_y_ani.squid_state ='returnY'
+						this.timer =0;
 					}
 				}
 			}
@@ -201,14 +201,11 @@ class InfoScene extends EmptyScene{
 			}
 			if(this.fix_y_ani.squid_state == 'ani_end'){
 				this.fix_y_ani.squid_draw = false;
+				this.timer +=1/60;
+				if(this.timer > 3){
+					toWaitScene()
+				}
 			}
-		}
-		//
-		//animation 'y' and squid
-
-			if(this.fix_y_ani.squid_state == 'ani_end')
-		{
-			toWaitScene()
 		}
 	}
 	text_animation(info_text){

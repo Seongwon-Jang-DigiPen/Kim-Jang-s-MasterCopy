@@ -5,12 +5,13 @@
 
 
 //전달사항
-//열심히 하자 얘들아
+
 
 
 
 var Scene
 var previousScene = 0
+
 
 
 function setup() {
@@ -23,12 +24,18 @@ function setup() {
 	makebarrier(player2_barrier)
 	imageMode(CENTER)
 
+
 	Scene = new MainScene()
+
 	c = new crash();
 
 }
 
-
+function toInfo2Scene()
+{
+	previousScene = Scene;
+	Scene = new Info2Scene();
+}
 function toWaitScene()
 {
 	Scene = new WaitingScene()
