@@ -90,7 +90,6 @@ class InfoScene extends EmptyScene{
 			squid_animate:false,
 			squid_state : 'going',
 		}
-		this.score_board=0;//make scoreboard.js
 		this.static_text =[this.play,this.game_name,this.score_advance,this.TAITO_CORP]
 		this.ufo =true;
 		this.squid =false;
