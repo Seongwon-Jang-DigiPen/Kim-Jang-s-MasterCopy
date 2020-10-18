@@ -9,9 +9,7 @@ class MainScene{
 		this.PLEASE_SELECT = {
 			text : '  PLEASE SSELECT',
 			x : 49,
-			y : 159,
-			s_position : 0,
-			y : 174,
+            y : 174,
 			color : '#51ccd3'
 		};
 		this.ONE_OR_TWO_PLAYER = {
