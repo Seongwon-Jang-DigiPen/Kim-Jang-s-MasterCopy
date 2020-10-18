@@ -405,7 +405,8 @@ function playScene_Update()
 
     }
   }
-
+//=======================================================================================================================
+//These are to manage collisions and effects.
   if(UFO_1Array.length > 0 && UFO_1Array[0].goneUFO()) {
     c.crash_one(UFO_1Array)
   }
@@ -444,7 +445,7 @@ function playScene_Update()
  if(currentlevel.bullet.length > 0) {
    c.delete_player(playerArray[0], currentlevel)
  }
-
+//=======================================================================================================================
 }
 
 function crash_effect_get_position (a) {
