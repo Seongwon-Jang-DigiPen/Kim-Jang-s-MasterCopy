@@ -27,7 +27,6 @@ class bullet {
     this.position_y -= this.position_speed
   }
 
-  //몹에 맞거나, 벽에 맞거나, 맨 위에 맞거나
   crashWallBullet() {
     if (this.position_y < 0 || each_bullet_crash()) {
       return true

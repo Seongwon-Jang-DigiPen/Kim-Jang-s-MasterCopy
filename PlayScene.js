@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
@@ -16,7 +20,7 @@ var playerlevel = 12;
 var barrier_gameplay = [];
 
 
-/////////////////////// save the player info when player is changed
+
 var player1_player = new player()
 var player2_player = new player()
 playerArray[0]= player1_player;
@@ -27,12 +31,9 @@ var player2_Round = 1;
 var player1_level = new level(LEVEL_1,player1_Round);
 var player2_level = new level(LEVEL_1,player2_Round); 
 
-var player1_barrier = []
-var player2_barrier = []
-
 var player1_bonus_life = false
 var player2_bonus_life = false
-///////////////////////
+
 var currentlevel = player1_level
 
 var highScore = 5000;
@@ -334,7 +335,7 @@ if (key == 'u') {
 }
 
 if (key == 'a') {
-  currentlevel.monster.splice(0,54)   
+  currentlevel.monster.splice(0,10)   
 }
 
 if(keyCode == 13)
@@ -386,7 +387,6 @@ function playScene_Update()
     u.draw();
     u.update();
     if(u.IsThisUfo2){
-      u.canmakecheck(currentlevel.monster);
       u.makemonster(currentlevel);
     }
   }
@@ -451,7 +451,6 @@ function crash_effect_get_position (a) {
 
 function callUFO_1() {
   UFO_1Array.push(new UFO_1());
-  UFO_1Array[0].IsThisSpecialUFO = false;
 }
 
 function bullet_UFO_1_crash() {

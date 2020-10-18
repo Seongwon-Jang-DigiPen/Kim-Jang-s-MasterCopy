@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 class MainScene{
 	constructor(){
 		this.PLEASE_SELECT = {
@@ -42,11 +46,6 @@ class MainScene{
 			c_x:39,
 			c_y:405
 		}
-		// this.HIGH_SCORE = {
-		// 	text : ['HIGHT',' SCORE',' 05000','1UP',' 00000','2UP','ROUND'],
-		// 	x : 385,
-		// 	y : [47,63,95,127,159,191,271]
-		// }
 		this.color_text = [this.PLEASE_SELECT,this.ONE_OR_TWO_PLAYER,this.ONE_PLAYER,this.TWO_PLAYER,this.TAITO_CORP];
 		this.squid={
 			image:[mainscene_squid_image[6],mainscene_squid_image[7]],
@@ -110,17 +109,14 @@ class MainScene{
 			text(this.color_text[i].text,this.color_text[i].x,this.color_text[i].y);
 			pop();
 		}
-		// for(var i = 0;i<this.HIGH_SCORE.text.length;i++){
-		// 	text(this.HIGH_SCORE.text[i],this.HIGH_SCORE.x,this.HIGH_SCORE.y[i]);
-		// }
+
 		if(this.ONE_OR_TWO_PLAYER.state==1){
 			image(this.ONE_OR_TWO_PLAYER.one_image,this.ONE_OR_TWO_PLAYER.one_x,this.ONE_OR_TWO_PLAYER.one_y)
 		}
 		else if(this.ONE_OR_TWO_PLAYER.state==2){
 			image(this.ONE_OR_TWO_PLAYER.two_image,this.ONE_OR_TWO_PLAYER.two_x,this.ONE_OR_TWO_PLAYER.two_y)
 		}
-		// image()//monster animation
-		// image()//player choose image
+
 		pop();
 		if(this.squid.squid_draw){
 			image(this.squid.image[floor(this.squid.image_num)],this.squid.x,this.squid.y);
@@ -138,7 +134,6 @@ class MainScene{
 	OnKeyPressed(){
 		if(keyCode == 16){
 			this.changeinfoCount = 0
-			// console.log(this.ONE_OR_TWO_PLAYER.state)
 			if(this.ONE_OR_TWO_PLAYER.state==1){
 				this.ONE_OR_TWO_PLAYER.state = 2;
 			}

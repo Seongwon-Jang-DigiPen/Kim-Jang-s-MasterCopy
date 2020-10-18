@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 class InfoScene extends EmptyScene{
 	constructor(){
 		super();
@@ -137,7 +141,6 @@ class InfoScene extends EmptyScene{
 	if(this.fix_y_ani.squid_draw){
 		image(this.fix_y_ani.squid_image[floor(this.fix_y_ani.image_num)],this.fix_y_ani.squid_x,this.fix_y_ani.squid_y);
 	}
-	//draw score boards
 	pop();
 	draw_text();
 	push();
@@ -159,7 +162,6 @@ class InfoScene extends EmptyScene{
 			this.fix_y_ani.squid_animate = true;
 		}
 		if(this.fix_y_ani.squid_animate){
-			// console.log(this.fix_y_ani.squid_state);
 			this.fix_y_ani.image_num = (this.fix_y_ani.image_num+0.25)%2
 			if(this.fix_y_ani.squid_state =='going'){
 				this.fix_y_ani.squid_draw = true;
@@ -179,10 +181,7 @@ class InfoScene extends EmptyScene{
 					this.play.y_draw = false;
 					this.play.y_angle = PI;
 					this.timer +=0.1;
-					// console.log(this.timer);
 					if(this.timer > 5){
-						// console.log('on!!!!!!!!');
-						// console.log(this.fix_y_ani)
 						this.fix_y_ani.squid_state ='returnY'
 						this.timer =0;
 					}
@@ -191,7 +190,6 @@ class InfoScene extends EmptyScene{
 			if(this.fix_y_ani.squid_state == 'returnY'){
 				this.fix_y_ani.image_num +=2;
 				this.play.y_draw = true;
-				// console.log(this.play.y_x);
 				this.fix_y_ani.squid_draw = true;
 				this.fix_y_ani.squid_x-=this.fix_y_ani.speed;
 				this.play.y_x-=this.fix_y_ani.speed;
@@ -214,7 +212,6 @@ if(info_text.rate>=info_text.text.length){
 		}
 		for(var i =0;i<info_text.rate;i++){
 			var text_size = 16
-			// console.log(info_text.text[i]);
 			push();
 			fill(info_text.color);
 			text(info_text.text[i],info_text.x+i*text_size,info_text.y);

@@ -14,7 +14,8 @@ class UFO_1 {
     this.canmake = [];
     this.move = true;
     this.UFOsquidvalue = 0;
-    this.IsThisSpecialUFO = false;
+    this.IsThisSpecialUFO = true;
+    this.IsThisUfo2 = false;
     this.time = 0;
     this.count = 0;
     this.IsUFODie = false;
@@ -26,6 +27,21 @@ class UFO_1 {
       this.go_right = false;
       this.position_x = play_scene_maximumX - this.width
     }
+
+    if((currentlevel.playerlevel%16)>8)
+    {
+      if(random(0,100)<50)
+      {
+        this.IsThisSpecialUFO = true
+        this.point = 500;
+      }
+    }
+        if((currentlevel.playerlevel%16)>11&&!this.IsThisSpecialUFO)
+    {
+        this.IsThisUfo2 = true
+    }
+
+
   }
 
   randomized() {
@@ -56,11 +72,24 @@ class UFO_1 {
   }
 
   draw() {
+    if(!this.IsThisSpecialUFO)
+    {
+      console.log(this.IsThisSpecialUFO)
     if(!playerArray[0].IsPlayerDie && !this.IsUFODie) {
       image(image_UFO_1, this.position_x, this.position_y, this.width, this.height);
     } else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
       image(image_UFO_1_R, this.position_x, this.position_y, this.width, this.height);
     }
+}
+else
+{
+     if(!playerArray[0].IsPlayerDie && !this.IsUFODie) {
+      image(image_UFO_2, this.position_x, this.position_y, this.width, this.height);
+    } else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
+      image(image_UFO_2_R, this.position_x, this.position_y, this.width, this.height);
+    }
+}
+
   }
 
   goneUFO() {
@@ -90,7 +119,7 @@ class UFO_1 {
     } 
     if(this.count == 6){
       this.IsUFODie = false;
-      //this.count = 0;
+      this.count = 0;
       if(player1)
       {
         player1_Score += this.point;
@@ -126,7 +155,7 @@ class UFO_1 {
   {
     this.defalt_x = level.monster[0].position_x-(level.monster[0].row*MONSTERDISTANCE);
     this.defalt_y = level.monster[0].position_y-(level.monster[0].column*MONSTERDISTANCE);
-  
+
     if(this.move == false)
     {
       level.stiffen = true

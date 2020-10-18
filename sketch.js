@@ -3,12 +3,6 @@
 //GAM100
 //Fall, 2020
 
-
-//전달사항
-
-
-
-
 var Scene
 var previousScene = 0
 
@@ -20,8 +14,6 @@ function setup() {
 	textFont(Font);
 	createCanvas(480, 448);
 	makebarrier(barrier_gameplay)
-	makebarrier(player1_barrier)
-	makebarrier(player2_barrier)
 	imageMode(CENTER)
 
 

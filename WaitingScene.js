@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 class WaitingScene extends EmptyScene{
 	constructor(){
 		super();
@@ -12,22 +16,15 @@ class WaitingScene extends EmptyScene{
 		var scaley = 1;
 		image(this.waiting_patterns[this.pattern_num],240,224,480*scalex, 448*scaley);
 		if(this.current){
-			// this.waiting_patterns[this.pattern_num].size(50,50)
 			this.waiting_patterns[this.pattern_num].play();
 			this.current = false;
 		}
-	// push();
-	// noStroke();
-	// fill(0,100);
-	// rect(0,0,width,height);
-	// pop();
 }
 Update(){
 	this.timer += 1/60;
 	if(this.timer>15){
 		this.waiting_patterns[this.pattern_num].stop();
 			toMainScene()
-			//mainmenu
 		}
 	}
 	OnKeyPressed(){
