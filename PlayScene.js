@@ -334,13 +334,9 @@ function blackScreen()
 
 function playScene_OnKeyPressd()
 {
- if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie &&!this.pause) {
+ if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie &&!this.pause) { 
   fire_sound.play();
   attackArray.push(new bullet(playerArray[0].position_x));
-}
-
-if (key == 'a') {
-  currentlevel.monster.splice(0,10)   
 }
 
 if(keyCode == 13)
@@ -361,7 +357,7 @@ if(keyCode == 13)
 
 function playScene_Update()
 {
-
+ // draw and update barrier
   for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++){
     barrier_gameplay[barrier_make].generate();
     barrier_gameplay[barrier_make].update();
@@ -372,22 +368,25 @@ function playScene_Update()
       barrier_gameplay[barrier_make].monsterCollision(currentlevel.monster[monster_hit_check]);
     }
   }
-
+ // draw and update player
   playerArray[0].update();
   playerArray[0].draw();
 
+ // draw and update level(monster)
   currentlevel.color();
   currentlevel.draw();
   currentlevel.update();
-
   if(!playerArray[0].IsPlayerDie){
     currentlevel.attack(playerArray[0]);
   }
 
+ // draw and update bullet
   for (let a of attackArray) {
     a.draw();
     a.update();
   }
+
+// draw and update UFO
   for (let u of UFO_1Array) {
     u.draw();
     u.update();
@@ -396,9 +395,10 @@ function playScene_Update()
     }
   }
 
+// if monster is down to much then player die
   for (let m of currentlevel.monster)
   {
-    if(m.position_y>400)
+    if(m.position_y>384)
     {
       playerArray[0].life = -1;
       playerArray[0].IsPlayerDie = true
