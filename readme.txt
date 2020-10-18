@@ -12,6 +12,8 @@ GAM100F20KR
 
 The purpose of the game is to control the launch spaceship at the bottom of the screen, and destroy the invaders at the middle and top of the screen. 
 
+You can select that how many player will game via 'Shift' key, and submit via 'Enter' key.
+
 You can move the spaceship only left and right direction via arrow keys.
 
 You can fire the bullet via 'z' key.
