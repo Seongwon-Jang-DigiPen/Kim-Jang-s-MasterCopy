@@ -5,7 +5,7 @@
 //Junsu Jang
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class MainScene{
-	constructor(){
+	constructor(){//Information of mainScene texts
 		this.PLEASE_SELECT = {
 			text : '  PLEASE SSELECT',
 			x : 49,
@@ -74,7 +74,7 @@ class MainScene{
 		player1_Score = 0;
 		player2_Score = 0;
 		
-		if(this.squid.squid_animate){
+		if(this.squid.squid_animate){//Delete 's' animation
 			this.squid.x +=this.squid.speed;
 			this.squid.image_num =(this.squid.image_num+0.25)%2;
 			if(this.squid.x>=this.squid.purpose){
@@ -94,13 +94,13 @@ class MainScene{
 			}
 		}
 
-		if(7<this.changeinfoCount)
+		if(7<this.changeinfoCount)//To infoScene
 		{
 			toInfoScene()
 		}
 		this.changeinfoCount+=1/60
 	}
-	Draw(){
+	Draw(){// Draw texts and animation
 		push();
 		textSize(16);
 		background(0);
@@ -127,14 +127,14 @@ class MainScene{
 			image(this.squid.bullet_image[floor(this.squid.bullet_image_num)],this.squid.bullet_x,this.squid.bullet_y);
 		}
 		image(this.TAITO_CORP.cicle_c,this.TAITO_CORP.c_x,this.TAITO_CORP.c_y);
-		draw_text();
+		draw_text();//High score board
 		push();
 		fill(0);
 		rect(447, 300,50,50);
 		pop();
 	}
 	OnKeyPressed(){
-		if(keyCode == 16){
+		if(keyCode == 16){//Choose 1-p mode and 2-p mode 
 			this.changeinfoCount = 0
 			if(this.ONE_OR_TWO_PLAYER.state==1){
 				this.ONE_OR_TWO_PLAYER.state = 2;
@@ -143,7 +143,7 @@ class MainScene{
 				this.ONE_OR_TWO_PLAYER.state = 1;
 			}
 		}
-		if(keyCode == 13)
+		if(keyCode == 13)//Enter to playScene
 		{
 			if(this.ONE_OR_TWO_PLAYER.state==1)
 			{

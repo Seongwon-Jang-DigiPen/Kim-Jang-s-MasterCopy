@@ -6,7 +6,7 @@ Kin & Jang(s)
 
 김대현 daehyeon.kim
 장성원 seongwon.jang
-장준수 junsu.jand
+장준수 junsu.jang
 
 GAM100F20KR
 

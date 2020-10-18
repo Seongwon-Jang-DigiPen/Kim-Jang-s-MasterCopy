@@ -5,7 +5,7 @@
 //Junsu Jang
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class Info2Scene extends EmptyScene{
-	constructor(){
+	constructor(){//Information of infoScene texts
 		super();
 		this.game_name = {
 			text : 'SPACE INVADERS I',
@@ -96,7 +96,7 @@ class Info2Scene extends EmptyScene{
 		this.octopus =false;
 		this.timer =0;
 	}
-	Draw(){
+	Draw(){//Draw texts
 		push();
 		textSize(16);
 		background(0);
@@ -118,7 +118,7 @@ class Info2Scene extends EmptyScene{
 	image(this.crab_point.image,this.crab_point.image_x,this.crab_point.image_y);
 	image(this.octopus_point.image,this.octopus_point.image_x,this.octopus_point.image_y);
 	image(this.TAITO_CORP.cicle_c,this.TAITO_CORP.c_x,this.TAITO_CORP.c_y);
-	if(this.red_ufo){
+	if(this.red_ufo){//Text animation
 		this.text_animation(this.red_ufo_point);
 	}
 	if(this.green_ufo){
@@ -134,11 +134,11 @@ class Info2Scene extends EmptyScene{
 		this.text_animation(this.octopus_point);
 	}
 	pop();
-	draw_text();
-    draw_life();
+	draw_text();//High score board
+    draw_life();//Player life
 	}
 	Update(){
-		if(this.red_ufo_point.rate ==this.red_ufo_point.text.length){
+		if(this.red_ufo_point.rate ==this.red_ufo_point.text.length){//Change next animation's state false to true
 			this.green_ufo = true;
 		}
 		if(this.green_ufo_point.rate ==this.green_ufo_point.text.length){
@@ -153,11 +153,11 @@ class Info2Scene extends EmptyScene{
 		if(this.octopus_point.rate ==this.octopus_point.text.length){
 			this.timer +=1/60;
 			if(this.timer>5){
-				toPlayScene();
+				toPlayScene();//To play scene
 			}
 		}
 	}
-	text_animation(info_text){
+	text_animation(info_text){//Draw text animation
 if(info_text.rate>=info_text.text.length){
 			info_text.rate = info_text.text.length;
 		}

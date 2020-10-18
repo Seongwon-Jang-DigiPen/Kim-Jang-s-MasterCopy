@@ -5,7 +5,7 @@
 //Junsu Jang
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class InfoScene extends EmptyScene{
-	constructor(){
+	constructor(){//Information of infoScene texts
 		super();
 		this.play ={
 			text : 'PLA',
@@ -96,14 +96,14 @@ class InfoScene extends EmptyScene{
 			squid_animate:false,
 			squid_state : 'going',
 		}
-		this.static_text =[this.play,this.game_name,this.score_advance,this.TAITO_CORP]
+		this.static_text =[this.play,this.game_name,this.score_advance,this.TAITO_CORP]//Array of static texts
 		this.ufo =true;
 		this.squid =false;
 		this.crab =false;
 		this.octopus =false;
 		this.timer =0;
 	}
-	Draw(){
+	Draw(){//Draw texts
 		push();
 		textSize(16);
 		background(0);
@@ -128,7 +128,7 @@ class InfoScene extends EmptyScene{
 	image(this.crab_point.image,this.crab_point.image_x,this.crab_point.image_y);
 	image(this.octopus_point.image,this.octopus_point.image_x,this.octopus_point.image_y);
 	image(this.TAITO_CORP.cicle_c,this.TAITO_CORP.c_x,this.TAITO_CORP.c_y);
-	if(this.ufo){
+	if(this.ufo){//Text animation
 		this.text_animation(this.ufo_point);
 	}
 	if(this.squid){
@@ -140,18 +140,18 @@ class InfoScene extends EmptyScene{
 	if(this.octopus){
 		this.text_animation(this.octopus_point);
 	}
-	if(this.fix_y_ani.squid_draw){
+	if(this.fix_y_ani.squid_draw){//Fix 'y' animation
 		image(this.fix_y_ani.squid_image[floor(this.fix_y_ani.image_num)],this.fix_y_ani.squid_x,this.fix_y_ani.squid_y);
 	}
 	pop();
-	draw_text();
+	draw_text();//High score board
 	push();
 	fill(0);
 	rect(447, 300,50,50);
 	pop();
 	}
 	Update(){
-		if(this.ufo_point.rate ==this.ufo_point.text.length){
+		if(this.ufo_point.rate ==this.ufo_point.text.length){//Change next animation's state false to true
 			this.squid = true;
 		}
 		if(this.squid_point.rate ==this.squid_point.text.length){
@@ -163,7 +163,7 @@ class InfoScene extends EmptyScene{
 		if(this.octopus_point.rate ==this.octopus_point.text.length){
 			this.fix_y_ani.squid_animate = true;
 		}
-		if(this.fix_y_ani.squid_animate){
+		if(this.fix_y_ani.squid_animate){//Fix 'y' animation state
 			this.fix_y_ani.image_num = (this.fix_y_ani.image_num+0.25)%2
 			if(this.fix_y_ani.squid_state =='going'){
 				this.fix_y_ani.squid_draw = true;
@@ -203,12 +203,12 @@ class InfoScene extends EmptyScene{
 				this.fix_y_ani.squid_draw = false;
 				this.timer +=1/60;
 				if(this.timer > 3){
-					toWaitScene()
+					toWaitScene()//To wait scene
 				}
 			}
 		}
 	}
-	text_animation(info_text){
+	text_animation(info_text){//Draw text animation
 if(info_text.rate>=info_text.text.length){
 			info_text.rate = info_text.text.length;
 		}
@@ -227,7 +227,7 @@ if(info_text.rate>=info_text.text.length){
 
 		if(keyCode == 13)
 		{
-			toMainScene()
+			toMainScene()//To main scene
 		}
 	}
 	
