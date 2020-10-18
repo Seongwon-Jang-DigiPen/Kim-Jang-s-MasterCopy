@@ -433,33 +433,20 @@ var right_barrier_image = [ //up_damaged
     monsterBulletEffectTimer = frameCount;
   }
 
-  m_hitRange(object, player_or_monster, currentlevel) {//Check monster bullet position and if it hits barrier, barrier has 1 up damage. 
+  m_hitRange(object, currentlevel) {//Check monster bullet position and if it hits barrier, barrier has 1 up damage. 
     var left_x = this.x - this.image_size;
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
-      if (player_or_monster == 'player') {
-        this.player_object_status = 1;
-      } else {
         this.monster_object_status = 1;
-      }
-
     }
     if (object.position_x <= right_x + this.image_size / 2 && object.position_x > right_x - this.image_size / 2 ) {
-      if (player_or_monster == 'player') {
-        this.player_object_status = 3;
-      } else {
         this.monster_object_status = 3;
-      }
     }
     if (object.position_x <= this.x + this.image_size / 2 && object.position_x >= this.x - this.image_size / 2 ) {
-      if (player_or_monster == 'player') {
-        this.player_object_status = 2;
-      } else {
         this.monster_object_status = 2;
-      }
     } //Check left, right, and middle
 
     switch (this.monster_object_status) {
@@ -512,33 +499,21 @@ var right_barrier_image = [ //up_damaged
     }
 }
 
-  p_hitRange(object, player_or_monster, currentlevel) {//Check player bullet position and if it hits barrier, barrier has 1 down damage. 
+  p_hitRange(object, currentlevel) {//Check player bullet position and if it hits barrier, barrier has 1 down damage. 
     var left_x = this.x - this.image_size;
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
-      if (player_or_monster == 'player') {
         this.player_object_status = 1;
-      } else {
-        this.monster_object_status = 1;
-      }
 
     }
     if (object.position_x <= right_x + this.image_size / 2 && object.position_x > right_x - this.image_size / 2 ) {
-      if (player_or_monster == 'player') {
         this.player_object_status = 3;
-      } else {
-        this.monster_object_status = 3;
-      }
     }
     if (object.position_x <= this.x + this.image_size / 2 && object.position_x >= this.x - this.image_size / 2 ) {
-      if (player_or_monster == 'player') {
         this.player_object_status = 2;
-      } else {
-        this.monster_object_status = 2;
-      }
     }//Check left, right, and middle
 
     switch (this.player_object_status) {

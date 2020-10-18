@@ -350,7 +350,7 @@ attack(player)
       this.bullet[0].update()
       if(this.fire){
         for(var make_barr = 0;make_barr<barrier_num;make_barr++){
-          barrier_gameplay[make_barr].m_hitRange(this.bullet[0],'monster',this);
+          barrier_gameplay[make_barr].m_hitRange(this.bullet[0],this);
         }
       }
 

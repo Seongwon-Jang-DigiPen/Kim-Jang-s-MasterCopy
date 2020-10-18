@@ -362,7 +362,7 @@ function playScene_Update()
     barrier_gameplay[barrier_make].generate();
     barrier_gameplay[barrier_make].update();
     for(var bullet_count = 0;bullet_count<attackArray.length;bullet_count++){
-      barrier_gameplay[barrier_make].p_hitRange(attackArray[bullet_count],'player', currentlevel);
+      barrier_gameplay[barrier_make].p_hitRange(attackArray[bullet_count], currentlevel);
     }
     for(monster_hit_check = 0;monster_hit_check<currentlevel.monster.length;monster_hit_check ++){
       barrier_gameplay[barrier_make].monsterCollision(currentlevel.monster[monster_hit_check]);
