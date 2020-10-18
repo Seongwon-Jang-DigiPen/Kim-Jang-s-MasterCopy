@@ -1,19 +1,20 @@
-//Kim & Jangs
+//const.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//All team members
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 
-/////////////////// level
 const monster_move_minimum = 0;
 const monster_move_maximum = 192 * 2 - 8 * 2;
 const play_scene_maximumX = 384;
 const play_scene_maximumY = 448;
-const GREEN_ZONE = 144
-const BLUE_ZONE = 208
-const PINK_ZONE = 272
-const YELLOW_ZONE = 336
+const GREEN_ZONE = 128
+const BLUE_ZONE = 192
+const PINK_ZONE = 256
+const YELLOW_ZONE = 320
 const MONSTERDISTANCE = 32;
-const MONSTERYOFFSET = 96;
+const MONSTERYOFFSET = 80;
 const OCTOPUS = 1;
 const CRAB = 2;
 const SQUID = 3;

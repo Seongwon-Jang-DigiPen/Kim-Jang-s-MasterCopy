@@ -1,3 +1,9 @@
+//PlayScene.js
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
+//Major : Seongwon Jang, Minor : Daehyeon Kim, Junsu Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
@@ -16,7 +22,7 @@ var playerlevel = 12;
 var barrier_gameplay = [];
 
 
-/////////////////////// save the player info when player is changed
+
 var player1_player = new player()
 var player2_player = new player()
 playerArray[0]= player1_player;
@@ -27,9 +33,9 @@ var player2_Round = 1;
 var player1_level = new level(LEVEL_1,player1_Round);
 var player2_level = new level(LEVEL_1,player2_Round); 
 
-var player1_barrier = []
-var player2_barrier = []
-///////////////////////
+var player1_bonus_life = false
+var player2_bonus_life = false
+
 var currentlevel = player1_level
 
 var highScore = 5000;
@@ -49,6 +55,35 @@ var barrier_2_pos_x = 142;
 var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
 var makeMonsterAnimation = [];
+
+function highScorecheck()
+{
+  if(highScore<player1_Score)
+  {
+    highScore=player1_Score
+  }
+if(highScore<player2_Score)
+  {
+    highScore=player2_Score
+  }
+}
+
+function bonusLife()
+{
+if(1500<=player1_Score&&!player1_bonus_life)
+{
+playerArray[0].life++
+player1_bonus_life = true
+bonus_life_sound.play()
+}
+if(1500<=player2_Score&&!player2_bonus_life)
+{
+playerArray[0].life++
+player2_bonus_life = true
+bonus_life_sound.play()
+}
+
+}
 
 function set_gameScene(play2)
 {
@@ -93,6 +128,8 @@ class PlayScene extends EmptyScene{
 
 Update()
 {
+  highScorecheck()
+  bonusLife()
   this.roundChange()
   if(this.black_Scene)
   {
@@ -205,7 +242,14 @@ for(var i=0;i<currentlevel.monster.length;i++)
 {
   makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
 }
-toSOSScene();
+if(round==9)
+{
+toInfo2Scene()
+}
+if(round>9)
+{
+  toSOSScene();
+}
 }
 
 }
@@ -288,12 +332,14 @@ function playScene_OnKeyPressd()
   attackArray.push(new bullet(playerArray[0].position_x));
 }
 if (key == 'u') {
-  callUFO_1();    
+  player1_Score += 100
+  player2_Score += 90
 }
 
 if (key == 'a') {
-  currentlevel.monster.splice(0,11)   
+  currentlevel.monster.splice(0,10)   
 }
+
 if(keyCode == 13)
 {
 
@@ -343,7 +389,6 @@ function playScene_Update()
     u.draw();
     u.update();
     if(u.IsThisUfo2){
-      u.canmakecheck(currentlevel.monster);
       u.makemonster(currentlevel);
     }
   }
@@ -408,7 +453,6 @@ function crash_effect_get_position (a) {
 
 function callUFO_1() {
   UFO_1Array.push(new UFO_1());
-  UFO_1Array[0].IsThisSpecialUFO = false;
 }
 
 function bullet_UFO_1_crash() {

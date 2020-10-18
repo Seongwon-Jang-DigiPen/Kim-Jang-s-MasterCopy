@@ -1,3 +1,9 @@
+//maininfo2Scene
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
+//Junsu Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class Info2Scene extends EmptyScene{
 	constructor(){
 		super();
@@ -127,7 +133,6 @@ class Info2Scene extends EmptyScene{
 	if(this.octopus){
 		this.text_animation(this.octopus_point);
 	}
-	//draw score boards
 	pop();
 	draw_text();
     draw_life();
@@ -145,6 +150,12 @@ class Info2Scene extends EmptyScene{
 		if(this.crab_point.rate ==this.crab_point.text.length){
 			this.octopus = true;
 		}
+		if(this.octopus_point.rate ==this.octopus_point.text.length){
+			this.timer +=1/60;
+			if(this.timer>5){
+				toPlayScene();
+			}
+		}
 	}
 	text_animation(info_text){
 if(info_text.rate>=info_text.text.length){
@@ -152,7 +163,6 @@ if(info_text.rate>=info_text.text.length){
 		}
 		for(var i =0;i<info_text.rate;i++){
 			var text_size = 16
-			// console.log(info_text.text[i]);
 			push();
 			fill(info_text.color);
 			text(info_text.text[i],info_text.x+i*text_size,info_text.y);

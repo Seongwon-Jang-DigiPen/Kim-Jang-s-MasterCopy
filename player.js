@@ -1,7 +1,9 @@
-//Kim & Jangs
+//player.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Major : Daehyeon Kim, Minor : Seongwon Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class player {
   constructor() {
     this.position_x = 32;
@@ -46,7 +48,7 @@ class player {
 
   dieScene() {
     this.time+=10
-
+ufo_sound.stop()
     if(this.count > 6){
       if(this.life <= 0) 
       {
@@ -142,7 +144,7 @@ changePlayer()
   {  
     if(player2_play)
     {
-    if(player1) // change 1 to 2
+    if(player1)
     {
       this.life--
       this.position_x = 50;
@@ -150,16 +152,14 @@ changePlayer()
       player1_player = playerArray[0];
       player1 = false;
       player2 = true;
-      player1_barrier = barrier_gameplay
-      barrier_gameplay  = player2_barrier
       player1_level = currentlevel
       currentlevel = player2_level
       this.IsPlayerDie = false;
       playerArray[0] = player2_player;
-      Scene.black_Scene = true;
+      Scene.black_Scene = true; 
     }
 
-    else if(player2) // change 2 to 1
+    else if(player2)
     {
       this.life--
       this.position_x = 50;
@@ -167,8 +167,6 @@ changePlayer()
       player2_player = playerArray[0];
       player1 = true;
       player2 = false;
-      player2_barrier = barrier_gameplay
-      barrier_gameplay  = player1_barrier
       player2_level = currentlevel;
       currentlevel = player1_level;
       this.IsPlayerDie = false;

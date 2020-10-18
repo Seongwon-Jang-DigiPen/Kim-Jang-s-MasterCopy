@@ -1,7 +1,9 @@
-//Kim & Jangs
+//level.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Seongwon Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class level {
 
   constructor(level, playerlevel) {
@@ -15,6 +17,10 @@ class level {
     this.movespeed = 0.02;
     this.playerlevel = playerlevel;
     this.monster_y_locate = ((playerlevel - 1) % 8) * 16
+    if((playerlevel - 1) % 8 > 5)
+      {this.monster_y_locate -=16}
+     if((playerlevel - 1) % 8 > 7)
+      {this.monster_y_locate -=16}
     this.soundcount = 0;
     this.UFOON =false;
 
@@ -347,7 +353,6 @@ attack(player)
         for(var make_barr = 0;make_barr<barrier_num;make_barr++){
           barrier_gameplay[make_barr].m_hitRange(this.bullet[0],'monster',this);
         }
-        
       }
 
       if(this.bullet[0].crashWallBullet())

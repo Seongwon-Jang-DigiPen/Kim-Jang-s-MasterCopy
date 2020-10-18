@@ -1,7 +1,9 @@
-//Kim & Jangs
+//crash.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Daehyeon Kim
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class crash {
   constructor() {
     this.switch_bullet = false;

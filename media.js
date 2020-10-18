@@ -1,3 +1,9 @@
+//media.js
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
+//All team members
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 var octopus_image = 0;
 var octopus_data = 0;
 var squid_image = 0;
@@ -45,6 +51,7 @@ var pause_sound = 0
 var player_die_sound = 0
 var ufo_sound = 0
 var ufo_die_sound = 0
+var bonus_life_sound = 0
  var waiting_pattern = [];
 var waiting_pattern = [];
 var mainscene_squid_image = [];
@@ -95,7 +102,8 @@ function preload() {
   move3_sound = loadSound('sound/note3.wav')
   move4_sound = loadSound('sound/note4.wav')
   fire_sound = loadSound('sound/fire.wav')
-  
+  bonus_life_sound = loadSound('sound/bonuslife.wav')
+
   invader_die_sound = loadSound('sound/invader_die.wav')
   pause_sound  = loadSound('sound/pause.mp3')
   player_die_sound = loadSound('sound/player_die.wav')

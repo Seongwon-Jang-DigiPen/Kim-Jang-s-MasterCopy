@@ -1,7 +1,9 @@
-//Kim & Jangs
+//UFO_1.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//1st : Daehyeon Kim, 2nd : Seongwon Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class UFO_1 {
   constructor() {
     this.position_x = 0;
@@ -14,13 +16,33 @@ class UFO_1 {
     this.canmake = [];
     this.move = true;
     this.UFOsquidvalue = 0;
-    this.IsThisSpecialUFO = true;
+    this.IsThisSpecialUFO = false;
+    this.IsThisUfo2 = false;
     this.time = 0;
     this.count = 0;
     this.IsUFODie = false;
     this.ufoSound = false
     this.point = 50*(round(random(1,5)))
     this.textsize = 15
+    if(random(0,100)<50)
+    {
+      this.go_right = false;
+      this.position_x = play_scene_maximumX - this.width
+    }
+
+    if((currentlevel.playerlevel%16)>8)
+    {
+      if(random(0,100)<50)
+      {
+        this.IsThisSpecialUFO = true
+        this.point = 500;
+      }
+    }
+        if((currentlevel.playerlevel%16)>11&&!this.IsThisSpecialUFO)
+    {
+        this.IsThisUfo2 = true
+    }
+
 
   }
 
@@ -52,15 +74,28 @@ class UFO_1 {
   }
 
   draw() {
+    if(!this.IsThisSpecialUFO)
+    {
+      console.log(this.IsThisSpecialUFO)
     if(!playerArray[0].IsPlayerDie && !this.IsUFODie) {
       image(image_UFO_1, this.position_x, this.position_y, this.width, this.height);
     } else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
       image(image_UFO_1_R, this.position_x, this.position_y, this.width, this.height);
     }
+}
+else
+{
+     if(!playerArray[0].IsPlayerDie && !this.IsUFODie) {
+      image(image_UFO_2, this.position_x, this.position_y, this.width, this.height);
+    } else if(playerArray[0].IsPlayerDie && !this.IsUFODie) {
+      image(image_UFO_2_R, this.position_x, this.position_y, this.width, this.height);
+    }
+}
+
   }
 
   goneUFO() {
-    if (this.position_x <= -21 || this.position_x >= play_scene_maximumX - this.width) {
+    if (this.position_x < 0 || this.position_x >= play_scene_maximumX - this.width) {
       ufo_sound.stop()
       return true
     }
@@ -86,7 +121,7 @@ class UFO_1 {
     } 
     if(this.count == 6){
       this.IsUFODie = false;
-      //this.count = 0;
+      this.count = 0;
       if(player1)
       {
         player1_Score += this.point;
@@ -122,7 +157,7 @@ class UFO_1 {
   {
     this.defalt_x = level.monster[0].position_x-(level.monster[0].row*MONSTERDISTANCE);
     this.defalt_y = level.monster[0].position_y-(level.monster[0].column*MONSTERDISTANCE);
-    console.log(level.behindmonsterdata)
+
     if(this.move == false)
     {
       level.stiffen = true

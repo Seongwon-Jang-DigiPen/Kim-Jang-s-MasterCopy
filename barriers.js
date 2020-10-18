@@ -1,3 +1,9 @@
+//barriers.js
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
+//Major : Junsu Jang, Minor : Daehyeon Kim
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class barrier {
   constructor(x, y) {
     this.x = x;
@@ -81,6 +87,18 @@ class barrier {
     pop();
   }
   update() {
+    if(this.left_up_damaged + this.left_down_damaged >= 11){
+      this.left_up_damaged = 11;
+      this.left_down_damaged = 0;
+    }
+    if(this.right_up_damaged + this.right_down_damaged >= 11){
+      this.right_up_damaged = 11;
+      this.right_down_damaged = 0;
+    }
+    if(this.up_damaged + this.down_damaged >= 9){
+      this.up_damaged = 9;
+      this.down_damaged = 0;
+    }
 
 var square_image_num = [
       [0, 5, 9, 12, 14, 15],
@@ -418,7 +436,6 @@ var right_barrier_image = [ //up_damaged
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-// console.log(attackArray);
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {
@@ -453,11 +470,10 @@ var right_barrier_image = [ //up_damaged
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged != 11)) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.left_up_damaged + this.left_down_damaged < 11)) {
             this.crash_effect(currentlevel)
           this.left_up_damaged++;
           this.monster_object_status = 0;
-          // console.log('left'+this.left_up_damaged);
         }
         
         break;
@@ -470,11 +486,10 @@ var right_barrier_image = [ //up_damaged
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged != 9)) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.up_damaged + this.down_damaged < 9)) {
             this.crash_effect(currentlevel)
           this.up_damaged++;
           this.monster_object_status = 0;
-          // console.log('middle'+this.up_damaged);
         }
         break;
       case 3:
@@ -486,13 +501,11 @@ var right_barrier_image = [ //up_damaged
           Y = this.y + object_size / 2;
         }
 
-        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged != 11)) {
+        if (object.position_y >= Y && object.position_y <= Y + this.image_size / 2 && (this.right_up_damaged + this.right_down_damaged < 11)) {
             this.crash_effect(currentlevel)
           this.right_up_damaged++;
           this.monster_object_status = 0;
-          // console.log('right'+this.right_up_damaged);
         }
-        
         break;
     }
 }
@@ -502,7 +515,6 @@ var right_barrier_image = [ //up_damaged
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-// console.log(attackArray);
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {
@@ -525,7 +537,7 @@ var right_barrier_image = [ //up_damaged
       } else {
         this.monster_object_status = 2;
       }
-    } //Check left, right, and middle
+    }
 
     switch (this.player_object_status) {
       case 1:
@@ -537,11 +549,10 @@ var right_barrier_image = [ //up_damaged
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.left_up_damaged + this.left_down_damaged != 11)) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.left_up_damaged + this.left_down_damaged < 11)) {
           bullet_removed(attackArray)
           this.left_down_damaged++;
           this.player_object_status = 0;
-          // console.log(this.left_down_damaged);
         }
         break;
       case 2:
@@ -555,7 +566,6 @@ var right_barrier_image = [ //up_damaged
           bullet_removed(attackArray);
           this.down_damaged++;
           this.player_object_status = 0;
-          // console.log(this.down_damaged);
         }
         break;
       case 3:
@@ -567,11 +577,10 @@ var right_barrier_image = [ //up_damaged
           Y = this.y - object_size / 2;
         }
 
-        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.right_up_damaged + this.right_down_damaged != 11)) {
+        if (object.position_y >= Y - this.image_size / 2 && object.position_y <= Y && (this.right_up_damaged + this.right_down_damaged < 11)) {
           bullet_removed(attackArray)
           this.right_down_damaged++;
           this.player_object_status = 0;
-          // console.log(this.right_down_damaged);
         }
         break;
     }
@@ -645,6 +654,5 @@ function collision(object,barr_horsec,barr_versec){
   if(object.object_right_x>=barr_horsec.left_x && object.object_left_x <= barr_horsec.right_x && object.object_up_y<=barr_versec.down_y && object.object_down_y>=barr_versec.up_y){
     return true;
   }
-  // console.log(0);
   return false;
 }

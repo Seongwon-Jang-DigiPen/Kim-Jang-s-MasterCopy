@@ -1,7 +1,9 @@
-//Kim & Jangs
+//bullet.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Daehyeon Kim
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class bullet {
   constructor(a) {
     this.position_x = a
@@ -27,7 +29,6 @@ class bullet {
     this.position_y -= this.position_speed
   }
 
-  //몹에 맞거나, 벽에 맞거나, 맨 위에 맞거나
   crashWallBullet() {
     if (this.position_y < 0 || each_bullet_crash()) {
       return true
