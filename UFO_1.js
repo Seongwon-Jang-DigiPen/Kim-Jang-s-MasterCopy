@@ -14,7 +14,7 @@ class UFO_1 {
     this.canmake = [];
     this.move = true;
     this.UFOsquidvalue = 0;
-    this.IsThisSpecialUFO = true;
+    this.IsThisSpecialUFO = false;
     this.time = 0;
     this.count = 0;
     this.IsUFODie = false;
@@ -26,7 +26,6 @@ class UFO_1 {
       this.go_right = false;
       this.position_x = play_scene_maximumX - this.width
     }
-
   }
 
   randomized() {
@@ -127,7 +126,7 @@ class UFO_1 {
   {
     this.defalt_x = level.monster[0].position_x-(level.monster[0].row*MONSTERDISTANCE);
     this.defalt_y = level.monster[0].position_y-(level.monster[0].column*MONSTERDISTANCE);
-    console.log(level.behindmonsterdata)
+  
     if(this.move == false)
     {
       level.stiffen = true
