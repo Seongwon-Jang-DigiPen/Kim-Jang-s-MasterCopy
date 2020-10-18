@@ -24,6 +24,7 @@ class UFO_1 {
     this.ufoSound = false
     this.point = 50*(round(random(1,5)))
     this.textsize = 15
+    //this is for where UFO will appear
     if(random(0,100)<50)
     {
       this.go_right = false;
@@ -42,19 +43,8 @@ class UFO_1 {
     {
         this.IsThisUfo2 = true
     }
-
-
   }
 
-  randomized() {
-    if (randomSwitch == 0) {
-      this.go_right = true;
-      this.position_x = -20
-    } else if (randomSwitch == 1) {
-      this.go_right = false;
-      this.position_x = 500;
-    }
-  }
 
   update() {
     if(!this.ufoSound)
@@ -93,14 +83,14 @@ else
 }
 
   }
-
+// UFO is disappear from screen
   goneUFO() {
     if (this.position_x < 0 || this.position_x >= play_scene_maximumX - this.width) {
       ufo_sound.stop()
       return true
     }
   }
-
+//This is to check crash UFO with Player's bullet
   deleteUFO() {
     if (bullet_UFO_1_crash()) {
       ufo_sound.stop()
@@ -108,7 +98,7 @@ else
     }
   }
 
-
+//This is for UFO die effect
   dieScene(c) {
     this.IsUFODie = true;
     this.time+=10
@@ -152,7 +142,7 @@ else
       this.count++
     }
   }
-
+//over 8 level, UFO will make invaders
   makemonster(level)
   {
     this.defalt_x = level.monster[0].position_x-(level.monster[0].row*MONSTERDISTANCE);
@@ -216,13 +206,10 @@ else
         }
         level.behindmonsterdata[i]=1;
       }
-
     }
-
   }
 }
 }
-
 }
 
 

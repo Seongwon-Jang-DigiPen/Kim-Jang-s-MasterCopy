@@ -16,7 +16,7 @@ class SOSScene extends EmptyScene {
     this.a = false;
     this.start = true;
   }
-  
+//All of these are to try to imitate as similarly as possible
   Draw()
   {
    for(var barrier_make = 0;barrier_make<barrier_num;barrier_make++)
@@ -30,6 +30,7 @@ class SOSScene extends EmptyScene {
   this.SOStext()
 }
 
+//this is to create a slight tremor
 timer() {
   if(frameCount % 8 <4) {
     this.a = true;

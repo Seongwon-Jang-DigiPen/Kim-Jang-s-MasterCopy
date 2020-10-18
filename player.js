@@ -5,6 +5,7 @@
 //Major : Daehyeon Kim, Minor : Seongwon Jang
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class player {
+    //this.count is for how many times die image will change, this.time is for speed of the change
   constructor() {
     this.position_x = 32;
     this.position_y = 410;
@@ -17,10 +18,8 @@ class player {
     this.count = 0;
     this.diesound = false;
   }
-  
-
+// Move via arrow keys
   update() {
-
     if (keyIsDown(LEFT_ARROW) && this.position_x >= 32 && !this.IsPlayerDie) {
       this.position_x -= this.speed;
     } else if (keyIsDown(RIGHT_ARROW) && this.position_x <= 340 && !this.IsPlayerDie) {
@@ -30,7 +29,6 @@ class player {
     {
       player_die_sound.play()
       this.diesound = true
-
     }
     else if(!this.IsPlayerDie)
     {
@@ -45,10 +43,10 @@ class player {
       this.dieScene()
     }
   }
-
+// if player is die
   dieScene() {
     this.time+=10
-ufo_sound.stop()
+    ufo_sound.stop()
     if(this.count > 6){
       if(this.life <= 0) 
       {
@@ -76,10 +74,8 @@ ufo_sound.stop()
     this.count++
   }
 }
-
-
+//if life is 0, gameover will text, and next
 gameover() {
-
   if(this.count < 12)
   {
     this.time+=10
@@ -130,13 +126,9 @@ gameover() {
     toMainScene()
   }
 }
-
-
 }
-
-
 }
-
+// if select two players mode, change player
 changePlayer()
 {
   this.count = 0;
@@ -185,5 +177,4 @@ changePlayer()
   }
 }
 }
-
 }
