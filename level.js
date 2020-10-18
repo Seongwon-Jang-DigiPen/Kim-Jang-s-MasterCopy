@@ -6,7 +6,7 @@
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class level {
 
-  constructor(level, playerlevel) {
+  constructor(level, playerlevel) { //level is in const, player level is player round number
 
     this.monster = [];
     this.time = 0;
@@ -16,7 +16,7 @@ class level {
     this.downmove = false;
     this.movespeed = 0.02;
     this.playerlevel = playerlevel;
-    this.monster_y_locate = ((playerlevel - 1) % 8) * 16
+    this.monster_y_locate = ((playerlevel - 1) % 8) * 16  // change level to monster y location
     if((playerlevel - 1) % 8 > 5)
       {this.monster_y_locate -=16}
      if((playerlevel - 1) % 8 > 7)
@@ -24,20 +24,20 @@ class level {
     this.soundcount = 0;
     this.UFOON =false;
 
-    this.stiffen = false;
-    this.stiffenElapsed = 0;
+    this.stiffen = false; // if stiffen is true, monster will stop
+    this.stiffenElapsed = 0; // stiffen Hold time
 
-    this.monster_generate(level);
+    this.monster_generate(level); // make monster in monster[]
 
     this.fire = false;
 
     this.bullet = [];
     this.shootcount = 0
-    this.targeting = [true,true,true,false,false,false,false]
+    this.targeting = [true,true,true,false,false,false,false] // if true then targeting player and shoot, if false random shoot
 
-    this.behindmonsterdata = [0,0,0,0,0,0,0,0,0,0,0,0];
+    this.behindmonsterdata = [0,0,0,0,0,0,0,0,0,0,0,0]; // some time UFO make monster. this is for UFO
 
-    for(var i=0;i<level[0].length;i++)
+    for(var i=0;i<level[0].length;i++)  // if last line have a monster, check 1
     {
       if(level[0][i] == 0)
       {
@@ -53,20 +53,20 @@ class level {
 
   update() 
   {
-    this.monsterDeadcheck()
-    this.makebabymove()
+    this.monsterDeadcheck() //if monster is dead then 
+    this.makebabymove() // after 12round, if you kill the crab, then small baby is come. it is for them
 
     if (this.monster.length > 0 && !this.stiffen) {
-      this.makeUFO()
-      this.color();
+      this.makeUFO() // if monster is less than 30, make UFO
+      this.color(); // Colors change depending on the location of the monster.
       if(!playerArray[0].IsPlayerDie){
-        this.movecheck();
-        this.position_check();
-        this.move();
+        this.movecheck(); // if every monster move one time, then monstercount = 0
+        this.position_check(); //check the front monster(because only front monster can attack)
+        this.move(); //monster is move
       }
     }
 
-    if (this.stiffen) {
+    if (this.stiffen) { //stiffen timer
       this.stiffenElapsed += (millis() - this.time) / 1000;
       if (this.stiffenElapsed >= STIFFENTIME) {
         this.stiffenElapsed = 0;
@@ -108,7 +108,6 @@ class level {
   } 
   color() 
   {
-
     if(!playerArray[0].IsPlayerDie){
       for (var i = 0; i < this.monster.length; i++) {
         if (GREEN_ZONE < this.monster[i].position_y && this.monster[i].position_y <= BLUE_ZONE) {
@@ -185,10 +184,10 @@ class level {
         break;
       }
     }
-    
   }
   pop()
 }
+
 moveSound()
 {
   switch(this.soundcount)
@@ -420,7 +419,7 @@ monsterDeadcheck(score)
 }  
 }
 
-returnBaby(i)
+returnBaby(i) // crab to Baby (after 12round)
 {
   var B ={
     type: BABY,
@@ -467,7 +466,7 @@ makebabymove()
 }
 }
 
-makeOctopus(i,j)
+makeOctopus(i,j) // make json(like struct)
 {
  var octopus = {
   type: OCTOPUS,

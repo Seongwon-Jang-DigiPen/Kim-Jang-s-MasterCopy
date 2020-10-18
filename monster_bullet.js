@@ -17,7 +17,7 @@ class monster_bullet {
     this.bullet_break = 0;
   }
 
-	draw() {
+	draw() { //monster bullet have a 3 different image. this.tyoe choose image randomly
 		var frame = bullet_animation[bulletName[this.type]]
 		image(bullet_image, this.position_x,this.position_y, this.width, this.height, frame[this.frame_count].x, frame[this.frame_count].y,frame[this.frame_count].w,frame[this.frame_count].h)
 		this.frame_count = (this.frame_count+1) % 4
