@@ -1,7 +1,9 @@
-//Kim & Jangs
+//PlayScene.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Major : Seongwon Jang, Minor : Daehyeon Kim, Junsu Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];

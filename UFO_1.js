@@ -1,7 +1,9 @@
-//Kim & Jangs
+//UFO_1.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//1st : Daehyeon Kim, 2nd : Seongwon Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class UFO_1 {
   constructor() {
     this.position_x = 0;

@@ -1,7 +1,9 @@
-//Kim & Jangs
+//const.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//All team members
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 
 const monster_move_minimum = 0;
 const monster_move_maximum = 192 * 2 - 8 * 2;

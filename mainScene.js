@@ -1,7 +1,9 @@
-//Kim & Jangs
+//mainScene.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Junsu Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class MainScene{
 	constructor(){
 		this.PLEASE_SELECT = {

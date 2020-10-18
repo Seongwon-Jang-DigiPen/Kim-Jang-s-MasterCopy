@@ -1,7 +1,9 @@
-//Kim & Jangs
+//monster_bullet.js
 //Master Copy - Space Invaders II
 //GAM100
 //Fall, 2020
+//Seongwon Jang
+//“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 class monster_bullet {
 
   constructor(a,b) {
