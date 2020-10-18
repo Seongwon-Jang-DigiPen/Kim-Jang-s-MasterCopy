@@ -5,7 +5,7 @@
 //Major : Seongwon Jang, Minor : Daehyeon Kim, Junsu Jang
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
 
-var Scene
+var Scene // there in every Scene
 var previousScene = 0
 
 
@@ -25,6 +25,8 @@ function setup() {
 
 }
 
+// there to function can change other Scene
+//if some Scene need to back to previousScene, then use previousScene variable
 function toInfo2Scene()
 {
 	previousScene = Scene;

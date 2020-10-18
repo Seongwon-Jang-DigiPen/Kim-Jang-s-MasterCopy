@@ -4,10 +4,11 @@
 //Fall, 2020
 //Major : Seongwon Jang, Minor : Daehyeon Kim, Junsu Jang
 //“All content © 2020 DigiPen (USA) Corporation, all rights reserved.”
+
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
-
+currentlevel
 var randomSwitch
 let x;
 let y;
@@ -56,7 +57,7 @@ var barrier_3_pos_x = 222;
 var barrier_4_pos_x = 302;
 var makeMonsterAnimation = [];
 
-function highScorecheck()
+function highScorecheck() // highScoreCheck
 {
   if(highScore<player1_Score)
   {
@@ -68,7 +69,7 @@ if(highScore<player2_Score)
   }
 }
 
-function bonusLife()
+function bonusLife() // if player Score is more than 1500, game give more life
 {
 if(1500<=player1_Score&&!player1_bonus_life)
 {
@@ -142,7 +143,7 @@ Update()
     }
     for(var i=0;i<currentlevel.monster.length;i++)
     {
-      makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ;
+      makeMonsterAnimation[i] = {x:currentlevel.monster[i].position_x,y:currentlevel.monster[i].position_y} ; //this make new round Animation
     }
   }
   else if(this.new_Round)
@@ -159,11 +160,15 @@ Update()
   }
   this.time = millis();
 }
+
+
 Draw_text()
 {
   draw_life()
   draw_text();
 }
+
+
 changepause()
 {
  draw_life()
@@ -183,6 +188,8 @@ textAlign(CENTER)
 text("PAUSE",play_scene_maximumX/2,play_scene_maximumY/4)
 pop();
 }
+
+
 roundChange()
 {
   if(currentlevel.monster.length == 0)
@@ -303,7 +310,7 @@ function makebarrier(b)
   b.push(new barrier(barrier_3_pos_x,barrier_pos_y));
   b.push(new barrier(barrier_4_pos_x,barrier_pos_y));
 }
-function blackScreen()
+function blackScreen() 
 {
   push();
   textSize(15)
@@ -330,10 +337,6 @@ function playScene_OnKeyPressd()
  if (key == 'z' && attackArray.length == 0 && !playerArray[0].IsPlayerDie &&!this.pause) {
   fire_sound.play();
   attackArray.push(new bullet(playerArray[0].position_x));
-}
-if (key == 'u') {
-  player1_Score += 100
-  player2_Score += 90
 }
 
 if (key == 'a') {
@@ -469,7 +472,7 @@ function bullet_removed(bullet_name){
   c.crash_one(bullet_name);
 }
 
-function draw_text() {
+function draw_text() { //interface
   push()
   fill(255)
   textSize(17);
@@ -530,7 +533,7 @@ function draw_text() {
   pop()
 }
 
-function draw_life() {
+function draw_life() {  //interface
   push()
   if(playerArray[0].life == 3){
     if(!playerArray[0].IsPlayerDie){
