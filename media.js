@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 var octopus_image = 0;
 var octopus_data = 0;
 var squid_image = 0;

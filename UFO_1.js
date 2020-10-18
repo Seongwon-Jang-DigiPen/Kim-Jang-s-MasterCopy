@@ -91,7 +91,7 @@ class UFO_1 {
     } 
     if(this.count == 6){
       this.IsUFODie = false;
-      //this.count = 0;
+      this.count = 0;
       if(player1)
       {
         player1_Score += this.point;

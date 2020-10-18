@@ -142,7 +142,7 @@ changePlayer()
   {  
     if(player2_play)
     {
-    if(player1) // change 1 to 2
+    if(player1)
     {
       this.life--
       this.position_x = 50;
@@ -155,10 +155,9 @@ changePlayer()
       this.IsPlayerDie = false;
       playerArray[0] = player2_player;
       Scene.black_Scene = true; 
-      console.log(12121)
     }
 
-    else if(player2) // change 2 to 1
+    else if(player2)
     {
       this.life--
       this.position_x = 50;

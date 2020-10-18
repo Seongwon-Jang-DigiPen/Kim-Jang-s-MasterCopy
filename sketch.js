@@ -3,12 +3,6 @@
 //GAM100
 //Fall, 2020
 
-
-//전달사항
-
-
-
-
 var Scene
 var previousScene = 0
 

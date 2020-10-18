@@ -411,7 +411,7 @@ var right_barrier_image = [ //up_damaged
     this.left_image_1 = left_barrier_image[this.left_up_damaged][this.left_down_damaged][0];
     this.left_image_2 = left_barrier_image[this.left_up_damaged][this.left_down_damaged][1];
     this.left_image_3 = left_barrier_image[this.left_up_damaged][this.left_down_damaged][2];
-console.log(this.right_image_1);
+
     this.right_image_1 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][0];
     this.right_image_2 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][1];
     this.right_image_3 = right_barrier_image[this.right_up_damaged][this.right_down_damaged][2];
@@ -430,7 +430,6 @@ console.log(this.right_image_1);
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-// console.log(attackArray);
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {
@@ -469,7 +468,6 @@ console.log(this.right_image_1);
             this.crash_effect(currentlevel)
           this.left_up_damaged++;
           this.monster_object_status = 0;
-          // console.log('left'+this.left_up_damaged);
         }
         
         break;
@@ -486,7 +484,6 @@ console.log(this.right_image_1);
             this.crash_effect(currentlevel)
           this.up_damaged++;
           this.monster_object_status = 0;
-          // console.log('middle'+this.up_damaged);
         }
         break;
       case 3:
@@ -502,9 +499,7 @@ console.log(this.right_image_1);
             this.crash_effect(currentlevel)
           this.right_up_damaged++;
           this.monster_object_status = 0;
-          // console.log('right'+this.right_up_damaged);
         }
-        
         break;
     }
 }
@@ -514,7 +509,6 @@ console.log(this.right_image_1);
     var right_x = this.x + this.image_size;
     var Y = this.y;
     var object_size = 16;
-// console.log(attackArray);
 
     if (object.position_x < left_x + this.image_size / 2 && object.position_x >= left_x - this.image_size / 2 ) {
       if (player_or_monster == 'player') {
@@ -537,7 +531,7 @@ console.log(this.right_image_1);
       } else {
         this.monster_object_status = 2;
       }
-    } //Check left, right, and middle
+    }
 
     switch (this.player_object_status) {
       case 1:
@@ -553,7 +547,6 @@ console.log(this.right_image_1);
           bullet_removed(attackArray)
           this.left_down_damaged++;
           this.player_object_status = 0;
-          // console.log(this.left_down_damaged);
         }
         break;
       case 2:
@@ -567,7 +560,6 @@ console.log(this.right_image_1);
           bullet_removed(attackArray);
           this.down_damaged++;
           this.player_object_status = 0;
-          // console.log(this.down_damaged);
         }
         break;
       case 3:
@@ -583,7 +575,6 @@ console.log(this.right_image_1);
           bullet_removed(attackArray)
           this.right_down_damaged++;
           this.player_object_status = 0;
-          // console.log(this.right_down_damaged);
         }
         break;
     }
@@ -657,6 +648,5 @@ function collision(object,barr_horsec,barr_versec){
   if(object.object_right_x>=barr_horsec.left_x && object.object_left_x <= barr_horsec.right_x && object.object_up_y<=barr_versec.down_y && object.object_down_y>=barr_versec.up_y){
     return true;
   }
-  // console.log(0);
   return false;
 }

@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 var attackArray = [];
 var UFO_1Array = [];
 var playerArray = [];
@@ -16,7 +20,7 @@ var playerlevel = 12;
 var barrier_gameplay = [];
 
 
-/////////////////////// save the player info when player is changed
+
 var player1_player = new player()
 var player2_player = new player()
 playerArray[0]= player1_player;
@@ -32,7 +36,7 @@ var player2_barrier = []
 
 var player1_bonus_life = false
 var player2_bonus_life = false
-///////////////////////
+
 var currentlevel = player1_level
 
 var highScore = 5000;

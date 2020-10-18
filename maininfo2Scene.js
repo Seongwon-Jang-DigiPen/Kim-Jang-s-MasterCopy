@@ -1,3 +1,7 @@
+//Kim & Jangs
+//Master Copy - Space Invaders II
+//GAM100
+//Fall, 2020
 class Info2Scene extends EmptyScene{
 	constructor(){
 		super();
@@ -127,7 +131,6 @@ class Info2Scene extends EmptyScene{
 	if(this.octopus){
 		this.text_animation(this.octopus_point);
 	}
-	//draw score boards
 	pop();
 	draw_text();
     draw_life();
@@ -158,7 +161,6 @@ if(info_text.rate>=info_text.text.length){
 		}
 		for(var i =0;i<info_text.rate;i++){
 			var text_size = 16
-			// console.log(info_text.text[i]);
 			push();
 			fill(info_text.color);
 			text(info_text.text[i],info_text.x+i*text_size,info_text.y);
